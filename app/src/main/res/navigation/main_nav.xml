@@ -21,6 +21,7 @@
         tools:layout="@layout/add_item_fragment" >
         <action
             android:id="@+id/action_addItemFragment_to_allItemsFragment"
-            app:destination="@id/allItemsFragment" />
+            app:destination="@id/allItemsFragment"
+            app:popUpTo="@id/main_nav" />
     </fragment>
 </navigation>
