@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/stockPriceBox">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/stock_ammount"
+            android:id="@+id/stock_amount"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

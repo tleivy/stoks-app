@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.stoks.databinding.AddItemFragmentBinding
@@ -22,7 +23,14 @@ class AddItemFragment : Fragment(){
     ): View? {
         _binding = AddItemFragmentBinding.inflate(inflater, container, false)
         binding.addBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
+            val bundle = bundleOf(
+                "stockName" to binding.stockName.text.toString(),
+                "stockSymbol" to binding.stockSymbol.text.toString(),
+                "stockPrice" to binding.stockPrice.text.toString(),
+                "stockAmount" to binding.stockAmount.text.toString(),
+                "totalInvestment" to binding.stockTotalInvestment.text.toString()
+            )
+            findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment, bundle)
         }
 
         val stockDataMaps = StocksDataMaps()
@@ -50,9 +58,9 @@ class AddItemFragment : Fragment(){
             override fun afterTextChanged(newName: Editable?) {}
         })
 
-        binding.stockAmmount.addTextChangedListener(object : TextWatcher {
+        binding.stockAmount.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(newAmount: CharSequence?, start: Int, before: Int, count: Int) {
-                val totalInvested = currPrice * binding.stockAmmount.text.toString().toInt()
+                val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
                 binding.stockTotalInvestment.setText(totalInvested.toString() + "$")
             }
             override fun beforeTextChanged(newName: CharSequence?, start: Int, count: Int, after: Int) {}
