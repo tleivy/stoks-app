@@ -14,4 +14,7 @@ object ItemManager {
     fun remove(index: Int) {
         items.removeAt(index)
     }
+
+
+
 }

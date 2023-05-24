@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
+
+    android:clickable="true"
+    android:focusable="true"
+    android:checkable="true"
+
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -29,12 +35,13 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:text="Main item description"
-                android:id="@+id/stock_name"/>
+                android:text="Name"
+                android:id="@+id/stock_name"
+                android:gravity="center"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -60,4 +67,4 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
