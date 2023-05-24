@@ -1,5 +1,6 @@
 package com.example.stoks
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,16 +23,7 @@ class AddItemFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         _binding = AddItemFragmentBinding.inflate(inflater, container, false)
-        binding.addBtn.setOnClickListener{
-            val bundle = bundleOf(
-                "stockName" to binding.stockName.text.toString(),
-                "stockSymbol" to binding.stockSymbol.text.toString(),
-                "stockPrice" to binding.stockPrice.text.toString(),
-                "stockAmount" to binding.stockAmount.text.toString(),
-                "totalInvestment" to binding.stockTotalInvestment.text.toString()
-            )
-            findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment, bundle)
-        }
+
 
         val stockDataMaps = StocksDataMaps()
         val stockSymbols = stockDataMaps.stockSymbols
@@ -51,7 +43,7 @@ class AddItemFragment : Fragment(){
                 if (pricesArr != null) {
                     val randomInt = Random.nextInt(3)  // A random int in 0-2
                     currPrice = pricesArr?.get(randomInt) ?: 0.0
-                    binding.stockPrice.setText(currPrice?.toString() + "$")
+                    binding.stockPrice.setText(currPrice?.toString())
                 }
             }
             override fun beforeTextChanged(newName: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -67,10 +59,25 @@ class AddItemFragment : Fragment(){
             override fun afterTextChanged(newName: Editable?) {}
         })
 
+
+        binding.addBtn.setOnClickListener{
+
+            val item = Item(binding.stockName.text.toString(),
+                binding.stockSymbol.text.toString(),
+                binding.stockPrice.text.toString().toDouble(),
+                binding.stockAmount.text.toString().toDouble())
+            ItemManager.add(item)
+            findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
+
+        }
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
     }
 }

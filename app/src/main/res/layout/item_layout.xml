@@ -34,14 +34,28 @@
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:text="Main item description"
-                android:id="@+id/item_title"/>
+                android:id="@+id/stock_name"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:text="Extra item description"
-                android:id="@+id/item_description"/>
+                android:id="@+id/stock_price"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Extra item description"
+                android:id="@+id/stock_symbol"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Extra item description"
+                android:id="@+id/stock_amount"/>
         </LinearLayout>
 
     </LinearLayout>
