@@ -1,21 +1,36 @@
 package com.example.stoks
 
-import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.stoks.databinding.AddItemFragmentBinding
+import java.io.InputStream
 import kotlin.random.Random
+
 
 class AddItemFragment : Fragment(){
     private var _binding:AddItemFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private var imageUri: Uri? = null
+
+    val pickItemLauncher: ActivityResultLauncher<Array<String>> =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) {
+            binding.previewImage.setImageURI(it)
+            requireActivity().contentResolver.takePersistableUriPermission(it!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            imageUri = it
+        }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,12 +43,16 @@ class AddItemFragment : Fragment(){
         val stockDataMaps = StocksDataMaps()
         val stockSymbols = stockDataMaps.stockSymbols
         val stockPrices = stockDataMaps.stockPrices
+        val stockImages = stockDataMaps.stockImages
         var currPrice = 0.0
+
+
         binding.stockName.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(newName: CharSequence?, start: Int, before: Int, count: Int) {
                 val companyName = newName.toString()
                 if (stockSymbols[companyName] != null) {
                     binding.stockSymbol.setText(stockSymbols[companyName])
+                    binding.previewImage.setImageResource(stockImages[companyName]!!)
                 } else {
                     // TODO: API call -> get stock symbol, add to map
                 }
@@ -53,23 +72,40 @@ class AddItemFragment : Fragment(){
         binding.stockAmount.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(newAmount: CharSequence?, start: Int, before: Int, count: Int) {
                 val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
-                binding.stockTotalInvestment.setText(totalInvested.toString() + "$")
+                binding.stockTotalInvestment.setText(totalInvested.toString())
             }
             override fun beforeTextChanged(newName: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(newName: Editable?) {}
         })
 
 
-        binding.addBtn.setOnClickListener{
+        binding.addBtn.setOnClickListener {
+            val stockDefault = binding.stockName.text.toString()
+            var tempstring: Int?
+            if (imageUri != null) {
+                tempstring = stockImages[stockDefault]
+            } else {
+                tempstring = stockImages[stockDefault]
+            }
 
-            val item = Item(binding.stockName.text.toString(),
+
+            val item = Item(
+                binding.stockName.text.toString(),
                 binding.stockSymbol.text.toString(),
                 binding.stockPrice.text.toString().toDouble(),
-                binding.stockAmount.text.toString().toDouble())
+                binding.stockAmount.text.toString().toDouble(),
+                tempstring
+            )
+
             ItemManager.add(item)
             findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
-
         }
+
+
+        binding.imageBtn.setOnClickListener{
+            pickItemLauncher.launch(arrayOf("image/*"))
+        }
+
         return binding.root
     }
 
