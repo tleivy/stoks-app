@@ -1,93 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+
+    android:layout_height="wrap_content"
+    android:checkable="true"
     android:clickable="true"
     android:focusable="true"
-    android:checkable="true"
-
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="10dp"
-    app:cardCornerRadius="8dp">
+    app:contentPadding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!--TODO: Match fields to AddItemFragment-->
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/item_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_margin="16dp"
             android:layout_gravity="center_vertical|start"
-            android:id="@+id/item_image" />
+            android:layout_margin="16dp"
+            android:src="@mipmap/ic_launcher" />
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:text="Name"
                 android:id="@+id/stock_name"
-                android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Name"
+                android:textSize="30sp" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/stock_symbol"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/current_price"
-                android:id="@+id/stock_price_Title"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Extra item description"
-                android:id="@+id/stock_price"/>
+                android:text="Stock symbol"
+                android:textSize="22sp" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:text="@string/stock_symbol"
-                android:id="@+id/stock_symbol_Title"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Extra item description"
-                android:id="@+id/stock_symbol"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:text="@string/amount"
-                android:id="@+id/stock_amount_Title"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Extra item description"
-                android:id="@+id/stock_amount"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/stock_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Price"
+                android:textSize="30sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/stock_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Stock amount"
+                android:textSize="22sp" />
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
+
 
 </com.google.android.material.card.MaterialCardView>
