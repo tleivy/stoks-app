@@ -50,6 +50,7 @@ class AddItemFragment : Fragment() {
         val stockPrices = stockDataMaps.stockPrices
         val stockImages = stockDataMaps.stockImages
         val followedStocks = stockDataMaps.followedStocks
+        binding.stockAmount.setText("0")
         var currPrice = 0.0
 //        var companyName = ""
 
