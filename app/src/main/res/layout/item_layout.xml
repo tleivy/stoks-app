@@ -21,66 +21,42 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical|start"
-            android:layout_margin="16dp"
+            android:layout_margin="12dp"
             android:src="@mipmap/ic_launcher" />
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/stock_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Name"
-                android:textSize="30sp" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/stock_symbol"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Stock symbol"
-                android:textSize="22sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
+                android:textSize="20sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/stock_price"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="Price"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/stock_amount"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Stock amount"
-                android:textSize="22sp" />
-
+                android:textSize="15sp" />
 
         </LinearLayout>
-
-
-    </LinearLayout>
-
 
 </com.google.android.material.card.MaterialCardView>
