@@ -50,9 +50,15 @@ class AddItemFragment : Fragment() {
         val stockSymbols = stockDataMaps.stockSymbols
         val stockPrices = stockDataMaps.stockPrices
         val stockImages = stockDataMaps.stockImages
+        val followedStocks = stockDataMaps.followedStocks
         var currPrice = 0.0
+//        var companyName = ""
 
-        val stockNames = stockSymbols.keys.toList()
+        val stockNames = stockSymbols.keys.toMutableList()
+        for (item in stockNames) {
+            if (followedStocks.contains(item)) stockNames.remove(item)
+        }
+
         val namesAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, stockNames)
         val spinner = binding.namesSpinner
         spinner.adapter = namesAdapter
@@ -142,9 +148,9 @@ class AddItemFragment : Fragment() {
             override fun afterTextChanged(newName: Editable?) {}
         })
 
-
         binding.addBtn.setOnClickListener {
             val stockDefault = binding.stockName.text.toString()
+//            followedStocks.add(companyName)
             var tempstring: Uri?
             if (imageUri != null) {
                 tempstring = imageUri

@@ -26,4 +26,6 @@ class StocksDataMaps {
         "Tesla" to R.drawable.tesla_image
     )
 
+    public val followedStocks = mutableSetOf<String>()
+
 }
