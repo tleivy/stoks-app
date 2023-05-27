@@ -45,7 +45,6 @@ class AddItemFragment : Fragment() {
     ): View? {
         _binding = AddItemFragmentBinding.inflate(inflater, container, false)
 
-
         val stockDataMaps = StocksDataMaps()
         val stockSymbols = stockDataMaps.stockSymbols
         val stockPrices = stockDataMaps.stockPrices
@@ -80,11 +79,7 @@ class AddItemFragment : Fragment() {
                     // TODO: API call -> get stock symbol, add to map
                 }
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
 //        binding.stockName.addTextChangedListener(object : TextWatcher {
@@ -99,10 +94,10 @@ class AddItemFragment : Fragment() {
 //                    binding.stockSymbol.setText(stockSymbols[companyName])
 //                    binding.previewImage.setImageResource(stockImages[companyName]!!)
 //                } else {
-//                    // TODO: API call -> get stock symbol, add to map
+//                    //API call -> get stock symbol, add to map
 //                }
 //
-//                // TODO: Needs to be an API call
+//                Needs to be an API call
 //                val pricesArr = stockPrices[companyName]
 //                if (pricesArr != null) {
 //                    val randomInt = Random.nextInt(3)  // A random int in 0-2

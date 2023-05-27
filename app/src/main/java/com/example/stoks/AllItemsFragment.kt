@@ -32,19 +32,19 @@ class AllItemsFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
+
         binding.recycler.adapter = ItemAdapter(ItemManager.items , object :ItemAdapter.ItemListener{
+            // TODO: open detailed item fragment
             override fun onItemClicked(index: Int) {
                 Toast.makeText(requireContext(),ItemManager.items[index].toString(),Toast.LENGTH_SHORT).show()
             }
 
+            // TODO: decide if necessary
             override fun onItemLongClick(index: Int) {
                 Toast.makeText(requireContext(),ItemManager.items[index].toString(),Toast.LENGTH_SHORT).show()
             }
         })
-
-
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
             override fun getMovementFlags(
@@ -56,15 +56,13 @@ class AllItemsFragment : Fragment(){
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
-            ): Boolean {
-                TODO("Not yet implemented")
-            }
+            ): Boolean {return false}
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // TODO: pop confirmation dialog
                 ItemManager.remove(viewHolder.adapterPosition)
-                binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
+                binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)  // visual update
             }
-
 
 
         }).attachToRecyclerView(binding.recycler)
