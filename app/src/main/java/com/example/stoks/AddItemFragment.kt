@@ -45,30 +45,25 @@ class AddItemFragment : Fragment() {
     ): View? {
         _binding = AddItemFragmentBinding.inflate(inflater, container, false)
 
-        val stockDataMaps = StocksDataMaps()
-        val stockSymbols = stockDataMaps.stockSymbols
-        val stockPrices = stockDataMaps.stockPrices
-        val stockImages = stockDataMaps.stockImages
-        val followedStocks = stockDataMaps.followedStocks
-        binding.stockAmount.setText("0")
+        val stockSymbols = StocksDataMaps.stockSymbols
+        val stockPrices = StocksDataMaps.stockPrices
+        val stockImages = StocksDataMaps.stockImages
+        val followedStocks = StocksDataMaps.followedStocks
         var currPrice = 0.0
-//        var companyName = ""
+        var companyName = ""
 
         val stockNames = stockSymbols.keys.toMutableList()
-        for (item in stockNames) {
-            if (followedStocks.contains(item)) stockNames.remove(item)
-        }
+        stockNames.removeAll { followedStocks.contains(it) }
 
         val namesAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, stockNames)
         val spinner = binding.namesSpinner
         spinner.adapter = namesAdapter
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val companyName = stockNames[p2]
+                companyName = stockNames[p2]
                 if (stockSymbols[companyName] != null) {
                     binding.stockSymbol.setText(stockSymbols[companyName])
                     binding.previewImage.setImageResource(stockImages[companyName]!!)
-
                     // TODO: Needs to be an API call
                     val pricesArr = stockPrices[companyName]
                     if (pricesArr != null) {
@@ -127,7 +122,7 @@ class AddItemFragment : Fragment() {
             ) {
                 if(TextUtils.isEmpty(binding.stockAmount.text?.toString())){
                     binding.stockTotalInvestment.setText("0")
-                }else {
+                } else {
                     val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
                     binding.stockTotalInvestment.setText(totalInvested.toString())
                 }
@@ -145,8 +140,8 @@ class AddItemFragment : Fragment() {
         })
 
         binding.addBtn.setOnClickListener {
+            followedStocks.add(companyName)
             val stockDefault = binding.stockName.text.toString()
-//            followedStocks.add(companyName)
             var tempstring: Uri?
             if (imageUri != null) {
                 tempstring = imageUri
@@ -158,6 +153,10 @@ class AddItemFragment : Fragment() {
                             "/" + resourceId?.let { it1 -> resources.getResourceTypeName(it1) } +
                             "/" + resourceId?.let { it1 -> resources.getResourceEntryName(it1) }
                 )
+            }
+
+            if(TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
+                binding.stockAmount.setText("0")
             }
             val item = Item(
                 binding.stockName.text.toString(),
