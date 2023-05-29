@@ -1,5 +1,7 @@
 package com.example.stoks
 
+import com.example.stocks.R
+
 class StocksDataMaps {
 
     public val stockSymbols = mutableMapOf(

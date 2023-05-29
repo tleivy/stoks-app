@@ -6,23 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stoks.databinding.AllItemsFragmentBinding
-import java.util.Objects
+import com.example.stocks.R
+import com.example.stocks.databinding.AllItemsFragmentBinding
 
 
 class AllItemsFragment : Fragment(){
+
     private var _binding:AllItemsFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel : ItemViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = AllItemsFragmentBinding.inflate(inflater, container, false)
+        _binding = AllItemsFragmentBinding.inflate(inflater,container,false)
+
+
         binding.addItemButton.setOnClickListener{
             findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
         }
@@ -33,16 +39,25 @@ class AllItemsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-        binding.recycler.adapter = ItemAdapter(ItemManager.items , object :ItemAdapter.ItemListener{
-            override fun onItemClicked(index: Int) {
-                Toast.makeText(requireContext(),ItemManager.items[index].toString(),Toast.LENGTH_SHORT).show()
-            }
+        viewModel.items?.observe(viewLifecycleOwner) {
 
-            override fun onItemLongClick(index: Int) {
-                Toast.makeText(requireContext(),ItemManager.items[index].toString(),Toast.LENGTH_SHORT).show()
-            }
-        })
+
+            binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
+
+                override fun onItemClicked(index: Int) {
+                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onItemLongClick(index: Int) {
+                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
+                }
+            })
+            binding.recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        }
+
+
+
 
 
 
@@ -61,15 +76,14 @@ class AllItemsFragment : Fragment(){
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                ItemManager.remove(viewHolder.adapterPosition)
+                viewModel.deleteItem((binding.recycler.adapter as ItemAdapter)
+                    .itemAt(viewHolder.adapterPosition))
                 binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
             }
 
 
 
         }).attachToRecyclerView(binding.recycler)
-
-
 
     }
 

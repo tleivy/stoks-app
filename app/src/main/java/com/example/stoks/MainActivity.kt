@@ -2,6 +2,7 @@ package com.example.stoks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.stocks.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

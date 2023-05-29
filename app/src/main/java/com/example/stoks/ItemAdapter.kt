@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.stoks.databinding.ItemLayoutBinding
+import com.example.stocks.databinding.ItemLayoutBinding
+
 
 class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
@@ -42,6 +43,8 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
         }
     }
+
+    fun itemAt(position: Int)= items[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ItemViewHolder(

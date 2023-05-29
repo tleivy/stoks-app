@@ -13,15 +13,18 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.stoks.databinding.AddItemFragmentBinding
-import java.io.InputStream
+import com.example.stocks.R
+import com.example.stocks.databinding.AddItemFragmentBinding
 import kotlin.random.Random
 
 
 class AddItemFragment : Fragment() {
     private var _binding: AddItemFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ItemViewModel by activityViewModels()
 
     private var imageUri: Uri? = null
 
@@ -134,7 +137,7 @@ class AddItemFragment : Fragment() {
                 binding.stockAmount.text.toString().toDouble(),
                 tempstring
             )
-            ItemManager.add(item)
+            viewModel.addItem(item)
             findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
         }
         binding.resetBtn.setOnClickListener {
