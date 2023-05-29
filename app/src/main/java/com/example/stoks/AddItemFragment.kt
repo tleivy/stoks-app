@@ -77,7 +77,7 @@ class AddItemFragment : Fragment() {
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
-
+            // TODO: delete after image transfer bug is fixed
 //        binding.stockName.addTextChangedListener(object : TextWatcher {
 //            override fun onTextChanged(
 //                newName: CharSequence?,
