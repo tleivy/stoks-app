@@ -17,6 +17,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment"
+            app:destination="@id/detailedItemFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"
@@ -32,4 +39,9 @@
             app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/main_nav" />
     </fragment>
+    <fragment
+        android:id="@+id/detailedItemFragment"
+        android:name="com.example.stoks.DetailedItemFragment"
+        android:label="detail_item_layout"
+        tools:layout="@layout/detail_item_layout" />
 </navigation>

@@ -45,7 +45,9 @@ class AllItemsFragment : Fragment(){
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
 
                 override fun onItemClicked(index: Int) {
-                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
+                    viewModel.setItem(it[index])
+                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
                 }
 
                 override fun onItemLongClick(index: Int) {
