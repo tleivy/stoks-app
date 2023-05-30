@@ -56,8 +56,7 @@ class AddItemFragment : Fragment() {
         var companyName = ""
 
         val stockNames = stockSymbols.keys.toMutableList()
-        //TODO verify with tomer to Delete
-        //stockNames.removeAll { followedStocks.contains(it) }
+        stockNames.removeAll { followedStocks.contains(it) }
 
         val searchField = binding.searchField
         val namesAdapter =
@@ -180,6 +179,7 @@ class AddItemFragment : Fragment() {
             viewModel.addItem(item)
             findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
         }
+
         binding.resetBtn.setOnClickListener {
             binding.stockName.setText("")
             binding.stockSymbol.setText("")
