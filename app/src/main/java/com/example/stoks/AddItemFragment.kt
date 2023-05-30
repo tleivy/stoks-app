@@ -10,6 +10,8 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -46,48 +48,73 @@ class AddItemFragment : Fragment() {
     ): View? {
         _binding = AddItemFragmentBinding.inflate(inflater, container, false)
 
-
-        val stockDataMaps = StocksDataMaps()
-        val stockSymbols = stockDataMaps.stockSymbols
-        val stockPrices = stockDataMaps.stockPrices
-        val stockImages = stockDataMaps.stockImages
+        val stockSymbols = StocksDataMaps.stockSymbols
+        val stockPrices = StocksDataMaps.stockPrices
+        val stockImages = StocksDataMaps.stockImages
+        val followedStocks = StocksDataMaps.followedStocks
         var currPrice = 0.0
+        var companyName = ""
 
+        val stockNames = stockSymbols.keys.toMutableList()
+        stockNames.removeAll { followedStocks.contains(it) }
 
-        binding.stockName.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(
-                newName: CharSequence?,
-                start: Int,
-                before: Int,
-                count: Int
-            ) {
-                val companyName = newName.toString()
+        val namesAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, stockNames)
+        val spinner = binding.namesSpinner
+        spinner.adapter = namesAdapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                companyName = stockNames[p2]
                 if (stockSymbols[companyName] != null) {
                     binding.stockSymbol.setText(stockSymbols[companyName])
                     binding.previewImage.setImageResource(stockImages[companyName]!!)
+                    // TODO: Needs to be an API call
+                    val pricesArr = stockPrices[companyName]
+                    if (pricesArr != null) {
+                        val randomInt = Random.nextInt(3)  // A random int in 0-2
+                        currPrice = pricesArr?.get(randomInt) ?: 0.0
+                        binding.stockPrice.setText(currPrice?.toString())
+                    }
                 } else {
                     // TODO: API call -> get stock symbol, add to map
                 }
-
-                // TODO: Needs to be an API call
-                val pricesArr = stockPrices[companyName]
-                if (pricesArr != null) {
-                    val randomInt = Random.nextInt(3)  // A random int in 0-2
-                    currPrice = pricesArr?.get(randomInt) ?: 0.0
-                    binding.stockPrice.setText(currPrice?.toString())
-                }
             }
-
-            override fun beforeTextChanged(
-                newName: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-            }
-
-            override fun afterTextChanged(newName: Editable?) {}
-        })
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
+            // TODO: delete after image transfer bug is fixed
+//        binding.stockName.addTextChangedListener(object : TextWatcher {
+//            override fun onTextChanged(
+//                newName: CharSequence?,
+//                start: Int,
+//                before: Int,
+//                count: Int
+//            ) {
+//                val companyName = newName.toString()
+//                if (stockSymbols[companyName] != null) {
+//                    binding.stockSymbol.setText(stockSymbols[companyName])
+//                    binding.previewImage.setImageResource(stockImages[companyName]!!)
+//                } else {
+//                    //API call -> get stock symbol, add to map
+//                }
+//
+//                Needs to be an API call
+//                val pricesArr = stockPrices[companyName]
+//                if (pricesArr != null) {
+//                    val randomInt = Random.nextInt(3)  // A random int in 0-2
+//                    currPrice = pricesArr?.get(randomInt) ?: 0.0
+//                    binding.stockPrice.setText(currPrice?.toString())
+//                }
+//            }
+//
+//            override fun beforeTextChanged(
+//                newName: CharSequence?,
+//                start: Int,
+//                count: Int,
+//                after: Int
+//            ) {
+//            }
+//
+//            override fun afterTextChanged(newName: Editable?) {}
+//        })
 
         binding.stockAmount.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
@@ -98,7 +125,7 @@ class AddItemFragment : Fragment() {
             ) {
                 if(TextUtils.isEmpty(binding.stockAmount.text?.toString())){
                     binding.stockTotalInvestment.setText("0")
-                }else {
+                } else {
                     val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
                     binding.stockTotalInvestment.setText(totalInvested.toString())
                 }
@@ -115,20 +142,23 @@ class AddItemFragment : Fragment() {
             override fun afterTextChanged(newName: Editable?) {}
         })
 
-
         binding.addBtn.setOnClickListener {
-            val stockDefault = binding.stockName.text.toString()
+            followedStocks.add(companyName)
             var tempstring: Uri?
             if (imageUri != null) {
                 tempstring = imageUri
             } else {
-                val resourceId: Int? = stockImages[stockDefault]
+                val resourceId: Int? = stockImages[companyName]
                 tempstring = Uri.parse(
                     ContentResolver.SCHEME_ANDROID_RESOURCE +
                             "://" + resourceId?.let { it1 -> resources.getResourcePackageName(it1) } +
                             "/" + resourceId?.let { it1 -> resources.getResourceTypeName(it1) } +
                             "/" + resourceId?.let { it1 -> resources.getResourceEntryName(it1) }
                 )
+            }
+
+            if(TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
+                binding.stockAmount.setText("0")
             }
             val item = Item(
                 binding.stockName.text.toString(),
