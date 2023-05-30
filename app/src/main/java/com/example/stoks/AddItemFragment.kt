@@ -59,28 +59,36 @@ class AddItemFragment : Fragment() {
         //TODO verify with tomer to Delete
         //stockNames.removeAll { followedStocks.contains(it) }
 
-        val namesAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, stockNames)
-        val spinner = binding.namesSpinner
-        spinner.adapter = namesAdapter
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                companyName = stockNames[p2]
-                if (stockSymbols[companyName] != null) {
-                    binding.stockSymbol.setText(stockSymbols[companyName])
-                    binding.stockName.setText(companyName)
-                    binding.previewImage.setImageResource(stockImages[companyName]!!)
-                    // TODO: Needs to be an API call
-                    val pricesArr = stockPrices[companyName]
-                    if (pricesArr != null) {
-                        val randomInt = Random.nextInt(3)  // A random int in 0-2
-                        currPrice = pricesArr?.get(randomInt) ?: 0.0
-                        binding.stockPrice.setText(currPrice?.toString())
-                    }
-                } else {
-                    // TODO: API call -> get stock symbol, add to map
+        val searchField = binding.searchField
+        val namesAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stockNames)
+        searchField.setAdapter(namesAdapter)
+
+
+//        val namesAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, stockNames)
+//        val spinner = binding.namesSpinner
+//        spinner.adapter = namesAdapter
+        searchField.setOnItemClickListener { parent, view, position, id ->
+            val selectedItem = parent.getItemAtPosition(position) as String
+            companyName = selectedItem
+            if (stockSymbols.containsKey(companyName)) {
+                binding.stockSymbol.setText(stockSymbols[companyName])
+                binding.stockName.setText(companyName)
+                binding.previewImage.setImageResource(stockImages[companyName]!!)
+                // TODO: Needs to be an API call
+                val pricesArr = stockPrices[companyName]
+                if (pricesArr != null) {
+                    val randomInt = Random.nextInt(3)  // A random int in 0-2
+                    currPrice = pricesArr[randomInt] ?: 0.0
+                    binding.stockPrice.setText(currPrice.toString())
                 }
+            } else {
+                searchField.error = "Invalid selection"
+                // TODO: API call -> get stock symbol, add to map
             }
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+
+                //override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
             // TODO: delete after image transfer bug is fixed
 //        binding.stockName.addTextChangedListener(object : TextWatcher {

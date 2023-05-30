@@ -37,11 +37,17 @@
                 android:inputType="textCapWords" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/namesSpinner"
+<!--        <Spinner-->
+<!--            android:id="@+id/namesSpinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginVertical="16dp"/>-->
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/searchField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"/>
+            android:hint="Search"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/stockSymbolBox"
@@ -87,7 +93,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="0"
+                android:hint="Amount to Buy"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,15 +116,14 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/preview_image"
             android:layout_width="100dp"
-            android:layout_margin="5dp"
-            android:layout_height="140dp"
+            android:layout_margin="7dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.481"
-            android:paddingVertical="20dp"/>
+            app:layout_constraintVertical_bias="0.481"/>
 
         <LinearLayout
             android:id="@+id/button_layout"
