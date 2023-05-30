@@ -78,9 +78,6 @@ class AllItemsFragment : Fragment(){
 
 
 
-
-
-
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
             override fun getMovementFlags(
                 recyclerView: RecyclerView,
@@ -100,8 +97,6 @@ class AllItemsFragment : Fragment(){
                     .itemAt(viewHolder.adapterPosition))
                 binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
             }
-
-
 
         }).attachToRecyclerView(binding.recycler)
 

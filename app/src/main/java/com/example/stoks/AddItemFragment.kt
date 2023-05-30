@@ -56,7 +56,8 @@ class AddItemFragment : Fragment() {
         var companyName = ""
 
         val stockNames = stockSymbols.keys.toMutableList()
-        stockNames.removeAll { followedStocks.contains(it) }
+        //TODO verify with tomer to Delete
+        //stockNames.removeAll { followedStocks.contains(it) }
 
         val namesAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, stockNames)
         val spinner = binding.namesSpinner
@@ -66,6 +67,7 @@ class AddItemFragment : Fragment() {
                 companyName = stockNames[p2]
                 if (stockSymbols[companyName] != null) {
                     binding.stockSymbol.setText(stockSymbols[companyName])
+                    binding.stockName.setText(companyName)
                     binding.previewImage.setImageResource(stockImages[companyName]!!)
                     // TODO: Needs to be an API call
                     val pricesArr = stockPrices[companyName]
