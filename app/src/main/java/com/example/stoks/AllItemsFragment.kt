@@ -93,9 +93,11 @@ class AllItemsFragment : Fragment(){
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
                 viewModel.deleteItem((binding.recycler.adapter as ItemAdapter)
                     .itemAt(viewHolder.adapterPosition))
                 binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
+
             }
 
         }).attachToRecyclerView(binding.recycler)

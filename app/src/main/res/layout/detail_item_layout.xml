@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="30dp"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.stoks.DetailedItemFragment"
-    android:background="#BBD9F1">
+    android:background="#FFFFFF">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,33 +17,155 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#ede9e1">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_title"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:layout_margin="10dp"
-                android:textStyle="bold"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_symbol"
-                android:gravity="center"
-                android:textSize="25sp"
-                android:layout_margin="10dp"
-                android:textStyle="italic"/>
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:padding="10dp">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:layout_margin="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/item_image"/>
+                android:id="@+id/item_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.481"/>
+                />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_symbol"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:padding="10dp"
+                android:text="stock symbol"
+                android:textStyle="bold"/>
 
         </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="Name"
+                android:textSize="35sp"
+                android:textStyle="italic" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_price_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Stock Price:"
+                    android:textSize="30sp"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Price"
+                    android:textSize="25sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_amount_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Amount Owned:"
+                    android:textSize="30sp"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Price"
+                    android:textSize="25sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_amount_total_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Total worth:"
+                    android:textSize="30sp"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_amount_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Total"
+                    android:textSize="25sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
