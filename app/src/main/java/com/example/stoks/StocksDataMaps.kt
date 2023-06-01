@@ -5,6 +5,7 @@ import com.example.stocks.R
 class StocksDataMaps {
 
     companion object {
+
         public val stockSymbols = mutableMapOf(
             "Apple" to "AAPL",
             "Google" to "GOOG",
@@ -30,6 +31,14 @@ class StocksDataMaps {
         )
 
         public val followedStocks = mutableSetOf<String>()
+
+        public val stocks = mutableSetOf<String>(
+            "Apple","Google","Microsoft","Amazon","Tesla"
+        )
+
+
     }
+
+
 
 }

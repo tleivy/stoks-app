@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.stocks.R
 import com.example.stocks.databinding.AddItemFragmentBinding
@@ -29,6 +30,7 @@ class AddItemFragment : Fragment() {
     private val viewModel: ItemViewModel by activityViewModels()
 
     private var imageUri: Uri? = null
+
 
     val pickItemLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
@@ -54,8 +56,11 @@ class AddItemFragment : Fragment() {
         var currPrice = 0.0
         var companyName = ""
 
+
+
+
         val stockNames = stockSymbols.keys.toMutableList()
-        stockNames.removeAll { followedStocks.contains(it) }
+        //stockNames.removeAll { followedStocks.contains(it) }
 
         val searchField = binding.searchField
         val namesAdapter =
