@@ -3,4 +3,7 @@
     <string name="current_price"><u>Current Price:</u></string>
     <string name="stock_symbol"><u>Stock Symbol:</u></string>
     <string name="amount"><u>Amount:</u></string>
+    <string name="bought_amount">Bought Amount</string>
+    <string name="current_stock_price">Current Stock Price</string>
+    <string name="bought_price">Bought Price</string>
 </resources>
