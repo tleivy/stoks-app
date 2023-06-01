@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stocks.R
 import com.example.stocks.databinding.AllItemsFragmentBinding
+import kotlin.random.Random
+
 
 
 class AllItemsFragment : Fragment(){
@@ -31,7 +33,6 @@ class AllItemsFragment : Fragment(){
     ): View? {
         setHasOptionsMenu(true)
         _binding = AllItemsFragmentBinding.inflate(inflater,container,false)
-
 
         binding.addItemButton.setOnClickListener{
             findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
@@ -59,6 +60,15 @@ class AllItemsFragment : Fragment(){
 
         viewModel.items?.observe(viewLifecycleOwner) {
 
+            val itemsList = viewModel.items?.value
+            itemsList?.forEach {item ->
+                val pricesArr = StocksDataMaps.stockPrices[item.stockName]
+                if (pricesArr != null) {
+                    val randomInt = Random.nextInt(3)  // A random int in 0-2
+                    val currPrice = pricesArr[randomInt] ?: 0.0
+                    item.currPrice = currPrice
+                }
+            }
 
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
 

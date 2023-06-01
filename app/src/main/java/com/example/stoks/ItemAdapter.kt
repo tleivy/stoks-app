@@ -37,7 +37,7 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
 
         fun bind(item: Item) {
 
-            binding.stockPrice.text = item.stockPrice.toString()
+            binding.stockPrice.text = item.currPrice.toString()
             binding.stockSymbol.text = item.stockSymbol
             binding.stockAmount.text = item.stockAmount.toString()
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)

@@ -20,7 +20,6 @@ import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.stocks.R
 import com.example.stocks.databinding.AddItemFragmentBinding
-import kotlin.random.Random
 
 
 class AddItemFragment : Fragment() {

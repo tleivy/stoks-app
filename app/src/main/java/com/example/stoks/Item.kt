@@ -25,7 +25,7 @@ data class Item(
     val stockImage: Uri?,
 
     @ColumnInfo(name = "currPrice")
-    val currPrice: Double
+    var currPrice: Double
 )
 {
     @PrimaryKey(autoGenerate = true)
