@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.stocks.R
 import com.example.stocks.databinding.AddItemFragmentBinding
@@ -29,6 +30,7 @@ class AddItemFragment : Fragment() {
     private val viewModel: ItemViewModel by activityViewModels()
 
     private var imageUri: Uri? = null
+
 
     val pickItemLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
@@ -55,8 +57,11 @@ class AddItemFragment : Fragment() {
         var currPrice = 0.0
         var companyName = ""
 
+
+
+
         val stockNames = stockSymbols.keys.toMutableList()
-        stockNames.removeAll { followedStocks.contains(it) }
+        //stockNames.removeAll { followedStocks.contains(it) }
 
         val searchField = binding.searchField
         val namesAdapter =
@@ -89,41 +94,6 @@ class AddItemFragment : Fragment() {
 
                 //override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
-            // TODO: delete after image transfer bug is fixed
-//        binding.stockName.addTextChangedListener(object : TextWatcher {
-//            override fun onTextChanged(
-//                newName: CharSequence?,
-//                start: Int,
-//                before: Int,
-//                count: Int
-//            ) {
-//                val companyName = newName.toString()
-//                if (stockSymbols[companyName] != null) {
-//                    binding.stockSymbol.setText(stockSymbols[companyName])
-//                    binding.previewImage.setImageResource(stockImages[companyName]!!)
-//                } else {
-//                    //API call -> get stock symbol, add to map
-//                }
-//
-//                Needs to be an API call
-//                val pricesArr = stockPrices[companyName]
-//                if (pricesArr != null) {
-//                    val randomInt = Random.nextInt(3)  // A random int in 0-2
-//                    currPrice = pricesArr?.get(randomInt) ?: 0.0
-//                    binding.stockPrice.setText(currPrice?.toString())
-//                }
-//            }
-//
-//            override fun beforeTextChanged(
-//                newName: CharSequence?,
-//                start: Int,
-//                count: Int,
-//                after: Int
-//            ) {
-//            }
-//
-//            override fun afterTextChanged(newName: Editable?) {}
-//        })
 
         binding.stockAmount.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(

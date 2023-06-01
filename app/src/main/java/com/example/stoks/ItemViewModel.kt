@@ -33,4 +33,12 @@ class ItemViewModel(application: Application)
         repository.deleteAll()
     }
 
+    fun getItems(){
+        repository.getItems()
+    }
+
+    fun getItem(string : String){
+        repository.getItem(string)
+    }
+
 }

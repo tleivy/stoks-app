@@ -25,4 +25,9 @@ class ItemRepository(application: Application) {
     fun deleteAll() {
         itemDao?.deleteAll()
     }
+
+    fun getItem(string: String)  {
+        itemDao?.getItem(string)
+    }
+
 }
