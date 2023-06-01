@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.stocks.R
 import com.example.stocks.databinding.ItemLayoutBinding
 
 
@@ -39,7 +40,15 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
 
             binding.stockPrice.text = item.currPrice.toString()
             binding.stockSymbol.text = item.stockSymbol
-            binding.stockAmount.text = item.stockAmount.toString()
+            //binding.stockAmount.text = item.stockAmount.toString()
+            val priceDiff = item.currPrice - item.stockPrice
+            val percentageChange = (priceDiff / item.stockPrice) * 100
+            if (priceDiff < 0.0) {
+                //Glide.with(binding.root).load(R.drawable.stock_down).centerCrop().into(binding.decreaseOrIncreaseImage)
+               binding.decreaseOrIncreaseImage.setImageResource(R.drawable.stock_down)
+            }
+            // Display the percentage change
+            binding.percent.text = "%.1f%%".format(percentageChange)
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
         }
     }
@@ -53,6 +62,8 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
                 parent,
                 false
             )
+
+
         )
 
     override fun getItemCount() = items.size

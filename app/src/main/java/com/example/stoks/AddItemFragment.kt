@@ -117,13 +117,28 @@ class AddItemFragment : Fragment() {
                             "/" + resourceId?.let { it1 -> resources.getResourceEntryName(it1) }
                 )
             }
-
+            //check fields
             if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
                 binding.stockAmount.setText("0")
             }
             if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
-                binding.stockAmount.setText("0.0")
+                binding.stockPrice.setText("0.0")
             }
+            if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
+                binding.searchField.error = "Please fill stock"
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(binding.stockSymbol.text?.toString())) {
+                binding.searchField.error = "Please fill stock"
+                return@setOnClickListener
+            }
+
+            if (TextUtils.isEmpty(binding.stockName.text?.toString())) {
+                binding.searchField.error = "Please fill stock"
+                return@setOnClickListener
+            }
+
+
             val item = Item(
                 binding.stockName.text.toString(),
                 binding.stockSymbol.text.toString(),

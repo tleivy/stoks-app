@@ -96,7 +96,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/preview_image"
             android:layout_width="100dp"
-            android:layout_margin="7dp"
+            android:layout_margin="20dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:src="@drawable/app_logo"
