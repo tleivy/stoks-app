@@ -19,10 +19,13 @@ data class Item(
     val stockPrice: Double,
 
     @ColumnInfo(name = "stockAmount")
-    val stockAmount: Double,
+    val stockAmount: Int,
 
     @ColumnInfo(name = "stockImage")
-    val stockImage: Uri?
+    val stockImage: Uri?,
+
+    @ColumnInfo(name = "currPrice")
+    val currPrice: Double
 )
 {
     @PrimaryKey(autoGenerate = true)

@@ -50,23 +50,15 @@ class AddItemFragment : Fragment() {
         _binding = AddItemFragmentBinding.inflate(inflater, container, false)
 
         val stockSymbols = StocksDataMaps.stockSymbols
-        val stockPrices = StocksDataMaps.stockPrices
         val stockImages = StocksDataMaps.stockImages
-        val followedStocks = StocksDataMaps.followedStocks
         var currPrice = 0.0
         var companyName = ""
 
-
-
-
         val stockNames = stockSymbols.keys.toMutableList()
-        //stockNames.removeAll { followedStocks.contains(it) }
-
         val searchField = binding.searchField
         val namesAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stockNames)
         searchField.setAdapter(namesAdapter)
-
         searchField.setOnItemClickListener { parent, view, position, id ->
             val selectedItem = parent.getItemAtPosition(position) as String
             companyName = selectedItem
@@ -74,47 +66,46 @@ class AddItemFragment : Fragment() {
                 binding.stockSymbol.setText(stockSymbols[companyName])
                 binding.stockName.setText(companyName)
                 binding.previewImage.setImageResource(stockImages[companyName]!!)
-                // TODO: Needs to be an API call
-                val pricesArr = stockPrices[companyName]
-                if (pricesArr != null) {
-                    val randomInt = Random.nextInt(3)  // A random int in 0-2
-                    currPrice = pricesArr[randomInt] ?: 0.0
-                    binding.stockPrice.setText(currPrice.toString())
-                }
+//                // TODO: Needs to be an API call
+//                val pricesArr = stockPrices[companyName]
+//                if (pricesArr != null) {
+//                    val randomInt = Random.nextInt(3)  // A random int in 0-2
+//                    currPrice = pricesArr[randomInt] ?: 0.0
+//                    binding.stockPrice.setText(currPrice.toString())
+//                }
             } else {
                 searchField.error = "Invalid selection"
                 // TODO: API call -> get stock symbol, add to map
             }
         }
 
-        binding.stockAmount.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(
-                newAmount: CharSequence?,
-                start: Int,
-                before: Int,
-                count: Int
-            ) {
-                if(TextUtils.isEmpty(binding.stockAmount.text?.toString())){
-                    binding.stockTotalInvestment.setText("0")
-                } else {
-                    val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
-                    binding.stockTotalInvestment.setText(totalInvested.toString())
-                }
-            }
-
-            override fun beforeTextChanged(
-                newName: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-            }
-
-            override fun afterTextChanged(newName: Editable?) {}
-        })
+//        binding.stockAmount.addTextChangedListener(object : TextWatcher {
+//            override fun onTextChanged(
+//                newAmount: CharSequence?,
+//                start: Int,
+//                before: Int,
+//                count: Int
+//            ) {
+//                if(TextUtils.isEmpty(binding.stockAmount.text?.toString())){
+//                    binding.stockTotalInvestment.setText("0")
+//                } else {
+//                    val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
+//                    binding.stockTotalInvestment.setText(totalInvested.toString())
+//                }
+//            }
+//
+//            override fun beforeTextChanged(
+//                newName: CharSequence?,
+//                start: Int,
+//                count: Int,
+//                after: Int
+//            ) {
+//            }
+//
+//            override fun afterTextChanged(newName: Editable?) {}
+//        })
 
         binding.addBtn.setOnClickListener {
-            followedStocks.add(companyName)
             var tempstring: Uri?
             if (imageUri != null) {
                 tempstring = imageUri
@@ -128,15 +119,19 @@ class AddItemFragment : Fragment() {
                 )
             }
 
-            if(TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
+            if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
                 binding.stockAmount.setText("0")
+            }
+            if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
+                binding.stockAmount.setText("0.0")
             }
             val item = Item(
                 binding.stockName.text.toString(),
                 binding.stockSymbol.text.toString(),
                 binding.stockPrice.text.toString().toDouble(),
-                binding.stockAmount.text.toString().toDouble(),
-                tempstring
+                binding.stockAmount.text.toString().toInt(),
+                tempstring,
+                0.0
             )
             viewModel.addItem(item)
             findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
