@@ -26,7 +26,7 @@
             android:layout_height="60dp"
             android:layout_gravity="center_vertical|start"
             android:layout_margin="12dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/app_logo" />
 
 
             <com.google.android.material.textview.MaterialTextView
