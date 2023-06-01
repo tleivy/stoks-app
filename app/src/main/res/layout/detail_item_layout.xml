@@ -17,41 +17,41 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#ede9e1">
+            android:background="#ede9e1"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="20dp"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/item_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="left"
-                android:src="@mipmap/ic_launcher"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.481"/>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/item_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="left"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.481" />
                 />
 
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_symbol"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="40sp"
-                android:padding="10dp"
-                android:text="stock symbol"
-                android:textStyle="bold"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="stock symbol"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+            </LinearLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/item_name"
@@ -160,10 +160,7 @@
             </LinearLayout>
 
 
-
-
         </LinearLayout>
-
 
 
     </androidx.cardview.widget.CardView>
