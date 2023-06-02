@@ -65,44 +65,11 @@ class AddItemFragment : Fragment() {
                 binding.stockSymbol.setText(stockSymbols[companyName])
                 binding.stockName.setText(companyName)
                 binding.previewImage.setImageResource(stockImages[companyName]!!)
-//                // TODO: Needs to be an API call
-//                val pricesArr = stockPrices[companyName]
-//                if (pricesArr != null) {
-//                    val randomInt = Random.nextInt(3)  // A random int in 0-2
-//                    currPrice = pricesArr[randomInt] ?: 0.0
-//                    binding.stockPrice.setText(currPrice.toString())
-//                }
             } else {
                 searchField.error = "Invalid selection"
-                // TODO: API call -> get stock symbol, add to map
+                // API call
             }
         }
-
-//        binding.stockAmount.addTextChangedListener(object : TextWatcher {
-//            override fun onTextChanged(
-//                newAmount: CharSequence?,
-//                start: Int,
-//                before: Int,
-//                count: Int
-//            ) {
-//                if(TextUtils.isEmpty(binding.stockAmount.text?.toString())){
-//                    binding.stockTotalInvestment.setText("0")
-//                } else {
-//                    val totalInvested = currPrice * binding.stockAmount.text.toString().toInt()
-//                    binding.stockTotalInvestment.setText(totalInvested.toString())
-//                }
-//            }
-//
-//            override fun beforeTextChanged(
-//                newName: CharSequence?,
-//                start: Int,
-//                count: Int,
-//                after: Int
-//            ) {
-//            }
-//
-//            override fun afterTextChanged(newName: Editable?) {}
-//        })
 
         binding.addBtn.setOnClickListener {
             var tempstring: Uri?
