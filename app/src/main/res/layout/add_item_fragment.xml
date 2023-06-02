@@ -57,6 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                app:elevation="3dp"
+                app:strokeWidth="2dp"
                 android:hint="Stock Symbol" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,6 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/bought_amount"
+                app:elevation="3dp"
+                app:strokeWidth="2dp"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,6 +94,8 @@
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:hint="@string/bought_price"
+                app:elevation="3dp"
+                app:strokeWidth="2dp"
                 android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,11 +121,15 @@
 
             <Button
                 android:id="@+id/reset_btn"
-                style="@style/Widget.Material3.Button.TonalButton"
+                style="@style/Widget.Material3.Button.TonalButton.Icon"
+                app:elevation="3dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_margin="3dp"
-                android:text="Clear" />
+                android:text="@string/clear" />
 
             <Button
                 android:id="@+id/image_btn"
@@ -127,7 +137,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:text="Image"
+                app:elevation="3dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/white"
+                android:text="@string/image"
+                android:gravity="center"
                 app:icon="@android:drawable/ic_input_add" />
 
             <Button
@@ -136,7 +150,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:text="Add" />
+                app:elevation="3dp"
+                app:strokeWidth="2dp"
+                android:gravity="center"
+                app:strokeColor="@color/white"
+                android:text="@string/add" />
         </LinearLayout>
 
     </LinearLayout>

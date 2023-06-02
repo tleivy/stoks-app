@@ -81,6 +81,7 @@ class AllItemsFragment : Fragment(){
                 override fun onItemLongClick(index: Int) {
                     Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
                 }
+
             })
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
 

@@ -120,10 +120,11 @@ class AddItemFragment : Fragment() {
 
         binding.resetBtn.setOnClickListener {
             binding.stockName.setText("")
+            binding.searchField.setText("")
             binding.stockSymbol.setText("")
             binding.stockPrice.setText("")
             binding.stockAmount.setText("")
-            binding.previewImage.setImageResource(R.mipmap.ic_launcher)
+            binding.previewImage.setImageResource(R.drawable.app_logo)
         }
 
         binding.imageBtn.setOnClickListener {
