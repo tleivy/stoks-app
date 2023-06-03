@@ -8,8 +8,11 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +34,6 @@ class AllItemsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(true)
         _binding = AllItemsFragmentBinding.inflate(inflater,container,false)
 
         binding.addItemButton.setOnClickListener{
@@ -41,22 +43,29 @@ class AllItemsFragment : Fragment(){
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.main_menu,menu)
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_delete){
-            viewModel.deleteAll()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
+
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+                menuInflater.inflate(R.menu.main_menu,menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    R.id.action_delete -> {
+                        viewModel.deleteAll()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         viewModel.items?.observe(viewLifecycleOwner) {
 
@@ -77,6 +86,7 @@ class AllItemsFragment : Fragment(){
                     findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
                 }
 
+                // TODO: maybe delete?
                 override fun onItemLongClick(index: Int) {
                     Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
                 }
