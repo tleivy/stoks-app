@@ -85,6 +85,7 @@ class AddItemFragment : Fragment() {
                 )
             }
             //check fields
+            // TODO: shouldn't the first 2 also be an error?
             if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
                 binding.stockAmount.setText("0")
             }
