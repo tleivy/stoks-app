@@ -49,7 +49,9 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
                binding.decreaseOrIncreaseImage.setImageResource(R.drawable.stock_down)
             }
             // Display the percentage change
-            binding.percent.text = "%.1f%%".format(percentageChange)
+            if (priceDiff > 0) {
+                binding.percent.text = "+%.1f%%".format(percentageChange)
+            } else binding.percent.text = "%.1f%%".format(percentageChange)
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
         }
     }
