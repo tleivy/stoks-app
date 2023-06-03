@@ -31,6 +31,7 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
             callback.onItemClicked(adapterPosition)
         }
 
+        // TODO: remove?
         override fun onLongClick(p0: View?): Boolean {
             callback.onItemLongClick(adapterPosition)
             return false
