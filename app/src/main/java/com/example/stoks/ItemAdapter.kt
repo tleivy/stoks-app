@@ -39,7 +39,7 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
         }
 
         fun bind(item: Item) {
-
+            // TODO: check commented code
             binding.stockPrice.text = item.currPrice.toString()
             binding.stockSymbol.text = item.stockSymbol
             //binding.stockAmount.text = item.stockAmount.toString()
