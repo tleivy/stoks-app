@@ -47,7 +47,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="stock symbol"
+                    android:text="@string/stock_symbol"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="Name"
+                android:text="@string/item_name"
                 android:textSize="25sp"
                 android:textStyle="italic" />
 
@@ -89,7 +89,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_margin="5dp"
-                        android:text="Amount Owned:"
+                        android:text="@string/curr_price"
                         android:textSize="25sp"
                         android:textStyle="italic" />
 
@@ -100,7 +100,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:text="Price"
+                        android:text="@string/price"
                         android:textSize="20sp"
                         android:textStyle="italic"  />
 
@@ -123,7 +123,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_margin="5dp"
-                        android:text="Amount Owned:"
+                        android:text="@string/amount_owned"
                         android:textSize="25sp"
                         android:textStyle="italic" />
 
@@ -134,7 +134,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:text="Price"
+                        android:text="@string/stock_amount"
                         android:textSize="20sp"
                         android:textStyle="italic" />
                 </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    android:text="Total worth:"
+                    android:text="@string/total_worth"
                     android:textSize="30sp"
                     android:textStyle="italic" />
 
@@ -165,9 +165,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:gravity="center"
-                    android:text="Total"
+                    android:text="@string/total"
                     android:textSize="25sp"
                     android:textStyle="italic" />
             </LinearLayout>
