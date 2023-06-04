@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -33,12 +34,15 @@ class AddItemFragment : Fragment() {
 
     val pickItemLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
-            binding.previewImage.setImageURI(it)
-            requireActivity().contentResolver.takePersistableUriPermission(
-                it!!,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-            )
-            imageUri = it
+            if(it != null) {
+                binding.previewImage.setImageURI(it)
+                requireActivity().contentResolver.takePersistableUriPermission(
+                    it!!,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                imageUri = it
+            }else {
+                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()            }
         }
 
     override fun onCreateView(
