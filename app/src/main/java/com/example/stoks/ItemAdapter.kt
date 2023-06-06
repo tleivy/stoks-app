@@ -40,22 +40,22 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
 
         fun bind(item: Item) {
             // TODO: check commented code
-            binding.stockPrice.text = item.currPrice.toString()
+            binding.stockPrice.text = item.stockPrice.toString()
             binding.stockSymbol.text = item.stockSymbol
-            //binding.stockAmount.text = item.stockAmount.toString()
+            binding.currentPrice.text = item.currPrice.toString()
             val priceDiff = item.currPrice - item.stockPrice
             val percentageChange = (priceDiff / item.stockPrice) * 100
-            if (priceDiff < 0.0) {
-                //Glide.with(binding.root).load(R.drawable.stock_down).centerCrop().into(binding.decreaseOrIncreaseImage)
-               binding.decreaseOrIncreaseImage.setImageResource(R.drawable.stock_down)
-            }
+//            if (priceDiff < 0.0) {
+//                Glide.with(binding.root).load(R.drawable.stock_down).centerCrop().into(binding.decreaseOrIncreaseImage)
+//               binding.decreaseOrIncreaseImage.setImageResource(R.drawable.stock_down)
+//            }
             // Display the percentage change
             if (priceDiff > 0) {
                 binding.percent.text = "+%.1f%%".format(percentageChange)
-//                binding.percent.setTextColor(Color.rgb(79, 186, 111))
+                binding.percent.setTextColor(Color.rgb(79, 186, 111))
             } else  {
                 binding.percent.text = "%.1f%%".format(percentageChange)
-//                binding.percent.setTextColor(Color.RED)
+                binding.percent.setTextColor(Color.RED)
             }
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
         }
