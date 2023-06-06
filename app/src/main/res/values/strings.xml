@@ -19,4 +19,8 @@
     <string name="delete_all">Delete All</string>
     <string name="add_stocks_disclaimer">This is a beta version, you can choose from these stocks:\nApple, Google, Microsoft, Amazon, Tesla, Intel</string>
     <string name="prices_disclaimer">This is a beta version,\nprices are chosen randomly from a hardcoded source.</string>
+    <string name="confirm_deletion">Confirm Deletion</string>
+    <string name="unfollow_stock_pormpt">Do you want to unfollow this stock?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
