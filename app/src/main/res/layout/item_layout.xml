@@ -121,7 +121,7 @@
                 android:layout_weight="0.2"
                 android:textSize="10dp"
                 android:gravity="center"
-                android:text="Current" />
+                android:text="Change" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/percent"
