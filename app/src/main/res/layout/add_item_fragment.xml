@@ -59,7 +59,7 @@
                 android:enabled="false"
                 app:elevation="3dp"
                 app:strokeWidth="2dp"
-                android:hint="Stock Symbol" />
+                android:hint="@string/stock_symbol" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -170,13 +170,17 @@
                 android:text="@string/add" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/add_stocks_disclaimer"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price_disclaimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp"
             android:text="@string/add_stocks_disclaimer"
-            android:layout_marginTop="20dp"
-            android:textSize="11sp"/>
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </LinearLayout>
 

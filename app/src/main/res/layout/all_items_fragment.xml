@@ -15,9 +15,11 @@
         android:paddingHorizontal="10dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:text="Portfolio"
+        android:text="@string/portfolio"
         android:textSize="20sp"
-        android:textStyle="bold"></androidx.appcompat.widget.AppCompatTextView>
+        android:textStyle="bold">
+
+    </androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
@@ -30,31 +32,32 @@
         android:layout_height="0dp"
         android:layout_weight="0.15">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/price_disclaimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="@string/prices_disclaimer"
-            android:textSize="10sp"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/addItemButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addItemButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/my_purple"
+            android:textAlignment="center"
+            app:borderWidth="2dp"
+            app:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:elevation="2dp"
-            app:borderWidth="2dp"
-            android:textAlignment="center"
-            app:strokeColor="@color/white"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:strokeColor="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

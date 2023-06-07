@@ -86,17 +86,13 @@ class AllItemsFragment : Fragment(){
                     findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
                 }
 
-                // TODO: maybe delete?
                 override fun onItemLongClick(index: Int) {
-                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_SHORT).show()
                 }
 
             })
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
 
         }
-
-
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
             override fun getMovementFlags(

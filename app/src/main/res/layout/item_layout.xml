@@ -106,7 +106,7 @@
                         android:layout_weight="0.3"
                         android:textSize="11dp"
                         android:gravity="center"
-                        android:text="Bought" />
+                        android:text="@string/bought" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/stock_price"
@@ -146,7 +146,7 @@
                     android:layout_weight="0.3"
                     android:textSize="11dp"
                     android:gravity="center"
-                    android:text="Current" />
+                    android:text="@string/current" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/current_price"
@@ -187,7 +187,7 @@
                     android:layout_weight="0.3"
                     android:textSize="11dp"
                     android:gravity="center"
-                    android:text="Change" />
+                    android:text="@string/change" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/percent"
