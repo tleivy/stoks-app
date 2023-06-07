@@ -32,7 +32,7 @@ class DetailedItemFragment : Fragment() {
 
         viewModel.chosenItem.observe(viewLifecycleOwner) {
             binding.itemName.text = it.stockName
-            binding.itemSymbol.text = it.stockSymbol
+//            binding.itemSymbol.text = it.stockSymbol
             binding.itemPrice.text = it.stockPrice.toString()
 
            binding.itemAmount.text = it.stockAmount.toString()
