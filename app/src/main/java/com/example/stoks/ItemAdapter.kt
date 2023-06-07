@@ -32,14 +32,12 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
             callback.onItemClicked(adapterPosition)
         }
 
-        // TODO: remove?
         override fun onLongClick(p0: View?): Boolean {
             callback.onItemLongClick(adapterPosition)
             return false
         }
 
         fun bind(item: Item) {
-            // TODO: check commented code
             binding.stockName.text = item.stockName.toString()
             binding.stockPrice.text = "$%.2f".format(item.stockPrice)
             binding.stockSymbol.text = item.stockSymbol
