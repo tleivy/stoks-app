@@ -4,20 +4,16 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.stocks.R
 import com.example.stocks.databinding.AddItemFragmentBinding
@@ -125,7 +121,7 @@ class AddItemFragment : Fragment() {
                     binding.stockName.text.toString(),
                     binding.stockSymbol.text.toString(),
                     binding.stockPrice.text.toString().toDouble(),
-                    binding.stockAmount.text.toString().toInt(),
+                    binding.stockAmount.text.toString().toLong(),
                     tempstring,
                     0.0
                 )
