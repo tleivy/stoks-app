@@ -28,6 +28,7 @@ class AllItemsFragment : Fragment(){
     private val binding get() = _binding!!
 
     private val viewModel : ItemViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
