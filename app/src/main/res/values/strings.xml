@@ -23,4 +23,5 @@
     <string name="unfollow_stock_pormpt">Do you want to unfollow this stock?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="add_a_new_stock_to_follow">Add A New Stock To Follow</string>
 </resources>

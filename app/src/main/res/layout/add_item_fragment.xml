@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="Add A New Stock To Follow"
+            android:text="@string/add_a_new_stock_to_follow"
             android:textSize="24sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -162,7 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_stocks_disclaimer"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:textSize="10sp"/>
 
     </LinearLayout>

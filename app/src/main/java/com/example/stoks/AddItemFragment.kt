@@ -76,6 +76,37 @@ class AddItemFragment : Fragment() {
         }
 
         binding.addBtn.setOnClickListener {
+            //check fields
+            var allFilled = true
+            // TODO: shouldn't the first 2 also be an error?
+            if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
+                allFilled = false
+                binding.stockAmount.error = "Please fill amount"
+               // return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
+                allFilled = false
+                binding.stockPrice.error = "Please fill Price"
+                //return@setOnClickListener
+
+            }
+            if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
+                allFilled = false
+                binding.searchField.error = "Please fill stock"
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(binding.stockSymbol.text?.toString())) {
+                allFilled = false
+                binding.searchField.error = "Please fill stock"
+                return@setOnClickListener
+            }
+
+            if (TextUtils.isEmpty(binding.stockName.text?.toString())) {
+                allFilled = false
+                binding.searchField.error = "Please fill stock"
+                return@setOnClickListener
+            }
+
             var tempstring: Uri?
             if (imageUri != null) {
                 tempstring = imageUri
@@ -88,39 +119,19 @@ class AddItemFragment : Fragment() {
                             "/" + resourceId?.let { it1 -> resources.getResourceEntryName(it1) }
                 )
             }
-            //check fields
-            // TODO: shouldn't the first 2 also be an error?
-            if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
-                binding.stockAmount.setText("0")
-            }
-            if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
-                binding.stockPrice.setText("0.0")
-            }
-            if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
-                binding.searchField.error = "Please fill stock"
-                return@setOnClickListener
-            }
-            if (TextUtils.isEmpty(binding.stockSymbol.text?.toString())) {
-                binding.searchField.error = "Please fill stock"
-                return@setOnClickListener
-            }
 
-            if (TextUtils.isEmpty(binding.stockName.text?.toString())) {
-                binding.searchField.error = "Please fill stock"
-                return@setOnClickListener
+            if(allFilled) {
+                val item = Item(
+                    binding.stockName.text.toString(),
+                    binding.stockSymbol.text.toString(),
+                    binding.stockPrice.text.toString().toDouble(),
+                    binding.stockAmount.text.toString().toInt(),
+                    tempstring,
+                    0.0
+                )
+                viewModel.addItem(item)
+                findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
             }
-
-
-            val item = Item(
-                binding.stockName.text.toString(),
-                binding.stockSymbol.text.toString(),
-                binding.stockPrice.text.toString().toDouble(),
-                binding.stockAmount.text.toString().toInt(),
-                tempstring,
-                0.0
-            )
-            viewModel.addItem(item)
-            findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)
         }
 
         binding.resetBtn.setOnClickListener {
