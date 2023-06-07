@@ -27,7 +27,6 @@ class DetailedItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.chosenItem.observe(viewLifecycleOwner) {
             binding.itemName.text = it.stockName
-//            binding.itemSymbol.text = it.stockSymbol
             binding.itemPrice.text = it.stockPrice.toString()
             binding.itemAmount.text = it.stockAmount.toString()
             binding.itemAmountTotal.text =
@@ -35,6 +34,12 @@ class DetailedItemFragment : Fragment() {
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
 
+            val profit = (it.currPrice.toDouble() - it.stockPrice.toDouble()) * it.stockAmount
+            if(profit >= 0 ){
+                binding.itemProfit.text =  "%.2f%%".format(profit.toString())
+             } else {
+                binding.itemProfit.text =  "-%.2f%%".format(profit.toString())
+             }
         }
 
 
