@@ -32,6 +32,7 @@ interface ItemDao {
     @Query("DELETE from items_table")
     fun deleteAll()
 
-//    @Query("SELECT stockName FROM items_table")
-//    fun getStockNames()
+    @Query("SELECT SUM(stockAmount) FROM items_table WHERE stockName LIKE:stockName")
+    fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
 }
+

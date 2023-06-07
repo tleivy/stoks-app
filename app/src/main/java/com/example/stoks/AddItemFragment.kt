@@ -30,15 +30,16 @@ class AddItemFragment : Fragment() {
 
     val pickItemLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
-            if(it != null) {
+            if (it != null) {
                 binding.previewImage.setImageURI(it)
                 requireActivity().contentResolver.takePersistableUriPermission(
                     it!!,
                     Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
                 imageUri = it
-            }else {
-                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()            }
+            } else {
+                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()
+            }
         }
 
     override fun onCreateView(
@@ -50,7 +51,6 @@ class AddItemFragment : Fragment() {
 
         val stockSymbols = StocksDataMaps.stockSymbols
         val stockImages = StocksDataMaps.stockImages
-        var currPrice = 0.0
         var companyName = ""
 
         val stockNames = stockSymbols.keys.toMutableList()
@@ -74,16 +74,15 @@ class AddItemFragment : Fragment() {
         binding.addBtn.setOnClickListener {
             //check fields
             var allFilled = true
-            // TODO: shouldn't the first 2 also be an error?
             if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
                 allFilled = false
                 binding.stockAmount.error = "Please fill amount"
-               // return@setOnClickListener
+                return@setOnClickListener
             }
             if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
                 allFilled = false
                 binding.stockPrice.error = "Please fill Price"
-                //return@setOnClickListener
+                return@setOnClickListener
 
             }
             if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
@@ -116,7 +115,7 @@ class AddItemFragment : Fragment() {
                 )
             }
 
-            if(allFilled) {
+            if (allFilled) {
                 val item = Item(
                     binding.stockName.text.toString(),
                     binding.stockSymbol.text.toString(),
@@ -154,4 +153,6 @@ class AddItemFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

@@ -14,7 +14,9 @@ class ItemViewModel(application: Application)
     val items : LiveData<List<Item>>? = repository.getItems()
 
     private val _chosenItem = MutableLiveData<Item>()
+
     val chosenItem : LiveData<Item> get() = _chosenItem
+
 
     fun setItem(item: Item) {
         _chosenItem.value = item
@@ -33,12 +35,9 @@ class ItemViewModel(application: Application)
         repository.deleteAll()
     }
 
-    fun getItems(){
-        repository.getItems()
+    fun getTotalAmountForStock(stockName: String) {
+        repository.getTotalAmountForStock(stockName)
     }
 
-    fun getItem(string : String){
-        repository.getItem(string)
-    }
 
 }
