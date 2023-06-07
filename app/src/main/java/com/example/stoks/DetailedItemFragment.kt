@@ -11,15 +11,15 @@ import com.example.stocks.databinding.DetailItemLayoutBinding
 
 class DetailedItemFragment : Fragment() {
 
-    private  var binding: DetailItemLayoutBinding by autoCleared()
-    private val viewModel : ItemViewModel by activityViewModels()
+    private var binding: DetailItemLayoutBinding by autoCleared()
+    private val viewModel: ItemViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DetailItemLayoutBinding.inflate(layoutInflater,container,false)
+        binding = DetailItemLayoutBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }
@@ -30,12 +30,18 @@ class DetailedItemFragment : Fragment() {
             binding.itemSymbol.text = it.stockSymbol
             binding.itemPrice.text = it.stockPrice.toString()
             binding.itemAmount.text = it.stockAmount.toString()
-            binding.itemAmountTotal.text = (it.stockPrice.toInt() * it.stockAmount.toInt()).toString()
+            binding.itemAmountTotal.text =
+                (it.stockPrice.toInt() * it.stockAmount.toInt()).toString()
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
 
         }
+
+
+
         super.onViewCreated(view, savedInstanceState)
     }
+
+
 
 }

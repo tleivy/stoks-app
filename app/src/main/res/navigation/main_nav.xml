@@ -43,5 +43,13 @@
         android:id="@+id/detailedItemFragment"
         android:name="com.example.stoks.DetailedItemFragment"
         android:label="detail_item_layout"
-        tools:layout="@layout/detail_item_layout" />
+        tools:layout="@layout/detail_item_layout" >
+        <action
+            android:id="@+id/action_detailedItemFragment_to_allItemsFragment"
+            app:destination="@id/allItemsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
 </navigation>
