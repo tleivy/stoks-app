@@ -194,7 +194,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginHorizontal="10dp"
                                 android:gravity="center"
-                                android:text="Profit"
+                                android:text="@string/profit"
                                 android:textSize="30sp" />
 
                             <com.google.android.material.textview.MaterialTextView

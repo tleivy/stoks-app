@@ -26,4 +26,10 @@
     <string name="add_a_new_stock_to_follow">Add A New Stock To Follow</string>
     <string name="profit">Profit</string>
     <string name="loss">Loss</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="bought">Bought</string>
+    <string name="current">Current</string>
+    <string name="change">Change</string>
+    <string name="enter_company_name">Enter Company Name</string>
+    <string name="search">Search</string>
 </resources>
