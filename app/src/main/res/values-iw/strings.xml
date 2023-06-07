@@ -28,7 +28,7 @@
     <string name="profit">רווח</string>
     <string name="loss">הפסד</string>
     <string name="portfolio">תיק מניות</string>
-    <string name="bought">כמות</string>
+    <string name="bought">קניה</string>
     <string name="current">שער</string>
     <string name="change">שינוי</string>
     <string name="enter_company_name">הכנס שם חברה</string>
