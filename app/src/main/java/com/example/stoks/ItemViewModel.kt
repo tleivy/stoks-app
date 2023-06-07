@@ -39,4 +39,5 @@ class ItemViewModel(application: Application)
         repository.getTotalAmountForStock(stockName)
     }
 
+
 }
