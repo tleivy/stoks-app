@@ -34,7 +34,9 @@ class DetailedItemFragment : Fragment() {
             binding.itemName.text = it.stockName
             binding.itemSymbol.text = it.stockSymbol
             binding.itemPrice.text = it.stockPrice.toString()
-            binding.itemAmount.text = it.stockAmount.toString()
+
+           binding.itemAmount.text = it.stockAmount.toString()
+
             binding.itemAmountTotal.text =
                 (it.stockPrice.toInt() * it.stockAmount).toString()
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
