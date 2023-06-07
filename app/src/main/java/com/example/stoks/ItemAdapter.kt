@@ -41,15 +41,13 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
         fun bind(item: Item) {
             // TODO: check commented code
             binding.stockName.text = item.stockName.toString()
-            binding.stockPrice.text = item.stockPrice.toString()
+            binding.stockPrice.text = "$%.2f".format(item.stockPrice)
             binding.stockSymbol.text = item.stockSymbol
-            binding.currentPrice.text = item.currPrice.toString()
+            binding.currentPrice.text = "$%.2f%%".format(item.currPrice)
             val priceDiff = item.currPrice - item.stockPrice
             val percentageChange = (priceDiff / item.stockPrice) * 100
-//            if (priceDiff < 0.0) {
-//                Glide.with(binding.root).load(R.drawable.stock_down).centerCrop().into(binding.decreaseOrIncreaseImage)
-//               binding.decreaseOrIncreaseImage.setImageResource(R.drawable.stock_down)
-//            }
+
+
             // Display the percentage change
             if (priceDiff > 0) {
                 binding.percent.text = "+%.2f%%".format(percentageChange)
