@@ -30,20 +30,20 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.2"
+            android:layout_weight="0.25"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.75"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.25"
+                    android:layout_weight="0.225"
                     android:textSize="10dp"
                     android:gravity="center"
                     android:text="" />
@@ -51,7 +51,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.75"
+                    android:layout_weight="0.775"
                     android:orientation="vertical">
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/stock_symbol"
@@ -60,7 +60,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="3dp"
                         android:text="Stock symbol"
-                        android:textSize="15sp"
+                        android:textSize="17sp"
                         android:textStyle="bold"/>
 
                     <com.google.android.material.textview.MaterialTextView
@@ -115,7 +115,7 @@
                         android:layout_height="0dp"
                         android:gravity="center"
                         android:paddingHorizontal="3dp"
-                        android:paddingBottom="16dp"
+                        android:paddingBottom="17dp"
                         android:text="Price"
                         android:textSize="17sp" />
                 </LinearLayout>
@@ -155,7 +155,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:paddingHorizontal="3dp"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="17dp"
                     android:text="Current"
                     android:textSize="17sp" />
             </LinearLayout>
@@ -196,7 +196,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:paddingHorizontal="3dp"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="17dp"
                     android:text="Percent"
                     android:textSize="17sp" />
             </LinearLayout>
