@@ -11,25 +11,26 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_height="wrap_content"
         android:gravity="start"
         android:text="Portfolio"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:padding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
         ></androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.775"
+        android:layout_weight="0.8"
         android:id="@+id/recycler" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.125">
+            android:layout_weight="0.15">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/price_disclaimer"
