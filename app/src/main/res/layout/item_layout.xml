@@ -203,14 +203,6 @@
 
         </LinearLayout>
 
-<!--        <com.google.android.material.imageview.ShapeableImageView-->
-<!--            android:id="@+id/decreaseOrIncrease_Image"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_weight="0.20"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:layout_gravity="center_vertical|start"-->
-<!--            android:layout_margin="4dp"-->
-<!--            android:src="@drawable/stock_up" />-->
 
         </LinearLayout>
 

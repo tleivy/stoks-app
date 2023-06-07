@@ -48,10 +48,7 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
             binding.currentPrice.text = item.currPrice.toString()
             val priceDiff = item.currPrice - item.stockPrice
             val percentageChange = (priceDiff / item.stockPrice) * 100
-//            if (priceDiff < 0.0) {
-//                Glide.with(binding.root).load(R.drawable.stock_down).centerCrop().into(binding.decreaseOrIncreaseImage)
-//               binding.decreaseOrIncreaseImage.setImageResource(R.drawable.stock_down)
-//            }
+
             // Display the percentage change
             if (priceDiff > 0) {
                 binding.percent.text = "+%.1f%%".format(percentageChange)

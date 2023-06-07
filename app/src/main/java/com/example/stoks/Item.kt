@@ -32,18 +32,3 @@ data class Item(
     var id: Int = 0
 }
 
-// This is a singleton
-//object ItemManager {
-//    val items: MutableList<Item> = mutableListOf()
-//
-//    fun add (item: Item) {
-//        items.add(item)
-//    }
-//
-//    fun remove(index: Int) {
-//        items.removeAt(index)
-//    }
-//
-//
-//
-//}

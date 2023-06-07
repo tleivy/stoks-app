@@ -32,6 +32,5 @@ interface ItemDao {
     @Query("DELETE from items_table")
     fun deleteAll()
 
-//    @Query("SELECT stockName FROM items_table")
-//    fun getStockNames()
+
 }

@@ -111,7 +111,7 @@ class AllItemsFragment : Fragment(){
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                TODO("Decide if we use it or not")
+                TODO("do nothing") //do nothing
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
