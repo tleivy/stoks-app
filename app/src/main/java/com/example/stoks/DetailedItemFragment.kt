@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.example.stocks.R
 import com.example.stocks.databinding.DetailItemLayoutBinding
+import kotlin.math.abs
 
 class DetailedItemFragment : Fragment() {
 
@@ -27,22 +29,22 @@ class DetailedItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.chosenItem.observe(viewLifecycleOwner) {
             binding.itemName.text = it.stockName
-            binding.itemPrice.text = it.stockPrice.toString()
+            binding.itemPrice.text = "$%.2f".format(it.currPrice)
             binding.itemAmount.text = it.stockAmount.toString()
             binding.itemAmountTotal.text =
-                (it.stockPrice.toInt() * it.stockAmount.toInt()).toString()
+                "$%.2f".format(it.currPrice * it.stockAmount)
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
 
-            val profit = (it.currPrice.toDouble() - it.stockPrice.toDouble()) * it.stockAmount
-            if(profit >= 0 ){
-                binding.itemProfit.text =  "%.2f%%".format(profit.toString())
+            val profit = (it.currPrice - it.stockPrice) * it.stockAmount
+            if (profit >= 0 ) {
+                binding.itemProfit.text =  "$%.2f".format(profit)
+                binding.itemProfitTitle.text = getString(R.string.profit)
              } else {
-                binding.itemProfit.text =  "-%.2f%%".format(profit.toString())
+                binding.itemProfitTitle.text = getString(R.string.loss)
+                binding.itemProfit.text =  "-$%.2f".format(abs(profit))
              }
         }
-
-
 
         super.onViewCreated(view, savedInstanceState)
     }
