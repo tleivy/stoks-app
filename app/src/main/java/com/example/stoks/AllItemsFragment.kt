@@ -1,5 +1,6 @@
 package com.example.stoks
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -113,15 +114,27 @@ class AllItemsFragment : Fragment(){
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val itemAdapter = binding.recycler.adapter as ItemAdapter
+                val position = viewHolder.adapterPosition
+                val item = itemAdapter.itemAt(position)
 
-                viewModel.deleteItem((binding.recycler.adapter as ItemAdapter)
-                    .itemAt(viewHolder.adapterPosition))
-                binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
-
+                val deleteDialog: AlertDialog.Builder = AlertDialog.Builder(context)
+                deleteDialog.apply {
+                    setTitle(R.string.confirm_deletion)
+                    setMessage(R.string.unfollow_stock_pormpt)
+                    setCancelable(false)
+                    setIcon(R.drawable.baseline_delete_outline_24)
+                    setPositiveButton(R.string.yes) { _, _ ->
+                        viewModel.deleteItem(item)
+                        itemAdapter.notifyItemRemoved(position)
+                    }
+                    setNegativeButton(R.string.no) {_, _ ->
+                        itemAdapter.notifyItemChanged(position) // restore
+                    }
+                }
+                deleteDialog.create().show()
             }
-
         }).attachToRecyclerView(binding.recycler)
-
     }
 
     override fun onDestroyView() {
