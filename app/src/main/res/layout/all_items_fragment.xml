@@ -23,16 +23,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-<!--    <androidx.appcompat.widget.AppCompatTextView-->
-<!--        android:id="@+id/price_disclaimer"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:text="@string/prices_disclaimer"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:textSize="10sp"/>-->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/price_disclaimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:text="@string/prices_disclaimer"
+        android:layout_marginBottom="16dp"
+        android:textSize="10sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,4 +10,14 @@
     <string name="clear">נקה</string>
     <string name="image">תמונה</string>
     <string name="add">הוסף</string>
+    <string name="curr_price">מחיר נוכחי</string>
+    <string name="price">מחיר</string>
+    <string name="amount_owned">כמות שבבעלותך</string>
+    <string name="stock_amount">כמות מניות</string>
+    <string name="total_worth">שווי כולל</string>
+    <string name="total">סף הכל</string>
+    <string name="item_name">שם מניה</string>
+    <string name="delete_all">מחק הכל</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
 </resources>

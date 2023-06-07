@@ -4,20 +4,16 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.stocks.R
 import com.example.stocks.databinding.AddItemFragmentBinding
@@ -34,15 +30,16 @@ class AddItemFragment : Fragment() {
 
     val pickItemLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
-            if(it != null) {
+            if (it != null) {
                 binding.previewImage.setImageURI(it)
                 requireActivity().contentResolver.takePersistableUriPermission(
                     it!!,
                     Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
                 imageUri = it
-            }else {
-                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()            }
+            } else {
+                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show()
+            }
         }
 
     override fun onCreateView(
@@ -54,7 +51,6 @@ class AddItemFragment : Fragment() {
 
         val stockSymbols = StocksDataMaps.stockSymbols
         val stockImages = StocksDataMaps.stockImages
-        var currPrice = 0.0
         var companyName = ""
 
         val stockNames = stockSymbols.keys.toMutableList()
@@ -78,16 +74,15 @@ class AddItemFragment : Fragment() {
         binding.addBtn.setOnClickListener {
             //check fields
             var allFilled = true
-            // TODO: shouldn't the first 2 also be an error?
             if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
                 allFilled = false
                 binding.stockAmount.error = "Please fill amount"
-               // return@setOnClickListener
+                return@setOnClickListener
             }
             if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
                 allFilled = false
                 binding.stockPrice.error = "Please fill Price"
-                //return@setOnClickListener
+                return@setOnClickListener
 
             }
             if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
@@ -120,7 +115,7 @@ class AddItemFragment : Fragment() {
                 )
             }
 
-            if(allFilled) {
+            if (allFilled) {
                 val item = Item(
                     binding.stockName.text.toString(),
                     binding.stockSymbol.text.toString(),

@@ -26,8 +26,9 @@ class ItemRepository(application: Application) {
         itemDao?.deleteAll()
     }
 
-    fun getItem(string: String)  {
-        itemDao?.getItem(string)
+
+    fun getTotalAmountForStock(string: String){
+        itemDao?.getTotalAmountForStockFlow(string)
     }
 
 }

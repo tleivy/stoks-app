@@ -22,8 +22,6 @@ import com.example.stocks.R
 import com.example.stocks.databinding.AllItemsFragmentBinding
 import kotlin.random.Random
 
-
-
 class AllItemsFragment : Fragment(){
 
     private var _binding:AllItemsFragmentBinding? = null

@@ -25,23 +25,23 @@ class DetailedItemFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+
+
+
         viewModel.chosenItem.observe(viewLifecycleOwner) {
             binding.itemName.text = it.stockName
             binding.itemSymbol.text = it.stockSymbol
             binding.itemPrice.text = it.stockPrice.toString()
             binding.itemAmount.text = it.stockAmount.toString()
             binding.itemAmountTotal.text =
-                (it.stockPrice.toInt() * it.stockAmount.toInt()).toString()
+                (it.stockPrice.toInt() * it.stockAmount).toString()
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
-
         }
-
-
-
         super.onViewCreated(view, savedInstanceState)
     }
-
 
 
 }
