@@ -9,6 +9,17 @@
     tools:context="com.example.stoks.DetailedItemFragment">
 
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/item_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardElevation="10dp">
+
 
         <LinearLayout
             android:layout_width="339dp"
@@ -174,5 +185,5 @@
 
 
 
-
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
