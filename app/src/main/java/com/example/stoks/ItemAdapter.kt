@@ -52,10 +52,10 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
 //            }
             // Display the percentage change
             if (priceDiff > 0) {
-                binding.percent.text = "+%.1f%%".format(percentageChange)
+                binding.percent.text = "+%.2f%%".format(percentageChange)
                 binding.percent.setTextColor(Color.rgb(79, 186, 111))
             } else  {
-                binding.percent.text = "%.1f%%".format(percentageChange)
+                binding.percent.text = "%.2f%%".format(percentageChange)
                 binding.percent.setTextColor(Color.RED)
             }
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
