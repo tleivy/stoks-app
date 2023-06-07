@@ -34,7 +34,8 @@ class DetailedItemFragment : Fragment() {
                 (it.stockPrice.toInt() * it.stockAmount.toInt()).toString()
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
-            //profit Calc
+
+            //profit Calc function
 
             //int profit = it.stockPrice.toInt() - it.currPrice.toInt()
 

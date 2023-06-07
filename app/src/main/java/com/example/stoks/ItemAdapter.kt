@@ -41,8 +41,10 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
         fun bind(item: Item) {
             // TODO: check commented code
             binding.stockName.text = item.stockName.toString()
+            //stock price is the one you bought
             binding.stockPrice.text = item.stockPrice.toString()
             binding.stockSymbol.text = item.stockSymbol
+            //current price of stock
             binding.currentPrice.text = item.currPrice.toString()
             val priceDiff = item.currPrice - item.stockPrice
             val percentageChange = (priceDiff / item.stockPrice) * 100
