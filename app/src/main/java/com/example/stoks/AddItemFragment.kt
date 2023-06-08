@@ -65,6 +65,7 @@ class AddItemFragment : Fragment() {
                 binding.stockSymbol.setText(stockSymbols[companyName])
                 binding.stockName.setText(companyName)
                 binding.previewImage.setImageResource(stockImages[companyName]!!)
+                imageUri = null
             } else {
                 searchField.error = "Invalid selection"
                 // API call
@@ -130,6 +131,7 @@ class AddItemFragment : Fragment() {
         }
 
         binding.resetBtn.setOnClickListener {
+            imageUri = null
             binding.stockName.setText("")
             binding.searchField.setText("")
             binding.stockSymbol.setText("")
