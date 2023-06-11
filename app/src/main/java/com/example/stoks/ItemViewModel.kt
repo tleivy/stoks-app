@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class ItemViewModel(application: Application)
     : AndroidViewModel(application) {
@@ -23,20 +25,27 @@ class ItemViewModel(application: Application)
     }
 
     fun addItem(item: Item) {
-        repository.addItem(item)
+        viewModelScope.launch {
+            repository.addItem(item)
+        }
     }
 
     fun deleteItem(item: Item) {
-        repository.deleteItem(item)
+        viewModelScope.launch {
+            repository.deleteItem(item)
+        }
     }
 
-
     fun deleteAll() {
-        repository.deleteAll()
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
     }
 
     fun getTotalAmountForStock(stockName: String) {
-        repository.getTotalAmountForStock(stockName)
+        viewModelScope.launch {
+            repository.getTotalAmountForStock(stockName)
+        }
     }
 
 
