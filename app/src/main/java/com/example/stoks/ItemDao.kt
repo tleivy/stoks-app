@@ -7,10 +7,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-
+@Singleton
 @Dao
 interface ItemDao {
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addItem(item:Item)

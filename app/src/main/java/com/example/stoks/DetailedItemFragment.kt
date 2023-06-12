@@ -9,8 +9,9 @@ import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.stocks.R
 import com.example.stocks.databinding.DetailItemLayoutBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
-
+@AndroidEntryPoint
 class DetailedItemFragment : Fragment() {
 
     private var binding: DetailItemLayoutBinding by autoCleared()

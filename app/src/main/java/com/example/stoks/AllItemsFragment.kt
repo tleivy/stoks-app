@@ -20,8 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stocks.R
 import com.example.stocks.databinding.AllItemsFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
-
+@AndroidEntryPoint
 class AllItemsFragment : Fragment(){
 
     private var _binding:AllItemsFragmentBinding? = null

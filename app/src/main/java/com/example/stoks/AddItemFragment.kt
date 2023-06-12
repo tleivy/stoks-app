@@ -17,8 +17,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.stocks.R
 import com.example.stocks.databinding.AddItemFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AddItemFragment : Fragment() {
     private var _binding: AddItemFragmentBinding? = null
     private val binding get() = _binding!!
