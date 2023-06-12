@@ -33,6 +33,6 @@ interface ItemDao {
     suspend fun deleteAll()
 
     @Query("SELECT SUM(stockAmount) FROM items_table WHERE stockName LIKE:stockName")
-    suspend fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
+     fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
 }
 
