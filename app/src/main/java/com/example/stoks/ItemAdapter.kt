@@ -32,29 +32,26 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
             callback.onItemClicked(adapterPosition)
         }
 
-        // TODO: remove?
         override fun onLongClick(p0: View?): Boolean {
             callback.onItemLongClick(adapterPosition)
             return false
         }
 
         fun bind(item: Item) {
-            // TODO: check commented code
             binding.stockName.text = item.stockName.toString()
-            //stock price is the one you bought
-            binding.stockPrice.text = item.stockPrice.toString()
+            binding.stockPrice.text = "$%.2f".format(item.stockPrice)
             binding.stockSymbol.text = item.stockSymbol
-            //current price of stock
-            binding.currentPrice.text = item.currPrice.toString()
+            binding.currentPrice.text = "$%.2f%%".format(item.currPrice)
             val priceDiff = item.currPrice - item.stockPrice
             val percentageChange = (priceDiff / item.stockPrice) * 100
 
+
             // Display the percentage change
             if (priceDiff > 0) {
-                binding.percent.text = "+%.1f%%".format(percentageChange)
+                binding.percent.text = "+%.2f%%".format(percentageChange)
                 binding.percent.setTextColor(Color.rgb(79, 186, 111))
             } else  {
-                binding.percent.text = "%.1f%%".format(percentageChange)
+                binding.percent.text = "%.2f%%".format(percentageChange)
                 binding.percent.setTextColor(Color.RED)
             }
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)

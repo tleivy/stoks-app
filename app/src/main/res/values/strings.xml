@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Stocks</string>
-    <string name="current_price"><u>Current Price:</u></string>
-    <string name="stock_symbol"><u>Stock Symbol</u></string>
-    <string name="amount"><u>Amount:</u></string>
+    <string name="current_price">Current Price</string>
+    <string name="stock_symbol">Stock Symbol</string>
+    <string name="amount">Amount</string>
     <string name="bought_amount">Bought Amount</string>
     <string name="current_stock_price">Current Stock Price</string>
     <string name="bought_price">Bought Price</string>
@@ -24,4 +24,12 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="add_a_new_stock_to_follow">Add A New Stock To Follow</string>
+    <string name="profit">Profit</string>
+    <string name="loss">Loss</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="bought">Bought</string>
+    <string name="current">Current</string>
+    <string name="change">Change</string>
+    <string name="enter_company_name">Enter Company Name</string>
+    <string name="search">Search</string>
 </resources>

@@ -19,7 +19,7 @@ data class Item(
     val stockPrice: Double,
 
     @ColumnInfo(name = "stockAmount")
-    val stockAmount: Int,
+    val stockAmount: Long,
 
     @ColumnInfo(name = "stockImage")
     val stockImage: Uri?,

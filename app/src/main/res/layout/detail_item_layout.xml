@@ -4,186 +4,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#ede9e1"
     android:padding="20dp"
     tools:context="com.example.stoks.DetailedItemFragment">
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/item_card"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true"
-        android:checkable="true"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardElevation="10dp">
-
-
         <LinearLayout
-            android:layout_width="339dp"
-            android:layout_height="537dp"
-            android:background="#00000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
                 android:gravity="center"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="3dp">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/item_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="120dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
                     android:layout_gravity="center"
-                    android:layout_margin="8dp"
                     android:src="@drawable/app_logo" />
-
-
-            </LinearLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/item_symbol"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/stock_symbol"
-                android:textSize="30sp"
-                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/item_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:gravity="top|center"
                 android:text="@string/item_name"
-                android:textSize="25sp"
-                android:textStyle="italic" />
+                android:textSize="25sp" />
 
-            <LinearLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ede9e1"
-                android:orientation="horizontal"
-                android:padding="3dp">
+            </LinearLayout>
 
 
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/item_card"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="10dp"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardElevation="10dp"
+                app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical"
-                    android:padding="3dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:padding="3dp"
+                    android:orientation="horizontal">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/item_price_title"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="@string/curr_price"
-                        android:textSize="25sp"
-                        android:textStyle="italic" />
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="3dp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/item_amount_title"
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_price_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:text="@string/curr_price"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="0.3"
+                            android:gravity="center"
+                            android:text="@string/price"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="@string/amount_owned"
-                        android:textSize="25sp"
-                        android:textStyle="italic" />
+                        android:layout_weight="0.5"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:padding="3dp">
 
 
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_amount_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.7"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_margin="5dp"
+                            android:text="@string/amount_owned"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.3"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:gravity="center"
+                            android:text="@string/stock_amount"
+                            android:textSize="15sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical"
-                    android:padding="3dp">
-
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/item_price"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:gravity="center"
-                        android:text="@string/price"
-                        android:textSize="20sp"
-                        android:textStyle="italic" />
+                        android:layout_height="0dp"
+                        android:layout_weight="0.6"
+                        android:orientation="horizontal" >
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/item_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:gravity="center"
-                        android:text="@string/stock_amount"
-                        android:textSize="20sp"
-                        android:textStyle="italic" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/item_amount_total_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_gravity="center"
+                                android:layout_marginHorizontal="10dp"
+                                android:gravity="center"
+                                android:text="@string/total_worth"
+                                android:textSize="27sp" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/item_amount_total"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:gravity="top|center"
+                                android:text="@string/total"
+                                android:textSize="23sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/item_profit_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_gravity="center"
+                                android:layout_marginHorizontal="10dp"
+                                android:gravity="center"
+                                android:text="@string/profit"
+                                android:textSize="27sp" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/item_profit"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:gravity="top|center"
+                                android:text="@string/total"
+                                android:textSize="23sp" />
+                        </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/item_amount_total_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:text="@string/total_worth"
-                    android:textSize="30sp"
-                    android:textStyle="italic" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/item_amount_total"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:text="@string/total"
-                    android:textSize="25sp"
-                    android:textStyle="italic" />
-            </LinearLayout>
-
+    </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
-
-
-    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
+
+
