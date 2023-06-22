@@ -1,10 +1,11 @@
-package com.example.stoks
+package com.example.stoks.data.model
 
 import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.example.stoks.data.utils.UriTypeConverter
 
 @Entity(tableName = "items_table")
 @TypeConverters(UriTypeConverter::class)

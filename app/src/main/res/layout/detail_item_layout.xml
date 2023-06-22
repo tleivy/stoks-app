@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ede9e1"
     android:padding="20dp"
-    tools:context="com.example.stoks.DetailedItemFragment">
+    tools:context="com.example.stoks.ui.detailitem.DetailedItemFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.stoks
+package com.example.stoks.ui.allitems
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -18,8 +17,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stocks.R
-import com.example.stocks.databinding.AllItemsFragmentBinding
+import com.example.stoks.R
+import com.example.stoks.databinding.AllItemsFragmentBinding
+import com.example.stoks.ui.ItemViewModel
+import com.example.stoks.data.local.StocksDataMaps
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 @AndroidEntryPoint
@@ -137,4 +138,7 @@ class AllItemsFragment : Fragment(){
         super.onDestroyView()
         _binding = null
     }
+
+
+
 }

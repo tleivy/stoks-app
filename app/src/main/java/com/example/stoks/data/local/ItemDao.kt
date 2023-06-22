@@ -1,4 +1,4 @@
-package com.example.stoks
+package com.example.stoks.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,11 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import com.example.stoks.data.model.Item
 
 
 @Dao
@@ -19,7 +15,7 @@ interface ItemDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addItem(item:Item)
+    suspend fun addItem(item: Item)
 
     @Delete
     suspend fun deleteItem(vararg item: Item)

@@ -1,4 +1,4 @@
-package com.example.stoks
+package com.example.stoks.ui.detailitem
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.example.stocks.R
-import com.example.stocks.databinding.DetailItemLayoutBinding
+import com.example.stoks.R
+import com.example.stoks.databinding.DetailItemLayoutBinding
+import com.example.stoks.ui.ItemViewModel
+import com.example.stoks.data.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 @AndroidEntryPoint

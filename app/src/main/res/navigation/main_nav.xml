@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/allItemsFragment"
-        android:name="com.example.stoks.AllItemsFragment"
+        android:name="com.example.stoks.ui.allitems.AllItemsFragment"
         android:label="all_items_fragment"
         tools:layout="@layout/all_items_fragment" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"
-        android:name="com.example.stoks.AddItemFragment"
+        android:name="com.example.stoks.ui.additem.AddItemFragment"
         android:label="add_item_fragment"
         tools:layout="@layout/add_item_fragment" >
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailedItemFragment"
-        android:name="com.example.stoks.DetailedItemFragment"
+        android:name="com.example.stoks.ui.detailitem.DetailedItemFragment"
         android:label="detail_item_layout"
         tools:layout="@layout/detail_item_layout" >
         <action

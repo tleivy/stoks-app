@@ -1,4 +1,4 @@
-package com.example.stoks
+package com.example.stoks.data.utils
 /*
  * Copyright (C) 2018 The Android Open Source Project
  *

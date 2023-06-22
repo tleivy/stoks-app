@@ -1,10 +1,10 @@
-package com.example.stoks
+package com.example.stoks.data.repository
 
 //import android.app.Application
 
-import dagger.Provides
+import com.example.stoks.data.local.ItemDao
+import com.example.stoks.data.model.Item
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 class ItemRepository @Inject constructor(private val itemDao: ItemDao) {

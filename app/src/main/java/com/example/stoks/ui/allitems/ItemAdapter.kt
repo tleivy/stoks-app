@@ -1,14 +1,13 @@
-package com.example.stoks
+package com.example.stoks.ui.allitems
 
 import android.graphics.Color
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.stocks.R
-import com.example.stocks.databinding.ItemLayoutBinding
+import com.example.stoks.databinding.ItemLayoutBinding
+import com.example.stoks.data.model.Item
 
 
 class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :

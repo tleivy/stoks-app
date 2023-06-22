@@ -1,9 +1,10 @@
-package com.example.stoks
+package com.example.stoks.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.stoks.data.model.Item
 
 
 @Database(entities = arrayOf(Item::class), version = 1, exportSchema = false)
@@ -21,7 +22,7 @@ abstract class ItemsDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 ItemsDatabase::class.java, "items_databse"
-            ).allowMainThreadQueries().build().also { instance = it }
+            ).fallbackToDestructiveMigration().build().also { instance = it }
         }
 
     }

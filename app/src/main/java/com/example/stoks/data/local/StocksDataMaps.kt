@@ -1,6 +1,7 @@
-package com.example.stoks
+package com.example.stoks.data.local
 
-import com.example.stocks.R
+import com.example.stoks.R
+
 
 class StocksDataMaps {
 

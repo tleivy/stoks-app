@@ -1,4 +1,4 @@
-package com.example.stoks
+package com.example.stoks.ui.additem
 
 import android.content.ContentResolver
 import android.content.Intent
@@ -15,8 +15,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.stocks.R
-import com.example.stocks.databinding.AddItemFragmentBinding
+import com.example.stoks.R
+import com.example.stoks.databinding.AddItemFragmentBinding
+import com.example.stoks.ui.ItemViewModel
+import com.example.stoks.data.local.StocksDataMaps
+import com.example.stoks.data.model.Item
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

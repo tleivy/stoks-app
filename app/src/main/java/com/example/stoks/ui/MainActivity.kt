@@ -1,8 +1,8 @@
-package com.example.stoks
+package com.example.stoks.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.stocks.R
+import com.example.stoks.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.stoks
+package com.example.stoks.data.utils
 
 import android.net.Uri
 import androidx.room.TypeConverter
