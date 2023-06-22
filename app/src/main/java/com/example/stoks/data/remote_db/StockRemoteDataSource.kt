@@ -9,4 +9,3 @@ class StockRemoteDataSource @Inject constructor(
 
         suspend fun getQuote(symbol: String) = getResult { stockService.getQuote(symbol) }
     }
-

@@ -44,20 +44,20 @@ object APPModule {
     @Provides
     @Singleton
     fun provideItemDao(database: ItemsDatabase) = database.itemsDao()
-
-    @Provides
-    @Singleton
-    fun getAppDB(context : Application): ItemsDatabase {
-        return ItemsDatabase.getDatabase(context)
-
-    }
-
-    @Provides
-    @Singleton
-    fun getDao(ItemDB: ItemsDatabase) : ItemDao {
-        return ItemDB.itemsDao()
-    }
-
-
+//
+//    @Provides
+//    @Singleton
+//    fun getAppDB(context : Application): ItemsDatabase {
+//        return ItemsDatabase.getDatabase(context)
+//
+//    }
+//
+//    @Provides
+//    @Singleton
+//    fun getDao(ItemDB: ItemsDatabase) : ItemDao {
+//        return ItemDB.itemsDao()
+//    }
+//
+//
 
 }

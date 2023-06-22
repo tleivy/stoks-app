@@ -21,7 +21,18 @@ import com.example.stoks.R
 import com.example.stoks.databinding.AllItemsFragmentBinding
 import com.example.stoks.ui.ItemViewModel
 import com.example.stoks.data.local.StocksDataMaps
+import com.example.stoks.data.remote_db.StockRemoteDataSource
+import com.example.stoks.data.remote_db.StockService
+import com.example.stoks.data.utils.Constants
+import com.example.stoks.data.utils.Success
+import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.random.Random
 @AndroidEntryPoint
 class AllItemsFragment : Fragment(){
@@ -46,40 +57,70 @@ class AllItemsFragment : Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        println(1)
         super.onViewCreated(view, savedInstanceState)
-
-        val menuHost: MenuHost = requireActivity()
-
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // Add menu items here
-                menuInflater.inflate(R.menu.main_menu,menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Handle the menu selection
-                return when (menuItem.itemId) {
-                    R.id.action_delete -> {
-                        viewModel.deleteAll()
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
+        println(2)
         viewModel.items?.observe(viewLifecycleOwner) {
+            val gson = GsonBuilder().create()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+            val stockService = retrofit.create(StockService::class.java)
+            val stockRemoteDataSource = StockRemoteDataSource(stockService)
+
 
             val itemsList = viewModel.items?.value
-            itemsList?.forEach {item ->
-                val pricesArr = StocksDataMaps.stockPrices[item.stockName]
-                if (pricesArr != null) {
-                    val randomInt = Random.nextInt(3)  // A random int in 0-2
-                    val currPrice = pricesArr[randomInt] ?: 0.0
-                    item.currPrice = currPrice
+            itemsList?.forEach { item ->
+                val symbol = item.stockName
+                println(symbol)
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val response = stockRemoteDataSource.getQuote(symbol)
+                        if (response.status is Success) {
+                            val stockData = response.status.data
+                            println(stockData)
+                            val currPrice = stockData?.c
+                            withContext(Dispatchers.Main) {
+                                if (currPrice != null) {
+                                    item.currPrice = currPrice
+                                }
+                            }
+                        } else if (response.status is Error) {
+                            val errorMessage = response.status.message
+                            // Handle error response with the provided error message
+                        }
+                    } catch (e: Exception) {
+                        // Handle exception
+                    }
                 }
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//            val itemsList = viewModel.items?.value
+//            itemsList?.forEach {item ->
+//                val pricesArr = StocksDataMaps.stockPrices[item.stockName]
+//                if (pricesArr != null) {
+//                    val randomInt = Random.nextInt(3)  // A random int in 0-2
+//                    val currPrice = pricesArr[randomInt] ?: 0.0
+//                    item.currPrice = currPrice
+//                }
+//            }
 
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
 
