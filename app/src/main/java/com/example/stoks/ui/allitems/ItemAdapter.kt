@@ -10,7 +10,7 @@ import com.example.stoks.databinding.ItemLayoutBinding
 import com.example.stoks.data.model.Item
 
 
-class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
+class ItemAdapter(var items: List<Item>, private val callback: ItemListener) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     interface ItemListener {
@@ -75,4 +75,9 @@ class ItemAdapter(val items: List<Item>, private val callback: ItemListener) :
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) =
         holder.bind(items[position])
+
+    fun updateItems(newItems: List<Item>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
 }

@@ -3,13 +3,8 @@ package com.example.stoks.ui.allitems
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -38,13 +33,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 import kotlin.random.Random
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-import io.finnhub.api.apis.DefaultApi
-import io.finnhub.api.infrastructure.ApiClient
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 
 
 
@@ -82,6 +70,7 @@ class AllItemsFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.items?.observe(viewLifecycleOwner) {
             val itemsList = viewModel.items?.value
             itemsList?.forEach { item ->
@@ -92,12 +81,10 @@ class AllItemsFragment : Fragment(){
                         val response = stockRemoteDataSource.getQuote(symbol,token)
                         if (response.status is Success) {
                             val stockData = response.status.data
-                            println(stockData)
                             val currPrice = stockData?.c
                             withContext(Dispatchers.Main) {
                                 if (currPrice != null) {
                                     item.currPrice = currPrice
-                                    // Update the item in the database
                                     itemDao.updateItem(item)
                                 }
                             }
@@ -112,32 +99,6 @@ class AllItemsFragment : Fragment(){
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//            val itemsList = viewModel.items?.value
-//            itemsList?.forEach {item ->
-//                val pricesArr = StocksDataMaps.stockPrices[item.stockName]
-//                if (pricesArr != null) {
-//                    val randomInt = Random.nextInt(3)  // A random int in 0-2
-//                    val currPrice = pricesArr[randomInt] ?: 0.0
-//                    item.currPrice = currPrice
-//                }
-//            }
-
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
 
                 override fun onItemClicked(index: Int) {
@@ -149,6 +110,7 @@ class AllItemsFragment : Fragment(){
                 }
 
             })
+
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
 
         }
@@ -196,6 +158,35 @@ class AllItemsFragment : Fragment(){
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.items?.value?.let { items ->
+            items.forEach { item ->
+                val symbol = item.stockSymbol
+                val token = Constants.API_KEY
+                lifecycleScope.launch(Dispatchers.IO) {
+                    try {
+                        val response = stockRemoteDataSource.getQuote(symbol, token)
+                        if (response.status is Success) {
+                            val stockData = response.status.data
+                            val currPrice = stockData?.c
+                            withContext(Dispatchers.Main) {
+                                if (currPrice != null) {
+                                    item.currPrice = currPrice
+                                    itemDao.updateItem(item)
+                                }
+                            }
+                        } else if (response.status is Error) {
+                            val errorMessage = response.status.message
+                            // Handle error response with the provided error message
+                        }
+                    } catch (e: Exception) {
+                        // Handle exception
+                    }
+                }
+            }
+        }
+    }
 
 
 }
