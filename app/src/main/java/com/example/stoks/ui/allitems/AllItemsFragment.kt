@@ -13,11 +13,13 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stoks.R
+import com.example.stoks.data.local.ItemDao
 import com.example.stoks.databinding.AllItemsFragmentBinding
 import com.example.stoks.ui.ItemViewModel
 import com.example.stoks.data.local.StocksDataMaps
@@ -29,11 +31,23 @@ import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 import kotlin.random.Random
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+import io.finnhub.api.apis.DefaultApi
+import io.finnhub.api.infrastructure.ApiClient
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
 @AndroidEntryPoint
 class AllItemsFragment : Fragment(){
 
@@ -41,6 +55,16 @@ class AllItemsFragment : Fragment(){
     private val binding get() = _binding!!
 
     private val viewModel : ItemViewModel by activityViewModels()
+
+    @Inject
+    lateinit var stockRemoteDataSource: StockRemoteDataSource
+
+    @Inject
+    lateinit var itemDao: ItemDao
+
+    @Inject
+    lateinit var stockService: StockService
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,26 +81,15 @@ class AllItemsFragment : Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        println(1)
         super.onViewCreated(view, savedInstanceState)
-        println(2)
         viewModel.items?.observe(viewLifecycleOwner) {
-            val gson = GsonBuilder().create()
-            val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-            val stockService = retrofit.create(StockService::class.java)
-            val stockRemoteDataSource = StockRemoteDataSource(stockService)
-
-
             val itemsList = viewModel.items?.value
             itemsList?.forEach { item ->
-                val symbol = item.stockName
-                println(symbol)
-                CoroutineScope(Dispatchers.IO).launch {
+                val symbol = item.stockSymbol
+                val token = Constants.API_KEY
+                lifecycleScope.launch(Dispatchers.IO) {
                     try {
-                        val response = stockRemoteDataSource.getQuote(symbol)
+                        val response = stockRemoteDataSource.getQuote(symbol,token)
                         if (response.status is Success) {
                             val stockData = response.status.data
                             println(stockData)
@@ -84,6 +97,8 @@ class AllItemsFragment : Fragment(){
                             withContext(Dispatchers.Main) {
                                 if (currPrice != null) {
                                     item.currPrice = currPrice
+                                    // Update the item in the database
+                                    itemDao.updateItem(item)
                                 }
                             }
                         } else if (response.status is Error) {
@@ -95,6 +110,7 @@ class AllItemsFragment : Fragment(){
                     }
                 }
             }
+
 
 
 

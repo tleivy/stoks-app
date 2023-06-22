@@ -34,6 +34,9 @@ interface ItemDao {
     @Query("DELETE from items_table")
     suspend fun deleteAll()
 
+    @Query("UPDATE items_table SET currPrice = :newPrice WHERE stockName = :stockName")
+    suspend fun updateCurrentPrice(stockName: String, newPrice: Double)
+
     @Query("SELECT SUM(stockAmount) FROM items_table WHERE stockName LIKE:stockName")
      fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
 }
