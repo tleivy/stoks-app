@@ -61,15 +61,35 @@ class AllItemsFragment : Fragment(){
     ): View? {
         _binding = AllItemsFragmentBinding.inflate(inflater,container,false)
 
-        binding.addItemButton.setOnClickListener{
-            findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
-        }
+//        binding.addItemButton.setOnClickListener{
+//            findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
+//        }
 
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.bottomNavigation.setOnItemSelectedListener {itemMenu ->
+            when(itemMenu.itemId) {
+                R.id.addItemButton -> {
+                    findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
+                    true
+                }
+                R.id.home -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.favorite -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                else -> false
+            }
+
+        }
 
         viewModel.items?.observe(viewLifecycleOwner) {
             val itemsList = viewModel.items?.value

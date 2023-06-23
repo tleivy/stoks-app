@@ -23,7 +23,7 @@
     <string name="unfollow_stock_pormpt">Do you want to unfollow this stock?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="add_a_new_stock_to_follow">Add A New Stock To Follow</string>
+    <string name="add_a_new_stock_to_follow">Add A Stock To Follow</string>
     <string name="profit">Profit</string>
     <string name="loss">Loss</string>
     <string name="portfolio">Portfolio</string>
@@ -32,4 +32,13 @@
     <string name="change">Change</string>
     <string name="enter_company_name">Enter Company Name</string>
     <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="Tesla">Tesla</string>
+    <string name="Amazon">Amazon</string>
+    <string name="Intel">Intel</string>
+    <string name="Google">Google</string>
+    <string name="Apple">Apple</string>
+    <string name="Microsoft">Microsoft</string>
+    <string name="Netflix">Netflix</string>
+    <string name="Facebook">Facebook</string>
 </resources>

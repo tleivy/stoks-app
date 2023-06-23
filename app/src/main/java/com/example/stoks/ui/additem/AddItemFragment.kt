@@ -15,11 +15,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.stoks.R
 import com.example.stoks.databinding.AddItemFragmentBinding
 import com.example.stoks.ui.ItemViewModel
 import com.example.stoks.data.local.StocksDataMaps
 import com.example.stoks.data.model.Item
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,23 +60,38 @@ class AddItemFragment : Fragment() {
         var companyName = ""
 
         val stockNames = stockSymbols.keys.toMutableList()
-        val searchField = binding.searchField
-        val namesAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stockNames)
-        searchField.setAdapter(namesAdapter)
-        searchField.setOnItemClickListener { parent, view, position, id ->
-            val selectedItem = parent.getItemAtPosition(position) as String
-            companyName = selectedItem
+
+        val chipGroup = binding.chipGroup
+        chipGroup.setOnCheckedChangeListener  { group, checkedId ->
+            val selectedChip = group.findViewById<Chip>(checkedId)
+            val selectedChipText = selectedChip?.text.toString()
+            companyName = selectedChipText
             if (stockSymbols.containsKey(companyName)) {
                 binding.stockSymbol.setText(stockSymbols[companyName])
                 binding.stockName.setText(companyName)
-                binding.previewImage.setImageResource(stockImages[companyName]!!)
+                Glide.with(this).load(stockImages[companyName]!!).into(binding.previewImage)
                 imageUri = null
-            } else {
-                searchField.error = "Invalid selection"
-                // API call
             }
         }
+
+
+//        val searchField = binding.searchField
+//        val namesAdapter =
+//            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, stockNames)
+//        searchField.setAdapter(namesAdapter)
+//        searchField.setOnItemClickListener { parent, view, position, id ->
+//            val selectedItem = parent.getItemAtPosition(position) as String
+//            companyName = selectedItem
+//            if (stockSymbols.containsKey(companyName)) {
+//                binding.stockSymbol.setText(stockSymbols[companyName])
+//                binding.stockName.setText(companyName)
+//                binding.previewImage.setImageResource(stockImages[companyName]!!)
+//                imageUri = null
+//            } else {
+//                searchField.error = "Invalid selection"
+//                // API call
+//            }
+//        }
 
         binding.addBtn.setOnClickListener {
             //check fields
@@ -90,22 +107,28 @@ class AddItemFragment : Fragment() {
                 return@setOnClickListener
 
             }
-            if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
+            val selectedChipText = binding.chipGroup.findViewById<Chip>(binding.chipGroup.checkedChipId)?.text?.toString()
+            if (selectedChipText.isNullOrEmpty()) {
                 allFilled = false
-                binding.searchField.error = "Please fill stock"
+                Toast.makeText(requireContext(), "Please select a Stock", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (TextUtils.isEmpty(binding.stockSymbol.text?.toString())) {
-                allFilled = false
-                binding.searchField.error = "Please fill stock"
-                return@setOnClickListener
-            }
-
-            if (TextUtils.isEmpty(binding.stockName.text?.toString())) {
-                allFilled = false
-                binding.searchField.error = "Please fill stock"
-                return@setOnClickListener
-            }
+//            if (TextUtils.isEmpty(binding.searchField.text?.toString())) {
+//                allFilled = false
+//                binding.searchField.error = "Please fill stock"
+//                return@setOnClickListener
+//            }
+//            if (TextUtils.isEmpty(binding.stockSymbol.text?.toString())) {
+//                allFilled = false
+//                binding.searchField.error = "Please fill stock"
+//                return@setOnClickListener
+//            }
+//
+//            if (TextUtils.isEmpty(binding.stockName.text?.toString())) {
+//                allFilled = false
+//                binding.searchField.error = "Please fill stock"
+//                return@setOnClickListener
+//            }
 
             var tempstring: Uri?
             if (imageUri != null) {
@@ -137,7 +160,8 @@ class AddItemFragment : Fragment() {
         binding.resetBtn.setOnClickListener {
             imageUri = null
             binding.stockName.setText("")
-            binding.searchField.setText("")
+         //binding.searchField.setText("")
+            binding.chipGroup.clearCheck()
             binding.stockSymbol.setText("")
             binding.stockPrice.setText("")
             binding.stockAmount.setText("")
