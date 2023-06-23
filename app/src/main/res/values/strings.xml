@@ -41,4 +41,5 @@
     <string name="Microsoft">Microsoft</string>
     <string name="Netflix">Netflix</string>
     <string name="Facebook">Facebook</string>
+    <string name="favorites">Favorites</string>
 </resources>
