@@ -39,4 +39,14 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
         itemDao?.getTotalAmountForStockFlow(string)
     }
 
+    suspend fun removeFromFavorites(item: Item) {
+        item.isFavorite = false
+        itemDao.updateItem(item)
+    }
+    suspend fun addToFavorites(item: Item) {
+        item.isFavorite = true
+        itemDao.updateItem(item)
+    }
+
+
 }

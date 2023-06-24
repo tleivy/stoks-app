@@ -85,21 +85,19 @@ class FavoriteItemsFragment : Fragment(){
 
         }
 
-        viewModel.favorites?.observe(viewLifecycleOwner) {
-            binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
-
+        viewModel.favorites?.observe(viewLifecycleOwner) { favorites ->
+            binding.recycler.adapter = ItemAdapter(favorites, object : ItemAdapter.ItemListener {
                 override fun onItemClicked(index: Int) {
-                    viewModel.setItem(it[index])
+                    viewModel.setItem(favorites[index])
                     findNavController().navigate(R.id.action_favoriteItemsFragment_to_detailedItemFragment)
                 }
 
                 override fun onItemLongClick(index: Int) {
+                    // Implementation for onItemLongClick
                 }
-
-            })
+            }, viewModel)
 
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-
         }
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {

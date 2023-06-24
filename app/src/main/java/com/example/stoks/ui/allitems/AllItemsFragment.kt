@@ -127,16 +127,15 @@ class AllItemsFragment : Fragment(){
 
 
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
-
                 override fun onItemClicked(index: Int) {
                     viewModel.setItem(it[index])
                     findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
                 }
 
                 override fun onItemLongClick(index: Int) {
+                    // Implementation for onItemLongClick
                 }
-
-            })
+            }, viewModel)
 
             binding.recycler.layoutManager = LinearLayoutManager(requireContext())
 
