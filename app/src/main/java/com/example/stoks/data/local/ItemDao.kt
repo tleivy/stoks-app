@@ -39,5 +39,8 @@ interface ItemDao {
 
     @Query("SELECT SUM(stockAmount) FROM items_table WHERE stockName LIKE:stockName")
      fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
+
+    @Query("SELECT * FROM items_table WHERE isFavorite = 1 ORDER BY stockName ASC")
+    fun getFavorites() : LiveData<List<Item>>
 }
 

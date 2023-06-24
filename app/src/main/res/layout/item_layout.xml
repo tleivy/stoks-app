@@ -143,17 +143,17 @@
                     android:layout_weight="0.3"
                     android:textSize="11dp"
                     android:gravity="center"
-                    android:text="@string/current" />
+                    android:text="@string/amount" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/current_price"
+                    android:id="@+id/amount_bought"
                     android:layout_width="match_parent"
                     android:layout_weight="0.7"
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:paddingHorizontal="3dp"
                     android:paddingBottom="17dp"
-                    android:text="@string/current"
+                    android:text="@string/amount"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -165,39 +165,13 @@
             android:layout_weight="0.25"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center|center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
-                android:orientation="vertical"> </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.75"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.3"
-                    android:textSize="11dp"
-                    android:gravity="center"
-                    android:text="@string/change" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/percent"
-                    android:layout_width="match_parent"
-                    android:layout_weight="0.7"
-                    android:layout_height="0dp"
-                    android:gravity="center"
-                    android:paddingHorizontal="3dp"
-                    android:paddingBottom="13dp"
-                    android:text="Percent"
-                    android:textSize="14sp" />
-            </LinearLayout>
+        <CheckBox
+            android:id="@+id/favorite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_favorite_item"/>
 
         </LinearLayout>
 

@@ -150,7 +150,8 @@ class AddItemFragment : Fragment() {
                     binding.stockPrice.text.toString().toDouble(),
                     binding.stockAmount.text.toString().toLong(),
                     tempstring,
-                    0.0
+                    0.0,
+                    false
                 )
                 viewModel.addItem(item)
                 findNavController().navigate(R.id.action_addItemFragment_to_allItemsFragment)

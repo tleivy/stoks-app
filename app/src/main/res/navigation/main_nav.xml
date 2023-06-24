@@ -24,6 +24,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_allItemsFragment_to_favoriteItemsFragment"
+            app:destination="@id/favoriteItemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"
@@ -51,5 +54,17 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteItemsFragment"
+        android:name="com.example.stoks.ui.allitems.FavoriteItemsFragment"
+        android:label="FavoriteItemsFragment" >
+        <action
+            android:id="@+id/action_favoriteItemsFragment_to_allItemsFragment"
+            app:destination="@id/allItemsFragment"
+            app:popUpTo="@id/main_nav" />
+        <action
+            android:id="@+id/action_favoriteItemsFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
     </fragment>
 </navigation>

@@ -42,4 +42,6 @@
     <string name="Netflix">Netflix</string>
     <string name="Facebook">Facebook</string>
     <string name="favorites">Favorites</string>
+    <string name="added_to_favorites">Added to favorites!</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
 </resources>

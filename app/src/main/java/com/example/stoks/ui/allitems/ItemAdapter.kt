@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.stoks.R
 import com.example.stoks.databinding.ItemLayoutBinding
 import com.example.stoks.data.model.Item
 
@@ -40,20 +42,35 @@ class ItemAdapter(var items: List<Item>, private val callback: ItemListener) :
             binding.stockName.text = item.stockName.toString()
             binding.stockPrice.text = "$%.2f".format(item.stockPrice)
             binding.stockSymbol.text = item.stockSymbol
-            binding.currentPrice.text = "$%.2f%%".format(item.currPrice)
-            val priceDiff = item.currPrice - item.stockPrice
-            val percentageChange = (priceDiff / item.stockPrice) * 100
-
-
-            // Display the percentage change
-            if (priceDiff > 0) {
-                binding.percent.text = "+%.2f%%".format(percentageChange)
-                binding.percent.setTextColor(Color.rgb(79, 186, 111))
-            } else  {
-                binding.percent.text = "%.2f%%".format(percentageChange)
-                binding.percent.setTextColor(Color.RED)
-            }
+            binding.amountBought.text = item.stockAmount.toString()
+            binding.favoriteButton.isChecked = item.isFavorite
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
+
+            binding.favoriteButton.setOnCheckedChangeListener { checkbox, isChecked ->
+                if (isChecked) {
+                    item.isFavorite = true
+                    Toast.makeText(binding.root.context,
+                        binding.root.context.getString(R.string.added_to_favorites),
+                        Toast.LENGTH_SHORT).show()
+                } else {
+                    item.isFavorite = false
+                    Toast.makeText(binding.root.context,
+                        binding.root.context.getString(R.string.removed_from_favorites),
+                        Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+//            val priceDiff = item.currPrice - item.stockPrice
+//            val percentageChange = (priceDiff / item.stockPrice) * 100
+//            // Display the percentage change
+//            if (priceDiff > 0) {
+//                binding.percent.text = "+%.2f%%".format(percentageChange)
+//                binding.percent.setTextColor(Color.rgb(79, 186, 111))
+//            } else  {
+//                binding.percent.text = "%.2f%%".format(percentageChange)
+//                binding.percent.setTextColor(Color.RED)
+//            }
         }
     }
 

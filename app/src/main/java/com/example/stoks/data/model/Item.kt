@@ -26,8 +26,12 @@ data class Item(
     val stockImage: Uri?,
 
     @ColumnInfo(name = "currPrice")
-    var currPrice: Double
+    var currPrice: Double,
+
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean
 )
+
 {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

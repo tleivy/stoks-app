@@ -18,6 +18,8 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
 
     fun getItems() = itemDao?.getItems()
 
+    fun getFavorites() = itemDao?.getFavorites()
+
 
     suspend fun addItem(item: Item) {
         itemDao?.addItem(item)
@@ -32,7 +34,6 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
     suspend fun deleteAll() {
         itemDao?.deleteAll()
     }
-
 
     suspend fun getTotalAmountForStock(string: String){
         itemDao?.getTotalAmountForStockFlow(string)

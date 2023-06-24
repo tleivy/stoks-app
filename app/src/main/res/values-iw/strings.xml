@@ -34,4 +34,6 @@
     <string name="change">שינוי</string>
     <string name="enter_company_name">הכנס שם חברה</string>
     <string name="search">חיפוש</string>
+    <string name="added_to_favorites">נוסף למועדפים!</string>
+    <string name="removed_from_favorites">הוסר מהמועדפים</string>
 </resources>
