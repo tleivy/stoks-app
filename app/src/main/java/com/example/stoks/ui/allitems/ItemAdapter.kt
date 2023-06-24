@@ -44,7 +44,7 @@ class ItemAdapter(
 
         fun bind(item: Item) {
             binding.stockName.text = item.stockName.toString()
-            binding.stockPrice.text = "$%.2f".format(item.stockPrice)
+            binding.stockPrice.text = "$%.2f".format(item.stockPrice).formatWithCommas()
             binding.stockSymbol.text = item.stockSymbol
             binding.amountBought.text = item.stockAmount.toString()
             binding.favoriteButton.isChecked = item.isFavorite
@@ -99,5 +99,7 @@ class ItemAdapter(
         notifyDataSetChanged()
     }
 
-
+    fun String.formatWithCommas(): String {
+        return this.replace(Regex("\\B(?=(\\d{3})+(?!\\d))"), ",")
+    }
 }
