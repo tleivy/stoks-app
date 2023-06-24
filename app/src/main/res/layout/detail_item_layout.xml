@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:button="@drawable/selector_favorite_item"
                 android:layout_gravity="end"
-                android:gravity="center"/>
+                android:gravity="center|top"/>
 
 
             <LinearLayout
@@ -35,7 +35,7 @@
                     android:id="@+id/item_image"
                     android:layout_width="120dp"
                     android:layout_height="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.8"
                     android:layout_gravity="center"
                     android:src="@drawable/app_logo" />
 
