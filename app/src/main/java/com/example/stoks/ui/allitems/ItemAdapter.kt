@@ -1,6 +1,7 @@
 package com.example.stoks.ui.allitems
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,19 +59,8 @@ class ItemAdapter(var items: List<Item>, private val callback: ItemListener) :
                         binding.root.context.getString(R.string.removed_from_favorites),
                         Toast.LENGTH_SHORT).show()
                 }
-
+                Log.d("DEV", "item.isFavorite = ${item.isFavorite}")
             }
-
-//            val priceDiff = item.currPrice - item.stockPrice
-//            val percentageChange = (priceDiff / item.stockPrice) * 100
-//            // Display the percentage change
-//            if (priceDiff > 0) {
-//                binding.percent.text = "+%.2f%%".format(percentageChange)
-//                binding.percent.setTextColor(Color.rgb(79, 186, 111))
-//            } else  {
-//                binding.percent.text = "%.2f%%".format(percentageChange)
-//                binding.percent.setTextColor(Color.RED)
-//            }
         }
     }
 
@@ -96,5 +86,9 @@ class ItemAdapter(var items: List<Item>, private val callback: ItemListener) :
     fun updateItems(newItems: List<Item>) {
         items = newItems
         notifyDataSetChanged()
+    }
+
+    fun getItemAt(position: Int): Item {
+        return items[position]
     }
 }

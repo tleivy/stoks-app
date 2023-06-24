@@ -54,6 +54,4 @@ class ItemViewModel @Inject constructor(private val repository: ItemRepository) 
             repository.getTotalAmountForStock(stockName)
         }
     }
-
-
 }

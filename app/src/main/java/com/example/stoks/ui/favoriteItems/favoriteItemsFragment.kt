@@ -121,6 +121,7 @@ class FavoriteItemsFragment : Fragment(){
                 val position = viewHolder.adapterPosition
                 val item = itemAdapter.itemAt(position)
 
+
                 val deleteDialog: AlertDialog.Builder = AlertDialog.Builder(context)
                 deleteDialog.apply {
                     setTitle(R.string.confirm_deletion)

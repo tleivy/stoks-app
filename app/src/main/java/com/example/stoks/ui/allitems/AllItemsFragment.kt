@@ -45,6 +45,8 @@ class AllItemsFragment : Fragment(){
 
     private val viewModel : ItemViewModel by activityViewModels()
 
+    private lateinit var itemAdapter: ItemAdapter
+
     @Inject
     lateinit var stockRemoteDataSource: StockRemoteDataSource
 
@@ -69,7 +71,6 @@ class AllItemsFragment : Fragment(){
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
@@ -93,53 +94,23 @@ class AllItemsFragment : Fragment(){
 
         }
 
-//        var numIteration = 0
-        viewModel.items?.observe(viewLifecycleOwner) {
-//            if (numIteration <= 1) {
-//                val itemsList = viewModel.items?.value
-//                itemsList?.forEach { item ->
-//                    val symbol = item.stockSymbol
-//                    val token = Constants.API_KEY
-//                    lifecycleScope.launch(Dispatchers.IO) {
-//                        try {
-//                            val response = stockRemoteDataSource.getQuote(symbol, token)
-//                            if (response.status is Success) {
-//                                val stockData = response.status.data
-//                                val currPrice = stockData?.c
-//                                Log.d("PRICES", "${symbol}: ${currPrice}")
-//                                withContext(Dispatchers.Main) {
-//                                    if (currPrice != null) {
-//                                        item.currPrice = currPrice
-//                                        itemDao.updateItem(item)
-//                                    }
-//                                }
-//                            } else if (response.status is Error) {
-//                                val errorMessage = response.status.message
-//                                // Handle error response with the provided error message
-//                            }
-//                        } catch (e: Exception) {
-//                            // Handle exception
-//                        }
-//                    }
-//                }
-//                numIteration++
-//            }
+        itemAdapter = ItemAdapter(emptyList(), object : ItemAdapter.ItemListener {
 
+            override fun onItemClicked(index: Int) {
+                val item = itemAdapter.getItemAt(index)
+                viewModel.setItem(item)
+                findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
+            }
 
-            binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
+            override fun onItemLongClick(index: Int) {
+            }
 
-                override fun onItemClicked(index: Int) {
-                    viewModel.setItem(it[index])
-                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
-                }
+        })
+        binding.recycler.adapter = itemAdapter
+        binding.recycler.layoutManager = LinearLayoutManager(requireContext())
 
-                override fun onItemLongClick(index: Int) {
-                }
-
-            })
-
-            binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-
+        viewModel.items?.observe(viewLifecycleOwner) { items ->
+            itemAdapter.updateItems(items)
         }
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
@@ -172,7 +143,7 @@ class AllItemsFragment : Fragment(){
                         itemAdapter.notifyItemRemoved(position)
                     }
                     setNegativeButton(R.string.no) {_, _ ->
-                        itemAdapter.notifyItemChanged(position) // restore
+                         // restore
                     }
                 }
                 deleteDialog.create().show()
@@ -187,32 +158,6 @@ class AllItemsFragment : Fragment(){
 
     override fun onResume() {
         super.onResume()
-        viewModel.items?.value?.let { items ->
-            items.forEach { item ->
-                val symbol = item.stockSymbol
-                val token = Constants.API_KEY
-                lifecycleScope.launch(Dispatchers.IO) {
-                    try {
-                        val response = stockRemoteDataSource.getQuote(symbol, token)
-                        if (response.status is Success) {
-                            val stockData = response.status.data
-                            val currPrice = stockData?.c
-                            withContext(Dispatchers.Main) {
-                                if (currPrice != null) {
-                                    item.currPrice = currPrice
-                                    itemDao.updateItem(item)
-                                }
-                            }
-                        } else if (response.status is Error) {
-                            val errorMessage = response.status.message
-                            // Handle error response with the provided error message
-                        }
-                    } catch (e: Exception) {
-                        // Handle exception
-                    }
-                }
-            }
-        }
     }
 
 }
