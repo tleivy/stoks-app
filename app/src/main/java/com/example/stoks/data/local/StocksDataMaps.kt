@@ -31,7 +31,7 @@ class StocksDataMaps {
             "Netflix" to R.drawable.netflix_image,
             "Facebook" to R.drawable.facebook_image,
             "Nvidia" to R.drawable.nvidia_image,
-            "Samsung" to R.drawable.facebook_image
+            "Samsung" to R.drawable.samsung_image
         )
 
     }
