@@ -17,7 +17,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.4"
+                android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="3dp">
@@ -37,9 +37,9 @@
                 android:layout_weight="0.3"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:gravity="top|center"
+                android:gravity="center"
                 android:text="@string/item_name"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -66,7 +66,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.3"
                     android:padding="3dp"
                     android:orientation="horizontal">
 
@@ -75,7 +75,41 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.33"
+                        android:orientation="vertical"
+                        android:padding="3dp">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/today_change_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:layout_weight="0.4"
+                            android:gravity="center|top"
+                            android:text="@string/curr_price"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="0.6"
+                            android:gravity="center|top"
+                            android:text="@string/loading"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.33"
                         android:orientation="vertical"
                         android:padding="3dp">
 
@@ -86,19 +120,19 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            android:layout_weight="0.7"
-                            android:gravity="center"
-                            android:text="@string/curr_price"
+                            android:layout_weight="0.4"
+                            android:gravity="center|top"
+                            android:text="@string/today"
                             android:textSize="18sp" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/item_price"
+                            android:id="@+id/today_price"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
-                            android:layout_weight="0.3"
-                            android:gravity="center"
+                            android:layout_weight="0.6"
+                            android:gravity="center|top"
                             android:text="@string/loading"
                             android:textSize="16sp" />
 
@@ -108,7 +142,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.33"
                         android:layout_gravity="center"
                         android:orientation="vertical"
                         android:padding="3dp">
@@ -118,23 +152,23 @@
                             android:id="@+id/item_amount_title"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.7"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_margin="5dp"
+                            android:layout_weight="0.4"
+                            android:gravity="center|top"
                             android:text="@string/amount_owned"
                             android:textSize="18sp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/item_amount"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.3"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
-                            android:gravity="center"
+                            android:layout_weight="0.6"
+                            android:gravity="center|top"
                             android:text="@string/stock_amount"
-                            android:textSize="15sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -142,7 +176,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.3"
                         android:orientation="horizontal" >
 
                         <LinearLayout
@@ -155,27 +189,29 @@
 
 
                             <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/item_amount_total_title"
+                                android:id="@+id/total_change_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="0.5"
+                                android:layout_weight="0.4"
                                 android:layout_gravity="center"
                                 android:layout_marginHorizontal="10dp"
-                                android:gravity="center"
-                                android:text="@string/total_worth"
-                                android:textSize="27sp" />
+                                android:gravity="top|center"
+                                android:text="@string/total_change"
+                                android:textSize="18sp" />
 
                             <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/item_amount_total"
+                                android:id="@+id/total_change"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="0.5"
+                                android:layout_weight="0.6"
                                 android:layout_gravity="center"
                                 android:layout_margin="5dp"
                                 android:gravity="top|center"
                                 android:text="@string/loading"
-                                android:textSize="23sp" />
+                                android:textSize="18sp" />
                         </LinearLayout>
+
+
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -190,25 +226,65 @@
                                 android:id="@+id/item_profit_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="0.5"
+                                android:layout_weight="0.4"
                                 android:layout_gravity="center"
                                 android:layout_marginHorizontal="10dp"
-                                android:gravity="center"
+                                android:gravity="top|center"
                                 android:text="@string/profit"
-                                android:textSize="27sp" />
+                                android:textSize="18sp" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/item_profit"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="0.5"
+                                android:layout_weight="0.6"
                                 android:layout_gravity="center"
                                 android:layout_margin="5dp"
                                 android:gravity="top|center"
                                 android:text="@string/loading"
-                                android:textSize="23sp" />
+                                android:textSize="18sp" />
                         </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_amount_total_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="10dp"
+                            android:gravity="start|center"
+                            android:text="@string/total_worth"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/item_amount_total"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:gravity="top|center"
+                            android:text="@string/loading"
+                            android:textSize="18sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 </LinearLayout>

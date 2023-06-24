@@ -1,5 +1,6 @@
 package com.example.stoks.ui.detailitem
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -48,13 +49,16 @@ class DetailedItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.chosenItem.observe(viewLifecycleOwner) {
             // Initialize prices from local database
-            binding.itemPrice.text = "$%.2f".format(it.currPrice)
+            binding.itemPrice.text = "$%.2f".format(it.currPrice).formatWithCommas()
             binding.itemAmountTotal.text =
-                "$%.2f".format(it.currPrice * it.stockAmount)
+                "$%.2f".format(it.currPrice * it.stockAmount).formatWithCommas()
             binding.itemProfit.text = "$0.00"
+            binding.todayPrice.text = "+0.0%"
+            binding.totalChange.text = "+0.0%"
 
             val stockSymbol = it.stockSymbol
             val token = Constants.API_KEY
+            Log.d("PRICES", "Initiating API request")
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
                     val response = stockRemoteDataSource.getQuote(stockSymbol, token)
@@ -67,16 +71,39 @@ class DetailedItemFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             if (currPrice != null) {
                                 it.currPrice = currPrice
-                                binding.itemPrice.text = "$%.2f".format(currPrice) // update UI immediately
+                                binding.itemPrice.text = "$%.2f".format(currPrice).formatWithCommas() // update UI immediately
                                 binding.itemAmountTotal.text =
-                                    "$%.2f".format(it.currPrice * it.stockAmount)
-                                val profit = (it.currPrice - it.stockPrice) * it.stockAmount
+                                    "$%.2f".format(it.currPrice * it.stockAmount).formatWithCommas()
+                                val totalPriceDiff = it.currPrice - it.stockPrice
+                                val profit = totalPriceDiff * it.stockAmount
                                 if (profit >= 0) {
-                                    binding.itemProfit.text = "$%.2f".format(profit)
+                                    binding.itemProfit.text = "$%.2f".format(profit).formatWithCommas()
                                     binding.itemProfitTitle.text = getString(R.string.profit)
                                 } else {
                                     binding.itemProfitTitle.text = getString(R.string.loss)
-                                    binding.itemProfit.text = "-$%.2f".format(abs(profit))
+                                    binding.itemProfit.text = "-$%.2f".format(abs(profit)).formatWithCommas()
+                                }
+                                val totalChangePercentage = (totalPriceDiff / it.stockPrice) * 100
+                                if (totalPriceDiff >= 0) {
+                                    binding.totalChange.text = "+%.2f%%".format(totalChangePercentage).formatWithCommas()
+                                    binding.totalChange.setTextColor(Color.rgb(79, 186, 111))
+                                } else  {
+                                    binding.totalChange.text = "%.2f%%".format(totalChangePercentage).formatWithCommas()
+                                    binding.totalChange.setTextColor(Color.RED)
+                                }
+
+
+                                if (openingPrice != null) {
+                                    val todayPriceDiff = openingPrice.toDouble() - currPrice.toDouble()
+                                    val todayChange = (todayPriceDiff / openingPrice.toDouble()) * 100
+                                    // Display the percentage change
+                                    if (todayPriceDiff >= 0) {
+                                        binding.todayPrice.text = "+%.2f%%".format(todayChange).formatWithCommas()
+                                        binding.todayPrice.setTextColor(Color.rgb(79, 186, 111))
+                                    } else  {
+                                        binding.todayPrice.text = "%.2f%%".format(todayChange).formatWithCommas()
+                                        binding.todayPrice.setTextColor(Color.RED)
+                                    }
                                 }
                                 viewModel.updateItem(it)
                             }
@@ -91,9 +118,10 @@ class DetailedItemFragment : Fragment() {
                         binding.itemProfit.text = R.string.networkError.toString()
                         binding.itemProfitTitle.text = getString(R.string.profit)
                         viewModel.updateItem(it)
+                        Log.d("PRICES", "API status = Error")
                     }
                 } catch (e: Exception) {
-                    // Handle exception
+                    Log.d("PRICES", "Exception in API request")
                 }
             }
 
@@ -105,5 +133,9 @@ class DetailedItemFragment : Fragment() {
         }
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    fun String.formatWithCommas(): String {
+        return this.replace(Regex("\\B(?=(\\d{3})+(?!\\d))"), ",")
     }
 }
