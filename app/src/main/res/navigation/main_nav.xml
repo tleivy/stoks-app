@@ -58,7 +58,8 @@
     <fragment
         android:id="@+id/favoriteItemsFragment"
         android:name="com.example.stoks.ui.allitems.FavoriteItemsFragment"
-        android:label="FavoriteItemsFragment" >
+        android:label="FavoriteItemsFragment"
+        tools:layout="@layout/favorite_items_fragment">
         <action
             android:id="@+id/action_favoriteItemsFragment_to_allItemsFragment"
             app:destination="@id/allItemsFragment"
@@ -66,5 +67,8 @@
         <action
             android:id="@+id/action_favoriteItemsFragment_to_addItemFragment"
             app:destination="@id/addItemFragment" />
+        <action
+            android:id="@+id/action_favoriteItemsFragment_to_detailedItemFragment"
+            app:destination="@id/detailedItemFragment" />
     </fragment>
 </navigation>

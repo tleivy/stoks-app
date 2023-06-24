@@ -22,7 +22,9 @@ import com.example.stoks.data.remote_db.StockRemoteDataSource
 import com.example.stoks.data.remote_db.StockService
 import com.example.stoks.data.utils.Constants
 import com.example.stoks.data.utils.Success
+import com.example.stoks.databinding.FavoriteItemsFragmentBinding
 import com.example.stoks.ui.FavoritesViewModel
+import com.example.stoks.ui.ItemViewModel
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -40,9 +42,9 @@ import kotlin.random.Random
 @AndroidEntryPoint
 class FavoriteItemsFragment : Fragment(){
 
-    private var _binding:AllItemsFragmentBinding? = null
+    private var _binding: FavoriteItemsFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : FavoritesViewModel by activityViewModels()
+    private val viewModel : ItemViewModel by activityViewModels()
 
     @Inject
     lateinit var stockRemoteDataSource: StockRemoteDataSource
@@ -55,7 +57,7 @@ class FavoriteItemsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = AllItemsFragmentBinding.inflate(inflater,container,false)
+        _binding = FavoriteItemsFragmentBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -83,12 +85,12 @@ class FavoriteItemsFragment : Fragment(){
 
         }
 
-        viewModel.items?.observe(viewLifecycleOwner) {
+        viewModel.favorites?.observe(viewLifecycleOwner) {
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
 
                 override fun onItemClicked(index: Int) {
                     viewModel.setItem(it[index])
-                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
+                    findNavController().navigate(R.id.action_favoriteItemsFragment_to_detailedItemFragment)
                 }
 
                 override fun onItemLongClick(index: Int) {

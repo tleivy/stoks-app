@@ -20,6 +20,8 @@ class ItemViewModel @Inject constructor(private val repository: ItemRepository) 
 
     val items : LiveData<List<Item>>? = repository.getItems()
 
+         val favorites : LiveData<List<Item>>? = repository.getFavorites()
+
     private val _chosenItem = MutableLiveData<Item>()
 
     val chosenItem : LiveData<Item> get() = _chosenItem
