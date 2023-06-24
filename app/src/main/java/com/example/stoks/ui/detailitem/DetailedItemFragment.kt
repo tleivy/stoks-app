@@ -47,6 +47,19 @@ class DetailedItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.chosenItem.observe(viewLifecycleOwner) {
+            // Initialize prices from local database
+            binding.itemPrice.text = "$%.2f".format(it.currPrice)
+            binding.itemAmountTotal.text =
+                "$%.2f".format(it.currPrice * it.stockAmount)
+            val profit = (it.currPrice - it.stockPrice) * it.stockAmount
+            if (profit >= 0) {
+                binding.itemProfit.text = "$%.2f".format(profit)
+                binding.itemProfitTitle.text = getString(R.string.profit)
+            } else {
+                binding.itemProfitTitle.text = getString(R.string.loss)
+                binding.itemProfit.text = "-$%.2f".format(abs(profit))
+            }
+
             val stockSymbol = it.stockSymbol
             val token = Constants.API_KEY
             lifecycleScope.launch(Dispatchers.IO) {
@@ -77,7 +90,14 @@ class DetailedItemFragment : Fragment() {
                         }
                     } else if (response.status is Error) {
                         val errorMessage = response.status.message
-                        // Handle error response with the provided error message
+                        it.currPrice = 0.0
+                        binding.itemPrice.text = "0.0" // update UI immediately
+                        binding.itemAmountTotal.text =
+                            R.string.networkError.toString()
+                        val profit = 0.0
+                        binding.itemProfit.text = R.string.networkError.toString()
+                        binding.itemProfitTitle.text = getString(R.string.profit)
+                        viewModel.updateItem(it)
                     }
                 } catch (e: Exception) {
                     // Handle exception
