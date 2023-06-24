@@ -15,7 +15,9 @@ class StocksDataMaps {
             "Tesla" to "TSLA",
             "Intel" to "INTC",
             "Netflix" to "NFLX",
-            "Facebook" to "META"
+            "Facebook" to "META",
+            "Nvidia" to "NVDA",
+            "Samsung" to "SSNLF"
         )
 
 
@@ -27,7 +29,9 @@ class StocksDataMaps {
             "Tesla" to R.drawable.tesla_image,
             "Intel" to R.drawable.intel_image,
             "Netflix" to R.drawable.netflix_image,
-            "Facebook" to R.drawable.facebook_image
+            "Facebook" to R.drawable.facebook_image,
+            "Nvidia" to R.drawable.nvidia_image,
+            "Samsung" to R.drawable.facebook_image
         )
 
     }
