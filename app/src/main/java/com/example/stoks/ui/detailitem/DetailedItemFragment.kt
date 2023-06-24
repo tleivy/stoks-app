@@ -61,8 +61,17 @@ class DetailedItemFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             if (currPrice != null) {
                                 it.currPrice = currPrice
-                                viewModel.updateItem(it)
                                 binding.itemPrice.text = "$%.2f".format(currPrice) // update UI immediately
+                                binding.itemAmountTotal.text =
+                                    "$%.2f".format(it.currPrice * it.stockAmount)
+                                val profit = (it.currPrice - it.stockPrice) * it.stockAmount
+                                if (profit >= 0) {
+                                    binding.itemProfit.text = "$%.2f".format(profit)
+                                    binding.itemProfitTitle.text = getString(R.string.profit)
+                                } else {
+                                    binding.itemProfitTitle.text = getString(R.string.loss)
+                                    binding.itemProfit.text = "-$%.2f".format(abs(profit))
+                                }
                                 viewModel.updateItem(it)
                             }
                         }
@@ -77,19 +86,9 @@ class DetailedItemFragment : Fragment() {
 
             binding.itemName.text = it.stockName
             binding.itemAmount.text = it.stockAmount.toString()
-            binding.itemAmountTotal.text =
-                "$%.2f".format(it.currPrice * it.stockAmount)
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
 
-            val profit = (it.currPrice - it.stockPrice) * it.stockAmount
-            if (profit >= 0) {
-                binding.itemProfit.text = "$%.2f".format(profit)
-                binding.itemProfitTitle.text = getString(R.string.profit)
-            } else {
-                binding.itemProfitTitle.text = getString(R.string.loss)
-                binding.itemProfit.text = "-$%.2f".format(abs(profit))
-            }
         }
 
         super.onViewCreated(view, savedInstanceState)
