@@ -70,6 +70,7 @@ class FavoriteItemsFragment : Fragment() {
         }
 
         viewModel.favorites?.observe(viewLifecycleOwner) { favorites ->
+            binding.emptyListTextView.visibility = if (favorites.isNullOrEmpty()) View.VISIBLE else View.GONE
             binding.recycler.adapter = ItemAdapter(favorites, object : ItemAdapter.ItemListener {
                 override fun onItemClicked(index: Int) {
                     viewModel.setItem(favorites[index])
