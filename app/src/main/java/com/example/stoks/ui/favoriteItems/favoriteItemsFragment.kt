@@ -78,7 +78,7 @@ class FavoriteItemsFragment : Fragment() {
                 }
 
                 override fun onItemLongClick(index: Int) {
-                    // Implementation for onItemLongClick
+                    // do nothing
                 }
             }, viewModel)
 

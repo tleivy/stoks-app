@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -55,6 +56,7 @@ class DetailedItemFragment : Fragment() {
             binding.itemProfit.text = "$0.00"
             binding.todayPrice.text = "+0.0%"
             binding.totalChange.text = "+0.0%"
+            binding.favoriteButton.isChecked = it.isFavorite
 
             val stockSymbol = it.stockSymbol
             val token = Constants.API_KEY
@@ -127,9 +129,29 @@ class DetailedItemFragment : Fragment() {
 
             binding.itemName.text = it.stockName
             binding.itemAmount.text = it.stockAmount.toString()
+
+            binding.favoriteButton.setOnCheckedChangeListener(null) // Remove previous listener
+            binding.favoriteButton.setOnCheckedChangeListener { checkbox, isChecked ->
+                if (isChecked) {
+                    viewModel.addToFavorites(it)
+                    Toast.makeText(
+                        binding.root.context,
+                        binding.root.context.getString(R.string.added_to_favorites),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    viewModel.removeFromFavorites(it)
+                    Toast.makeText(
+                        binding.root.context,
+                        binding.root.context.getString(R.string.removed_from_favorites),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                viewModel.updateItem(it)
+            }
+
             Glide.with(requireContext()).load(it.stockImage).circleCrop()
                 .into(binding.itemImage)
-
         }
 
         super.onViewCreated(view, savedInstanceState)

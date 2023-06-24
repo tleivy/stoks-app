@@ -47,29 +47,9 @@ class ItemAdapter(
             binding.stockPrice.text = "$%.2f".format(item.stockPrice).formatWithCommas()
             binding.stockSymbol.text = item.stockSymbol
             binding.amountBought.text = item.stockAmount.toString()
-            binding.favoriteButton.isChecked = item.isFavorite
+
             Glide.with(binding.root).load(item.stockImage).circleCrop().into(binding.itemImage)
 
-            binding.favoriteButton.setOnCheckedChangeListener(null) // Remove previous listener
-
-            binding.favoriteButton.setOnCheckedChangeListener { checkbox, isChecked ->
-                if (isChecked) {
-                    viewModel.addToFavorites(item)
-                    Toast.makeText(
-                        binding.root.context,
-                        binding.root.context.getString(R.string.added_to_favorites),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    viewModel.removeFromFavorites(item)
-                    Toast.makeText(
-                        binding.root.context,
-                        binding.root.context.getString(R.string.removed_from_favorites),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                viewModel.updateItem(item)
-            }
         }
     }
 

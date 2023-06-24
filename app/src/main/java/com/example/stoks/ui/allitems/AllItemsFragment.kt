@@ -84,7 +84,7 @@ class AllItemsFragment : Fragment() {
                 }
 
                 override fun onItemLongClick(index: Int) {
-                    // Implementation for onItemLongClick
+                    // do nothing
                 }
             }, viewModel)
 
