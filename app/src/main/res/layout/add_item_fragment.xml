@@ -86,9 +86,10 @@
                     style="@style/Widget.Material3.Chip.Suggestion.Elevated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Tesla"
+                    android:text="@string/Microsoft"
                     app:chipStrokeColor="@color/white"
                     app:chipStrokeWidth="1dp" />
+
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.Material3.Chip.Suggestion.Elevated"
@@ -102,9 +103,35 @@
                     style="@style/Widget.Material3.Chip.Suggestion.Elevated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/Samsung"
+                    app:chipStrokeColor="@color/white"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion.Elevated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/Amazon"
                     app:chipStrokeColor="@color/white"
                     app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion.Elevated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Tesla"
+                    app:chipStrokeColor="@color/white"
+                    app:chipStrokeWidth="1dp" />
+
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.Material3.Chip.Suggestion.Elevated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Nvidia"
+                    app:chipStrokeColor="@color/white"
+                    app:chipStrokeWidth="1dp" />
+
 
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
@@ -178,8 +205,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/preview_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:src="@drawable/app_logo"
