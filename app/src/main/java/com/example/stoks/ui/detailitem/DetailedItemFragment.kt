@@ -47,6 +47,7 @@ class DetailedItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.chosenItem.observe(viewLifecycleOwner) {
+
             val stockSymbol = it.stockSymbol
             val token = Constants.API_KEY
             lifecycleScope.launch(Dispatchers.IO) {
@@ -61,7 +62,9 @@ class DetailedItemFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             if (currPrice != null) {
                                 it.currPrice = currPrice
-                                itemDao.updateItem(it)
+                                viewModel.updateItem(it)
+                                binding.itemPrice.text = "$%.2f".format(currPrice) // update UI immediately
+                                viewModel.updateItem(it)
                             }
                         }
                     } else if (response.status is Error) {
@@ -74,7 +77,6 @@ class DetailedItemFragment : Fragment() {
             }
 
             binding.itemName.text = it.stockName
-            binding.itemPrice.text = "$%.2f".format(it.currPrice)
             binding.itemAmount.text = it.stockAmount.toString()
             binding.itemAmountTotal.text =
                 "$%.2f".format(it.currPrice * it.stockAmount)
@@ -93,7 +95,4 @@ class DetailedItemFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
     }
-
-
-
 }
