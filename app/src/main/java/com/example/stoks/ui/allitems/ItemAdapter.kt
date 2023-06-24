@@ -55,7 +55,6 @@ class ItemAdapter(
             binding.favoriteButton.setOnCheckedChangeListener { checkbox, isChecked ->
                 if (isChecked) {
                     viewModel.addToFavorites(item)
-                    viewModel.updateItem(item)
                     Toast.makeText(
                         binding.root.context,
                         binding.root.context.getString(R.string.added_to_favorites),
@@ -63,15 +62,14 @@ class ItemAdapter(
                     ).show()
                 } else {
                     viewModel.removeFromFavorites(item)
-                    viewModel.updateItem(item)
                     Toast.makeText(
                         binding.root.context,
                         binding.root.context.getString(R.string.removed_from_favorites),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+                viewModel.updateItem(item)
             }
-
         }
     }
 
