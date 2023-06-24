@@ -54,4 +54,22 @@ class ItemViewModel @Inject constructor(private val repository: ItemRepository) 
             repository.getTotalAmountForStock(stockName)
         }
     }
+         fun removeFromFavorites(item: Item) {
+             viewModelScope.launch {
+                 repository.removeFromFavorites(item)
+             }
+         }
+
+         fun addToFavorites(item: Item) {
+             viewModelScope.launch {
+                 repository.addToFavorites(item)
+             }
+         }
+
+         fun updateItem(item: Item){
+             viewModelScope.launch {
+                 repository.updateItem(item)
+             }
+         }
+
 }
