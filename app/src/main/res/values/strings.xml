@@ -51,4 +51,5 @@
     <string name="Nvidia">Nvidia</string>
     <string name="Samsung">Samsung</string>
     <string name="loading">Loading...</string>
+    <string name="empty_list_message">Empty list</string>
 </resources>

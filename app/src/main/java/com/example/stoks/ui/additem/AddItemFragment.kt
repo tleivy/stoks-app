@@ -76,12 +76,12 @@ class AddItemFragment : Fragment() {
             var allFilled = true
             if (TextUtils.isEmpty(binding.stockAmount.text?.toString())) {
                 allFilled = false
-                binding.stockAmount.error = R.string.fillAmount.toString()
+                binding.stockAmount.error = getString(R.string.fillAmount)
                 return@setOnClickListener
             }
             if (TextUtils.isEmpty(binding.stockPrice.text?.toString())) {
                 allFilled = false
-                binding.stockPrice.error = R.string.fillPrice.toString()
+                binding.stockPrice.error = getString(R.string.fillPrice)
                 return@setOnClickListener
 
             }
@@ -89,7 +89,7 @@ class AddItemFragment : Fragment() {
                 binding.chipGroup.findViewById<Chip>(binding.chipGroup.checkedChipId)?.text?.toString()
             if (selectedChipText.isNullOrEmpty()) {
                 allFilled = false
-                Toast.makeText(requireContext(), R.string.fillStock.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), R.string.fillStock, Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
