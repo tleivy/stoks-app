@@ -186,32 +186,7 @@ class AllItemsFragment : Fragment(){
 
     override fun onResume() {
         super.onResume()
-        viewModel.items?.value?.let { items ->
-            items.forEach { item ->
-                val symbol = item.stockSymbol
-                val token = Constants.API_KEY
-                lifecycleScope.launch(Dispatchers.IO) {
-                    try {
-                        val response = stockRemoteDataSource.getQuote(symbol, token)
-                        if (response.status is Success) {
-                            val stockData = response.status.data
-                            val currPrice = stockData?.c
-                            withContext(Dispatchers.Main) {
-                                if (currPrice != null) {
-                                    item.currPrice = currPrice
-                                    itemDao.updateItem(item)
-                                }
-                            }
-                        } else if (response.status is Error) {
-                            val errorMessage = response.status.message
-                            // Handle error response with the provided error message
-                        }
-                    } catch (e: Exception) {
-                        // Handle exception
-                    }
-                }
-            }
-        }
     }
+
 
 }

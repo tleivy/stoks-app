@@ -38,7 +38,7 @@ interface ItemDao {
     suspend fun updateCurrentPrice(stockName: String, newPrice: Double)
 
     @Query("SELECT SUM(stockAmount) FROM items_table WHERE stockName LIKE:stockName")
-     fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
+    fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
 
     @Query("SELECT * FROM items_table WHERE isFavorite = 1 ORDER BY stockName ASC")
     fun getFavorites() : LiveData<List<Item>>
