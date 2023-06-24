@@ -42,4 +42,6 @@
     <string name="selectImage">לא נבחרה תמונה</string>
     <string name="loading">טוען...</string>
     <string name="networkError">שגיאת רשת</string>
+    <string name="home">בית</string>
+    <string name="empty_list_message">רשימה ריקה</string>
 </resources>
