@@ -11,9 +11,9 @@
     <string name="image">תמונה</string>
     <string name="add">הוסף</string>
     <string name="favorites">מועדפים</string>
-    <string name="curr_price">מחיר נוכחי</string>
+    <string name="curr_price">עדכני</string>
     <string name="price">מחיר</string>
-    <string name="amount_owned">כמות נוכחית</string>
+    <string name="amount_owned">בבעלותך</string>
     <string name="stock_amount">כמות מניות</string>
     <string name="total_worth">שווי כולל</string>
     <string name="total">סך הכל</string>
@@ -44,4 +44,6 @@
     <string name="networkError">שגיאת רשת</string>
     <string name="home">בית</string>
     <string name="empty_list_message">רשימה ריקה</string>
+    <string name="today">היום</string>
+    <string name="total_change">מאז הקנייה</string>
 </resources>
