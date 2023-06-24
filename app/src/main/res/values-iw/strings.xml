@@ -41,4 +41,5 @@
     <string name="fillStock">בחר מניה</string>
     <string name="selectImage">לא נבחרה תמונה</string>
     <string name="loading">טוען...</string>
+    <string name="networkError">שגיאת רשת</string>
 </resources>
