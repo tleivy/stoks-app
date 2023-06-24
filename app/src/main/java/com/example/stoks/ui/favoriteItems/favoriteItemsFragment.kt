@@ -2,49 +2,30 @@ package com.example.stoks.ui.allitems
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stoks.R
 import com.example.stoks.data.local.ItemDao
-import com.example.stoks.databinding.AllItemsFragmentBinding
-import com.example.stoks.data.local.StocksDataMaps
 import com.example.stoks.data.remote_db.StockRemoteDataSource
-import com.example.stoks.data.remote_db.StockService
-import com.example.stoks.data.utils.Constants
-import com.example.stoks.data.utils.Success
 import com.example.stoks.databinding.FavoriteItemsFragmentBinding
-import com.example.stoks.ui.FavoritesViewModel
 import com.example.stoks.ui.ItemViewModel
-import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
-import kotlin.random.Random
-
 
 
 @AndroidEntryPoint
-class FavoriteItemsFragment : Fragment(){
+class FavoriteItemsFragment : Fragment() {
 
     private var _binding: FavoriteItemsFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : ItemViewModel by activityViewModels()
+    private val viewModel: ItemViewModel by activityViewModels()
 
     @Inject
     lateinit var stockRemoteDataSource: StockRemoteDataSource
@@ -57,7 +38,7 @@ class FavoriteItemsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FavoriteItemsFragmentBinding.inflate(inflater,container,false)
+        _binding = FavoriteItemsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -66,20 +47,23 @@ class FavoriteItemsFragment : Fragment(){
 
         super.onViewCreated(view, savedInstanceState)
         binding.bottomNavigation.setSelectedItemId(R.id.favorite)
-        binding.bottomNavigation.setOnItemSelectedListener {itemMenu ->
-            when(itemMenu.itemId) {
+        binding.bottomNavigation.setOnItemSelectedListener { itemMenu ->
+            when (itemMenu.itemId) {
                 R.id.addItemButton -> {
                     findNavController().navigate(R.id.action_favoriteItemsFragment_to_addItemFragment)
                     true
                 }
+
                 R.id.home -> {
                     findNavController().navigate(R.id.action_favoriteItemsFragment_to_allItemsFragment)
                     true
                 }
+
                 R.id.favorite -> {
                     // Respond to navigation item 2 click
                     true
                 }
+
                 else -> false
             }
 
@@ -104,7 +88,10 @@ class FavoriteItemsFragment : Fragment(){
             override fun getMovementFlags(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
-            ) = makeFlag(ItemTouchHelper.ACTION_STATE_SWIPE , ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+            ) = makeFlag(
+                ItemTouchHelper.ACTION_STATE_SWIPE,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            )
 
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -129,7 +116,7 @@ class FavoriteItemsFragment : Fragment(){
                         viewModel.deleteItem(item)
                         itemAdapter.notifyItemRemoved(position)
                     }
-                    setNegativeButton(R.string.no) {_, _ ->
+                    setNegativeButton(R.string.no) { _, _ ->
                         itemAdapter.notifyItemChanged(position) // restore
                     }
                 }

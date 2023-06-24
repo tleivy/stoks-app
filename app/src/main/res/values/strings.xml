@@ -33,15 +33,19 @@
     <string name="enter_company_name">Enter Company Name</string>
     <string name="search">Search</string>
     <string name="home">Home</string>
-    <string name="Tesla">Tesla</string>
-    <string name="Amazon">Amazon</string>
-    <string name="Intel">Intel</string>
-    <string name="Google">Google</string>
-    <string name="Apple">Apple</string>
-    <string name="Microsoft">Microsoft</string>
-    <string name="Netflix">Netflix</string>
-    <string name="Facebook">Facebook</string>
+    <string name="Tesla" translatable="false">Tesla</string>
+    <string name="Amazon" translatable="false">Amazon</string>
+    <string name="Intel" translatable="false">Intel</string>
+    <string name="Google" translatable="false">Google</string>
+    <string name="Apple" translatable="false">Apple</string>
+    <string name="Microsoft" translatable="false">Microsoft</string>
+    <string name="Netflix" translatable="false">Netflix</string>
+    <string name="Facebook" translatable="false">Facebook</string>
+    <string name="fillAmount">Please fill Amount</string>
+    <string name="fillPrice">Please fill price</string>
+    <string name="fillStock">"Please select a Stock"</string>
     <string name="favorites">Favorites</string>
+    <string name="selectImage">"No image selected"</string>
     <string name="added_to_favorites">Added to favorites!</string>
     <string name="removed_from_favorites">Removed from favorites</string>
 </resources>

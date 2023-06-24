@@ -1,11 +1,9 @@
 package com.example.stoks.ui.allitems
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.stoks.R
@@ -72,24 +70,12 @@ class ItemAdapter(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                // Perform your action to remove the item from favorites here
-                // For example, you can call a method in your ViewModel to handle the removal
             }
 
-//            val priceDiff = item.currPrice - item.stockPrice
-//            val percentageChange = (priceDiff / item.stockPrice) * 100
-//            // Display the percentage change
-//            if (priceDiff > 0) {
-//                binding.percent.text = "+%.2f%%".format(percentageChange)
-//                binding.percent.setTextColor(Color.rgb(79, 186, 111))
-//            } else  {
-//                binding.percent.text = "%.2f%%".format(percentageChange)
-//                binding.percent.setTextColor(Color.RED)
-//            }
         }
     }
 
-    fun itemAt(position: Int)= items[position]
+    fun itemAt(position: Int) = items[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ItemViewHolder(

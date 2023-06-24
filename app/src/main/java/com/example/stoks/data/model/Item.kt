@@ -30,9 +30,7 @@ data class Item(
 
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean
-)
-
-{
+) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 }

@@ -109,11 +109,11 @@
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
-        <!--        <com.google.android.material.textfield.MaterialAutoCompleteTextView-->
-        <!--            android:id="@+id/searchField"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:hint="@string/search"/>-->
+<!--                <com.google.android.material.textfield.MaterialAutoCompleteTextView-->
+<!--                    android:id="@+id/searchField"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="@string/search"/>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/stockSymbolBox"
@@ -240,17 +240,17 @@
                 app:strokeWidth="2dp" />
         </LinearLayout>
 
-        <!--        <com.google.android.material.textview.MaterialTextView-->
-        <!--            android:id="@+id/price_disclaimer"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:gravity="center"-->
-        <!--            android:layout_margin="10dp"-->
-        <!--            android:text="@string/add_stocks_disclaimer"-->
-        <!--            android:textSize="11sp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+<!--                <com.google.android.material.textview.MaterialTextView-->
+<!--                    android:id="@+id/price_disclaimer"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:text="@string/add_stocks_disclaimer"-->
+<!--                    android:textSize="11sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent" />-->
 
     </LinearLayout>
 

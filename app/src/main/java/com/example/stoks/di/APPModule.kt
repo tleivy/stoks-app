@@ -1,8 +1,6 @@
 package com.example.stoks.di
 
-import android.app.Application
 import android.content.Context
-import com.example.stoks.data.local.ItemDao
 import com.example.stoks.data.local.ItemsDatabase
 import com.example.stoks.data.remote_db.StockService
 import com.example.stoks.data.utils.Constants
@@ -15,7 +13,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 
@@ -44,20 +41,5 @@ object APPModule {
     @Provides
     @Singleton
     fun provideItemDao(database: ItemsDatabase) = database.itemsDao()
-//
-//    @Provides
-//    @Singleton
-//    fun getAppDB(context : Application): ItemsDatabase {
-//        return ItemsDatabase.getDatabase(context)
-//
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun getDao(ItemDB: ItemsDatabase) : ItemDao {
-//        return ItemDB.itemsDao()
-//    }
-//
-//
 
 }

@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.math.abs
+
 @AndroidEntryPoint
 class DetailedItemFragment : Fragment() {
 
@@ -82,18 +83,17 @@ class DetailedItemFragment : Fragment() {
                 .into(binding.itemImage)
 
             val profit = (it.currPrice - it.stockPrice) * it.stockAmount
-            if (profit >= 0 ) {
-                binding.itemProfit.text =  "$%.2f".format(profit)
+            if (profit >= 0) {
+                binding.itemProfit.text = "$%.2f".format(profit)
                 binding.itemProfitTitle.text = getString(R.string.profit)
-             } else {
+            } else {
                 binding.itemProfitTitle.text = getString(R.string.loss)
-                binding.itemProfit.text =  "-$%.2f".format(abs(profit))
-             }
+                binding.itemProfit.text = "-$%.2f".format(abs(profit))
+            }
         }
 
         super.onViewCreated(view, savedInstanceState)
     }
-
 
 
 }

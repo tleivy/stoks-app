@@ -1,6 +1,5 @@
 package com.example.stoks.ui
 
-//import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,19 +11,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ItemViewModel @Inject constructor(private val repository: ItemRepository) : ViewModel()
-     {
+class ItemViewModel @Inject constructor(private val repository: ItemRepository) : ViewModel() {
+    val items: LiveData<List<Item>>? = repository.getItems()
 
-
-   // private val repository = ItemRepository(application)
-
-    val items : LiveData<List<Item>>? = repository.getItems()
-
-         val favorites : LiveData<List<Item>>? = repository.getFavorites()
+    val favorites: LiveData<List<Item>>? = repository.getFavorites()
 
     private val _chosenItem = MutableLiveData<Item>()
 
-    val chosenItem : LiveData<Item> get() = _chosenItem
+    val chosenItem: LiveData<Item> get() = _chosenItem
 
 
     fun setItem(item: Item) {
@@ -54,22 +48,23 @@ class ItemViewModel @Inject constructor(private val repository: ItemRepository) 
             repository.getTotalAmountForStock(stockName)
         }
     }
-         fun removeFromFavorites(item: Item) {
-             viewModelScope.launch {
-                 repository.removeFromFavorites(item)
-             }
-         }
 
-         fun addToFavorites(item: Item) {
-             viewModelScope.launch {
-                 repository.addToFavorites(item)
-             }
-         }
+    fun removeFromFavorites(item: Item) {
+        viewModelScope.launch {
+            repository.removeFromFavorites(item)
+        }
+    }
 
-         fun updateItem(item: Item){
-             viewModelScope.launch {
-                 repository.updateItem(item)
-             }
-         }
+    fun addToFavorites(item: Item) {
+        viewModelScope.launch {
+            repository.addToFavorites(item)
+        }
+    }
+
+    fun updateItem(item: Item) {
+        viewModelScope.launch {
+            repository.updateItem(item)
+        }
+    }
 
 }

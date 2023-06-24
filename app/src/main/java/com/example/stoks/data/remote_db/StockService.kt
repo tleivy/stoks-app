@@ -8,5 +8,8 @@ import retrofit2.http.Query
 
 interface StockService {
     @GET("quote")
-    suspend fun getQuote(@Query("symbol") symbol: String, @Query("token") token: String): Response<StockData>
+    suspend fun getQuote(
+        @Query("symbol") symbol: String,
+        @Query("token") token: String
+    ): Response<StockData>
 }

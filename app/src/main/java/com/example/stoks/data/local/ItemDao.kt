@@ -25,10 +25,10 @@ interface ItemDao {
 
 
     @Query("SELECT * from items_table ORDER BY stockName ASC")
-    fun getItems() : LiveData<List<Item>>
+    fun getItems(): LiveData<List<Item>>
 
     @Query("SELECT * from items_table WHERE stockName LIKE:title")
-    suspend fun getItem(title:String) : Item
+    suspend fun getItem(title: String): Item
 
 
     @Query("DELETE from items_table")
@@ -38,10 +38,10 @@ interface ItemDao {
     suspend fun updateCurrentPrice(stockName: String, newPrice: Double)
 
     @Query("SELECT SUM(stockAmount) FROM items_table WHERE stockName LIKE:stockName")
-    fun getTotalAmountForStockFlow(stockName: String) : LiveData<Int>
+    fun getTotalAmountForStockFlow(stockName: String): LiveData<Int>
 
     @Query("SELECT * FROM items_table WHERE isFavorite = 1 ORDER BY stockName ASC")
-    fun getFavorites() : LiveData<List<Item>>
+    fun getFavorites(): LiveData<List<Item>>
 
 
 }
