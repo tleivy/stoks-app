@@ -12,9 +12,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ItemViewModel @Inject constructor(private val repository: ItemRepository) : ViewModel() {
-    val items: LiveData<List<Item>>? = repository.getItems()
+    val items: LiveData<List<Item>> = repository.getItems()
 
-    val favorites: LiveData<List<Item>>? = repository.getFavorites()
+    val favorites: LiveData<List<Item>> = repository.getFavorites()
 
     private val _chosenItem = MutableLiveData<Item>()
 

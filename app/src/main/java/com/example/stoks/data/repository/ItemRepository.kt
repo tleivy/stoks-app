@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
 
-    fun getItems() = itemDao?.getItems()
+    fun getItems() = itemDao.getItems()
 
-    fun getFavorites() = itemDao?.getFavorites()
+    fun getFavorites() = itemDao.getFavorites()
 
 
     suspend fun addItem(item: Item) {

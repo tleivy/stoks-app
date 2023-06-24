@@ -43,6 +43,5 @@ interface ItemDao {
     @Query("SELECT * FROM items_table WHERE isFavorite = 1 ORDER BY stockName ASC")
     fun getFavorites(): LiveData<List<Item>>
 
-
 }
 
