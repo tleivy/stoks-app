@@ -75,7 +75,8 @@ class AllItemsFragment : Fragment() {
 
         }
         viewModel.items?.observe(viewLifecycleOwner) {
-            binding.emptyListTextView.visibility = if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
+            binding.emptyListTextView.visibility =
+                if (it.isNullOrEmpty()) View.VISIBLE else View.GONE
 
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
                 override fun onItemClicked(index: Int) {
