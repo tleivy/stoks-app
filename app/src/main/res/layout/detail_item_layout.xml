@@ -94,11 +94,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             android:layout_weight="0.5"
-                            android:gravity="center|top"
+                            android:gravity="center"
                             android:text="@string/curr_price"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/item_price"
@@ -128,11 +128,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             android:layout_weight="0.5"
-                            android:gravity="center|top"
+                            android:gravity="center"
                             android:text="@string/today"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/today_price"
@@ -162,11 +162,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             android:layout_weight="0.5"
-                            android:gravity="center|top"
+                            android:gravity="center"
                             android:text="@string/amount_owned"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/item_amount"
