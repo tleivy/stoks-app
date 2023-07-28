@@ -26,9 +26,6 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
         itemDao?.deleteAll()
     }
 
-    suspend fun getTotalAmountForStock(string: String) {
-        itemDao?.getTotalAmountForStockFlow(string)
-    }
 
     suspend fun removeFromFavorites(item: Item) {
         item.isFavorite = false
