@@ -13,32 +13,32 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
 
 
     suspend fun addItem(item: Item) {
-        itemDao?.addItem(item)
+        itemDao.addItem(item)
     }
 
 
     suspend fun deleteItem(item: Item) {
-        itemDao?.deleteItem(item)
+        itemDao.deleteItem(item)
     }
 
 
     suspend fun deleteAll() {
-        itemDao?.deleteAll()
+        itemDao.deleteAll()
     }
 
 
     suspend fun removeFromFavorites(item: Item) {
         item.isFavorite = false
-        itemDao?.updateItem(item)
+        itemDao.updateItem(item)
     }
 
     suspend fun addToFavorites(item: Item) {
         item.isFavorite = true
-        itemDao?.updateItem(item)
+        itemDao.updateItem(item)
     }
 
     suspend fun updateItem(item: Item) {
-        itemDao?.updateItem(item)
+        itemDao.updateItem(item)
     }
 
 }
