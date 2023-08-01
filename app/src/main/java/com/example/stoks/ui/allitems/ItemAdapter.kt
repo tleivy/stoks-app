@@ -70,11 +70,6 @@ class ItemAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) =
         holder.bind(items[position])
 
-    fun updateItems(newItems: List<Item>) {
-        items = newItems
-        notifyDataSetChanged()
-    }
-
     fun String.formatWithCommas(): String {
         return this.replace(Regex("\\B(?=(\\d{3})+(?!\\d))"), ",")
     }
