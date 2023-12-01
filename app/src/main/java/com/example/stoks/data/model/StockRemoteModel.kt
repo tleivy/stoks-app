@@ -1,6 +1,6 @@
 package com.example.stoks.data.model
 
-data class StockData(
+data class StockRemoteModel(
     val c: Double, // current price
     val h: Double, // high price of the day
     val l: Double, // low price of the day

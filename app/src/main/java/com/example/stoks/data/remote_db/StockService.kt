@@ -1,6 +1,6 @@
 package com.example.stoks.data.remote_db
 
-import com.example.stoks.data.model.StockData
+import com.example.stoks.data.model.StockRemoteModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +11,5 @@ interface StockService {
     suspend fun getQuote(
         @Query("symbol") symbol: String,
         @Query("token") token: String
-    ): Response<StockData>
+    ): Response<StockRemoteModel>
 }
