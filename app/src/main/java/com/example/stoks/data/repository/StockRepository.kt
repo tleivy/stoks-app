@@ -1,7 +1,7 @@
 package com.example.stoks.data.repository
 
 import com.example.stoks.data.local.StockLocalDataSource
-import com.example.stoks.data.model.Stock
+import com.example.stoks.data.model.StockLocalModel
 import com.example.stoks.data.model.StockRemoteModel
 import com.example.stoks.data.remote_db.StockRemoteDataSource
 import com.example.stoks.data.utils.Resource
@@ -16,23 +16,28 @@ class StockRepository @Inject constructor(
 
     fun getFavoriteStocks() = localDataSource.getFavoriteStocks()
 
-    suspend fun addItem(stock: Stock) = localDataSource.addNewStock(stock)
+    suspend fun getStockByName(name: String) = localDataSource.getStockByName(name)
 
-    suspend fun deleteItem(stock: Stock) = localDataSource.deleteStock(stock)
+    suspend fun getStockByTicker(ticker: String) = localDataSource.getStockByName(ticker)
+
+    suspend fun addNewStock(stock: StockLocalModel) = localDataSource.addNewStock(stock)
+
+    suspend fun deleteStock(stock: StockLocalModel) = localDataSource.deleteStock(stock)
 
     suspend fun deleteAllStocks() = localDataSource.deleteAllStocks()
 
-    suspend fun removeFromFavorites(stock: Stock) {
+    suspend fun updateStockData(stock: StockLocalModel) = localDataSource.updateStockData(stock)
+
+    suspend fun addToFavorites(stock: StockLocalModel) {
+        stock.isFavorite = true
+        localDataSource.updateStockData(stock)
+    }
+    suspend fun removeFromFavorites(stock: StockLocalModel) {
         stock.isFavorite = false
         localDataSource.updateStockData(stock)
     }
 
-    suspend fun addToFavorites(stock: Stock) {
-        stock.isFavorite = true
-        localDataSource.updateStockData(stock)
-    }
 
-    suspend fun updateItem(stock: Stock) = localDataSource.updateStockData(stock)
 
     suspend fun getRemoteStockData(stockTicker: String): Resource<StockRemoteModel> =
         remoteDataSource.getStockData(stockTicker)

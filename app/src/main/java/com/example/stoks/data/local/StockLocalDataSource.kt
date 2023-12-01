@@ -1,6 +1,6 @@
 package com.example.stoks.data.local
 
-import com.example.stoks.data.model.Stock
+import com.example.stoks.data.model.StockLocalModel
 import javax.inject.Inject
 
 class StockLocalDataSource @Inject constructor(
@@ -10,22 +10,26 @@ class StockLocalDataSource @Inject constructor(
 
     fun getFavoriteStocks() = stockDao.getFavoriteStocks()
 
-    suspend fun addNewStock(stock: Stock) = stockDao.addNewStock(stock)
+    suspend fun getStockByName(name: String) = stockDao.getStockByName(name)
 
-    suspend fun deleteStock(stock: Stock) = stockDao.deleteStock(stock)
+    suspend fun getStockByTicker(ticker: String) = stockDao.getStockByTicker(ticker)
+
+    suspend fun addNewStock(stock: StockLocalModel) = stockDao.addNewStock(stock)
+
+    suspend fun deleteStock(stock: StockLocalModel) = stockDao.deleteStock(stock)
 
     suspend fun deleteAllStocks() = stockDao.deleteAllStocks()
 
-    suspend fun removeFromFavorites(stock: Stock) {
+    suspend fun removeFromFavorites(stock: StockLocalModel) {
         stock.isFavorite = false
         stockDao.updateStockData(stock)
     }
 
-    suspend fun addToFavorites(stock: Stock) {
+    suspend fun addToFavorites(stock: StockLocalModel) {
         stock.isFavorite = true
         stockDao.updateStockData(stock)
     }
 
-    suspend fun updateStockData(stock: Stock) = stockDao.updateStockData(stock)
+    suspend fun updateStockData(stock: StockLocalModel) = stockDao.updateStockData(stock)
 
 }
