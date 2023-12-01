@@ -13,7 +13,7 @@ import com.example.stoks.data.model.StockLocalModel
 @Dao
 interface StockDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun addNewStock(stock: StockLocalModel)
 
     @Delete
