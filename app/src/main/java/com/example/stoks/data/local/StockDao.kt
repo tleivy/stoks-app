@@ -22,22 +22,25 @@ interface StockDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateStock(stock: Stock)
 
-    @Query("SELECT * from stocks_table ORDER BY stockName ASC")
+    @Query("SELECT * from stocks_table ORDER BY companyName ASC")
     fun getAllStocks(): LiveData<List<Stock>>
 
-    @Query("SELECT * from stocks_table WHERE stockName LIKE:stockName")
-    suspend fun getStockByName(stockName: String): Stock
+    @Query("SELECT * from stocks_table WHERE companyName LIKE:name")
+    suspend fun getStockByName(name: String): Stock
+
+    @Query("SELECT * from stocks_table WHERE stockTicker LIKE:ticker")
+    suspend fun getStockByTicker(ticker: String): Stock
 
     @Query("DELETE from stocks_table")
     suspend fun deleteAll()
 
-    @Query("UPDATE stocks_table SET currPrice = :newPrice WHERE stockName = :stockName")
+    @Query("UPDATE stocks_table SET currPrice = :newPrice WHERE companyName = :stockName")
     suspend fun updateCurrentPrice(stockName: String, newPrice: Double)
 
-    @Query("SELECT SUM(stockAmount) FROM stocks_table WHERE stockName LIKE:stockName")
-    fun getTotalAmountForStockFlow(stockName: String): LiveData<Int>
+    @Query("SELECT SUM(ownedAmount) FROM stocks_table WHERE companyName LIKE:stockName")
+    fun getTotalAmountForStockFlow(stockName: String): LiveData<Int>  // TODO: delete me!!!
 
-    @Query("SELECT * FROM stocks_table WHERE isFavorite = 1 ORDER BY stockName ASC")
+    @Query("SELECT * FROM stocks_table WHERE isFavorite = 1 ORDER BY companyName ASC")
     fun getFavorites(): LiveData<List<Stock>>
 
 }
