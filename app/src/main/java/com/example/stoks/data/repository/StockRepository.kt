@@ -5,6 +5,7 @@ import com.example.stoks.data.model.StockLocalModel
 import com.example.stoks.data.model.StockRemoteModel
 import com.example.stoks.data.remote_db.StockRemoteDataSource
 import com.example.stoks.data.utils.Resource
+import com.example.stoks.data.utils.Success
 import javax.inject.Inject
 
 
@@ -32,13 +33,23 @@ class StockRepository @Inject constructor(
         stock.isFavorite = true
         localDataSource.updateStockData(stock)
     }
+
     suspend fun removeFromFavorites(stock: StockLocalModel) {
         stock.isFavorite = false
         localDataSource.updateStockData(stock)
     }
 
-
-
-    suspend fun getRemoteStockData(stockTicker: String): Resource<StockRemoteModel> =
-        remoteDataSource.getStockData(stockTicker)
+    suspend fun getRemoteStockData(stockTicker: String): Resource<StockRemoteModel> {
+        val remoteStockDataResource: Resource<StockRemoteModel> =
+            remoteDataSource.getStockData(stockTicker)
+        if (remoteStockDataResource.status is Success) {
+            val localStockData = getStockByTicker(stockTicker)
+            val updatedStockData = localStockData.copy(
+                currentPrice = remoteStockDataResource.status.data?.currentPrice
+                    ?: localStockData.currentPrice
+            )
+            updateStockData(updatedStockData)
+        }
+        return remoteStockDataResource
+    }
 }
