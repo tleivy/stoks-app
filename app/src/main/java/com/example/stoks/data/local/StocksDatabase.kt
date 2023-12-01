@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.stoks.data.model.Stock
+import com.example.stoks.data.model.StockLocalModel
 
 
-@Database(entities = arrayOf(Stock::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(StockLocalModel::class), version = 1, exportSchema = false)
 
 abstract class StocksDatabase : RoomDatabase() {
 
