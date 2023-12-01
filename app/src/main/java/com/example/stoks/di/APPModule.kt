@@ -1,7 +1,7 @@
 package com.example.stoks.di
 
 import android.content.Context
-import com.example.stoks.data.local.ItemsDatabase
+import com.example.stoks.data.local.StocksDatabase
 import com.example.stoks.data.remote_db.StockService
 import com.example.stoks.data.utils.Constants
 import com.google.gson.Gson
@@ -35,11 +35,11 @@ object APPModule {
         retrofit.create(StockService::class.java)
 
     @Provides
-    fun provideLocalDatabase(@ApplicationContext appContext: Context): ItemsDatabase =
-        ItemsDatabase.getDatabase(appContext)
+    fun provideLocalDatabase(@ApplicationContext appContext: Context): StocksDatabase =
+        StocksDatabase.getDatabase(appContext)
 
     @Provides
     @Singleton
-    fun provideItemDao(database: ItemsDatabase) = database.itemsDao()
+    fun provideItemDao(database: StocksDatabase) = database.itemsDao()
 
 }

@@ -9,19 +9,19 @@ import com.example.stoks.data.model.Stock
 
 @Database(entities = arrayOf(Stock::class), version = 1, exportSchema = false)
 
-abstract class ItemsDatabase : RoomDatabase() {
+abstract class StocksDatabase : RoomDatabase() {
 
     abstract fun itemsDao(): ItemDao
 
     companion object {
         @Volatile
-        private var instance: ItemsDatabase? = null
+        private var instance: StocksDatabase? = null
 
-        fun getDatabase(context: Context) = instance ?: synchronized(ItemsDatabase::class.java)
+        fun getDatabase(context: Context) = instance ?: synchronized(StocksDatabase::class.java)
         {
             Room.databaseBuilder(
                 context.applicationContext,
-                ItemsDatabase::class.java, "items_databse"
+                StocksDatabase::class.java, "stocks_database"
             ).fallbackToDestructiveMigration().build().also { instance = it }
         }
 
