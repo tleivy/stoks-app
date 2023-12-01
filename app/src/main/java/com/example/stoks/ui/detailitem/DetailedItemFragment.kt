@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.stoks.R
-import com.example.stoks.data.local.ItemDao
+import com.example.stoks.data.local.StockDao
 import com.example.stoks.data.remote_db.StockRemoteDataSource
 import com.example.stoks.data.utils.Constants
 import com.example.stoks.data.utils.Success
@@ -36,7 +36,7 @@ class DetailedItemFragment : Fragment() {
     lateinit var stockRemoteDataSource: StockRemoteDataSource
 
     @Inject
-    lateinit var itemDao: ItemDao
+    lateinit var stockDao: StockDao
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,8 +66,8 @@ class DetailedItemFragment : Fragment() {
                 try {
                     val response = stockRemoteDataSource.getQuote(stockSymbol, token)
                     if (response.status is Success) {
-                        val currPrice = response.status.data?.c
-                        val openingPrice = response.status.data?.o
+                        val currPrice = response.status.data?.currentPrice
+                        val openingPrice = response.status.data?.openPriceOfDay
                         Log.d("PRICES", "currPrice, $stockSymbol: $$currPrice")
                         Log.d("PRICES", "openingPrice, $stockSymbol: $$openingPrice")
 

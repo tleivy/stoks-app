@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stoks.R
-import com.example.stoks.data.local.ItemDao
+import com.example.stoks.data.local.StockDao
 import com.example.stoks.databinding.AllItemsFragmentBinding
 import com.example.stoks.ui.ItemViewModel
 import com.example.stoks.data.remote_db.StockRemoteDataSource
@@ -32,7 +32,7 @@ class AllItemsFragment : Fragment() {
     lateinit var stockRemoteDataSource: StockRemoteDataSource
 
     @Inject
-    lateinit var itemDao: ItemDao
+    lateinit var stockDao: StockDao
 
     @Inject
     lateinit var stockService: StockService

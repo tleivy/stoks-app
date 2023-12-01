@@ -11,7 +11,7 @@ import com.example.stoks.data.model.Stock
 
 
 @Dao
-interface ItemDao {
+interface StockDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addItem(stock: Stock)

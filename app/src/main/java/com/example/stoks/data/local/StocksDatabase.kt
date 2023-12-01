@@ -11,7 +11,7 @@ import com.example.stoks.data.model.Stock
 
 abstract class StocksDatabase : RoomDatabase() {
 
-    abstract fun itemsDao(): ItemDao
+    abstract fun itemsDao(): StockDao
 
     companion object {
         @Volatile

@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stoks.data.model.Stock
-import com.example.stoks.data.repository.ItemRepository
+import com.example.stoks.data.repository.StockRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ItemViewModel @Inject constructor(private val repository: ItemRepository) : ViewModel() {
+class ItemViewModel @Inject constructor(private val repository: StockRepository) : ViewModel() {
     val items: LiveData<List<Stock>> = repository.getItems()
 
     val favorites: LiveData<List<Stock>> = repository.getFavorites()
