@@ -14,19 +14,19 @@ import com.example.stoks.data.model.Stock
 interface StockDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addItem(stock: Stock)
+    suspend fun addNewStock(stock: Stock)
 
     @Delete
-    suspend fun deleteItem(vararg item: Stock)
+    suspend fun deleteStock(vararg item: Stock)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateItem(stock: Stock)
+    suspend fun updateStock(stock: Stock)
 
     @Query("SELECT * from stocks_table ORDER BY stockName ASC")
-    fun getItems(): LiveData<List<Stock>>
+    fun getAllStocks(): LiveData<List<Stock>>
 
-    @Query("SELECT * from stocks_table WHERE stockName LIKE:title")
-    suspend fun getItem(title: String): Stock
+    @Query("SELECT * from stocks_table WHERE stockName LIKE:stockName")
+    suspend fun getStockByName(stockName: String): Stock
 
     @Query("DELETE from stocks_table")
     suspend fun deleteAll()

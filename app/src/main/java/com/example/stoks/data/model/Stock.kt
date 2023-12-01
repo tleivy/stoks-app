@@ -10,23 +10,23 @@ import com.example.stoks.data.utils.UriTypeConverter
 @Entity(tableName = "stocks_table")
 @TypeConverters(UriTypeConverter::class)
 data class Stock(
-    @ColumnInfo(name = "stockName")
-    val stockName: String,
+    @ColumnInfo(name = "companyName")
+    val companyName: String,
 
-    @ColumnInfo(name = "stockSymbol")
-    val stockSymbol: String,
+    @ColumnInfo(name = "stockTicker")
+    val stockTicker: String,
 
-    @ColumnInfo(name = "stockPrice")
-    val stockPrice: Double,
-
-    @ColumnInfo(name = "stockAmount")
-    val stockAmount: Long,
-
-    @ColumnInfo(name = "stockImage")
-    val stockImage: Uri?,
+    @ColumnInfo(name = "boughtPrice")
+    val boughtPrice: Double,
 
     @ColumnInfo(name = "currPrice")
     var currPrice: Double,
+
+    @ColumnInfo(name = "ownedAmount")
+    val ownedAmount: Long,
+
+    @ColumnInfo(name = "companyImage")
+    val companyImage: Uri?,
 
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean
