@@ -20,7 +20,7 @@ interface StockDao {
     suspend fun deleteStock(vararg item: Stock)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateStock(stock: Stock)
+    suspend fun updateStockData(stock: Stock)
 
     @Query("SELECT * from stocks_table ORDER BY companyName ASC")
     fun getAllStocks(): LiveData<List<Stock>>
@@ -32,7 +32,7 @@ interface StockDao {
     suspend fun getStockByTicker(ticker: String): Stock
 
     @Query("DELETE from stocks_table")
-    suspend fun deleteAll()
+    suspend fun deleteAllStocks()
 
     @Query("UPDATE stocks_table SET currPrice = :newPrice WHERE companyName = :stockName")
     suspend fun updateCurrentPrice(stockName: String, newPrice: Double)
@@ -41,7 +41,7 @@ interface StockDao {
     fun getTotalAmountForStockFlow(stockName: String): LiveData<Int>  // TODO: delete me!!!
 
     @Query("SELECT * FROM stocks_table WHERE isFavorite = 1 ORDER BY companyName ASC")
-    fun getFavorites(): LiveData<List<Stock>>
+    fun getFavoriteStocks(): LiveData<List<Stock>>
 
 }
 
