@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.stoks.databinding.ItemLayoutBinding
-import com.example.stoks.data.model.Item
+import com.example.stoks.data.model.Stock
 import com.example.stoks.ui.ItemViewModel
 
 
 class ItemAdapter(
-    var items: List<Item>,
+    var items: List<Stock>,
     private val callback: ItemListener,
     private val viewModel: ItemViewModel // Add the ItemViewModel parameter
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
@@ -40,7 +40,7 @@ class ItemAdapter(
             return false
         }
 
-        fun bind(item: Item) {
+        fun bind(item: Stock) {
             binding.stockName.text = item.stockName.toString()
             binding.stockPrice.text = "$%.2f".format(item.stockPrice).formatWithCommas()
             binding.stockSymbol.text = item.stockSymbol

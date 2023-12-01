@@ -1,7 +1,7 @@
 package com.example.stoks.data.repository
 
 import com.example.stoks.data.local.ItemDao
-import com.example.stoks.data.model.Item
+import com.example.stoks.data.model.Stock
 import javax.inject.Inject
 
 
@@ -12,12 +12,12 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
     fun getFavorites() = itemDao.getFavorites()
 
 
-    suspend fun addItem(item: Item) {
+    suspend fun addItem(item: Stock) {
         itemDao.addItem(item)
     }
 
 
-    suspend fun deleteItem(item: Item) {
+    suspend fun deleteItem(item: Stock) {
         itemDao.deleteItem(item)
     }
 
@@ -27,17 +27,17 @@ class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
     }
 
 
-    suspend fun removeFromFavorites(item: Item) {
+    suspend fun removeFromFavorites(item: Stock) {
         item.isFavorite = false
         itemDao.updateItem(item)
     }
 
-    suspend fun addToFavorites(item: Item) {
+    suspend fun addToFavorites(item: Stock) {
         item.isFavorite = true
         itemDao.updateItem(item)
     }
 
-    suspend fun updateItem(item: Item) {
+    suspend fun updateItem(item: Stock) {
         itemDao.updateItem(item)
     }
 

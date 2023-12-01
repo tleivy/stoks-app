@@ -19,7 +19,7 @@ import com.example.stoks.R
 import com.example.stoks.databinding.AddItemFragmentBinding
 import com.example.stoks.ui.ItemViewModel
 import com.example.stoks.data.local.StocksDataMaps
-import com.example.stoks.data.model.Item
+import com.example.stoks.data.model.Stock
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -108,7 +108,7 @@ class AddItemFragment : Fragment() {
             }
 
             if (allFilled) {
-                val item = Item(
+                val item = Stock(
                     binding.stockName.text.toString(),
                     binding.stockSymbol.text.toString(),
                     binding.stockPrice.text.toString().toDouble(),

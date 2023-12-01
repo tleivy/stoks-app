@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.stoks.data.utils.UriTypeConverter
 
-@Entity(tableName = "items_table")
+@Entity(tableName = "stocks_table")
 @TypeConverters(UriTypeConverter::class)
-data class Item(
+data class Stock(
     @ColumnInfo(name = "stockName")
     val stockName: String,
 

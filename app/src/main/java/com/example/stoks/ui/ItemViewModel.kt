@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stoks.data.model.Item
+import com.example.stoks.data.model.Stock
 import com.example.stoks.data.repository.ItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,26 +12,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ItemViewModel @Inject constructor(private val repository: ItemRepository) : ViewModel() {
-    val items: LiveData<List<Item>> = repository.getItems()
+    val items: LiveData<List<Stock>> = repository.getItems()
 
-    val favorites: LiveData<List<Item>> = repository.getFavorites()
+    val favorites: LiveData<List<Stock>> = repository.getFavorites()
 
-    private val _chosenItem = MutableLiveData<Item>()
+    private val _chosenItem = MutableLiveData<Stock>()
 
-    val chosenItem: LiveData<Item> get() = _chosenItem
+    val chosenItem: LiveData<Stock> get() = _chosenItem
 
 
-    fun setItem(item: Item) {
+    fun setItem(item: Stock) {
         _chosenItem.value = item
     }
 
-    fun addItem(item: Item) {
+    fun addItem(item: Stock) {
         viewModelScope.launch {
             repository.addItem(item)
         }
     }
 
-    fun deleteItem(item: Item) {
+    fun deleteItem(item: Stock) {
         viewModelScope.launch {
             repository.deleteItem(item)
         }
@@ -43,19 +43,19 @@ class ItemViewModel @Inject constructor(private val repository: ItemRepository) 
         }
     }
 
-    fun removeFromFavorites(item: Item) {
+    fun removeFromFavorites(item: Stock) {
         viewModelScope.launch {
             repository.removeFromFavorites(item)
         }
     }
 
-    fun addToFavorites(item: Item) {
+    fun addToFavorites(item: Stock) {
         viewModelScope.launch {
             repository.addToFavorites(item)
         }
     }
 
-    fun updateItem(item: Item) {
+    fun updateItem(item: Stock) {
         viewModelScope.launch {
             repository.updateItem(item)
         }
