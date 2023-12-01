@@ -8,10 +8,10 @@ import javax.inject.Singleton
 
 @Singleton
 class StockRemoteDataSource @Inject constructor(
-    private val stockService: StockService
-) : BaseDataSource() {
+    private val stockRemoteService: StockRemoteService
+) : ApiCallExecutor() {
 
     suspend fun getStockData(stockTicker: String): Resource<StockRemoteModel> {
-        return getResult { stockService.getQuote(stockTicker, Constants.API_KEY) }
+        return getResult { stockRemoteService.getQuote(stockTicker, Constants.API_KEY) }
     }
 }

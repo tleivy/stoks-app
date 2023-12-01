@@ -9,7 +9,7 @@ import com.example.stoks.data.utils.UriTypeConverter
 
 @Entity(tableName = "stocks_table")
 @TypeConverters(UriTypeConverter::class)
-data class Stock(
+data class StockLocalModel(
     @ColumnInfo(name = "companyName")
     val companyName: String,
 
