@@ -1,6 +1,6 @@
 package com.example.stoks.data.repository
 
-import com.example.stoks.data.local.StockDao
+import com.example.stoks.data.local.StockLocalDataSource
 import com.example.stoks.data.model.Stock
 import com.example.stoks.data.model.StockRemoteModel
 import com.example.stoks.data.remote_db.StockRemoteDataSource
@@ -9,30 +9,30 @@ import javax.inject.Inject
 
 
 class StockRepository @Inject constructor(
-    private val stockDao: StockDao,
+    private val localDataSource: StockLocalDataSource,
     private val remoteDataSource: StockRemoteDataSource
 ) {
-    fun getItems() = stockDao.getAllStocks()
+    fun getAllStocks() = localDataSource.getAllStocks()
 
-    fun getFavorites() = stockDao.getFavorites()
+    fun getFavoriteStocks() = localDataSource.getFavoriteStocks()
 
-    suspend fun addItem(stock: Stock) = stockDao.addNewStock(stock)
+    suspend fun addItem(stock: Stock) = localDataSource.addNewStock(stock)
 
-    suspend fun deleteItem(stock: Stock) = stockDao.deleteStock(stock)
+    suspend fun deleteItem(stock: Stock) = localDataSource.deleteStock(stock)
 
-    suspend fun deleteAll() = stockDao.deleteAll()
+    suspend fun deleteAllStocks() = localDataSource.deleteAllStocks()
 
     suspend fun removeFromFavorites(stock: Stock) {
         stock.isFavorite = false
-        stockDao.updateStock(stock)
+        localDataSource.updateStockData(stock)
     }
 
     suspend fun addToFavorites(stock: Stock) {
         stock.isFavorite = true
-        stockDao.updateStock(stock)
+        localDataSource.updateStockData(stock)
     }
 
-    suspend fun updateItem(stock: Stock) = stockDao.updateStock(stock)
+    suspend fun updateItem(stock: Stock) = localDataSource.updateStockData(stock)
 
     suspend fun getRemoteStockData(stockTicker: String): Resource<StockRemoteModel> =
         remoteDataSource.getStockData(stockTicker)
