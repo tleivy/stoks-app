@@ -11,21 +11,17 @@ class StockRepository @Inject constructor(private val stockDao: StockDao) {
 
     fun getFavorites() = stockDao.getFavorites()
 
-
     suspend fun addItem(stock: Stock) {
         stockDao.addItem(stock)
     }
-
 
     suspend fun deleteItem(stock: Stock) {
         stockDao.deleteItem(stock)
     }
 
-
     suspend fun deleteAll() {
         stockDao.deleteAll()
     }
-
 
     suspend fun removeFromFavorites(stock: Stock) {
         stock.isFavorite = false
