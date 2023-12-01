@@ -6,7 +6,6 @@ import com.example.stoks.R
 class StocksDataMaps {
 
     companion object {
-
         val stockSymbols = mutableMapOf(
             "Apple" to "AAPL",
             "Google" to "GOOG",
@@ -20,7 +19,6 @@ class StocksDataMaps {
             "Samsung" to "SSNLF"
         )
 
-
         val stockImages = mutableMapOf<String, Int?>(
             "Apple" to R.drawable.apple_image,
             "Google" to R.drawable.google_image,
@@ -33,8 +31,5 @@ class StocksDataMaps {
             "Nvidia" to R.drawable.nvidia_image,
             "Samsung" to R.drawable.samsung_image
         )
-
     }
-
-
 }
