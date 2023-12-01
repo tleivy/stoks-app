@@ -10,7 +10,7 @@ class StockRemoteDataSource @Inject constructor(
     private val stockService: StockService
 ) : BaseDataSource() {
 
-    suspend fun getQuote(symbol: String, token: String): Resource<StockRemoteModel> {
-        return getResult { stockService.getQuote(symbol, token) }
+    suspend fun getStockData(stockTicker: String, apiToken: String): Resource<StockRemoteModel> {
+        return getResult { stockService.getQuote(stockTicker, apiToken) }
     }
 }
