@@ -2,10 +2,14 @@ package com.example.stoks.data.repository
 
 import com.example.stoks.data.local.StockDao
 import com.example.stoks.data.model.Stock
+import com.example.stoks.data.remote_db.StockRemoteDataSource
 import javax.inject.Inject
 
 
-class StockRepository @Inject constructor(private val stockDao: StockDao) {
+class StockRepository @Inject constructor(
+    private val stockDao: StockDao,
+    private val remoteDataSource: StockRemoteDataSource
+    ) {
 
     fun getItems() = stockDao.getItems()
 
@@ -36,4 +40,7 @@ class StockRepository @Inject constructor(private val stockDao: StockDao) {
     suspend fun updateItem(stock: Stock) {
         stockDao.updateItem(stock)
     }
+
+    suspend fun
+
 }
