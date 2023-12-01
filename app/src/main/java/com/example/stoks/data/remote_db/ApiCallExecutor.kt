@@ -3,7 +3,7 @@ package com.example.stoks.data.remote_db
 import com.example.stoks.data.utils.Resource
 import retrofit2.Response
 
-abstract class BaseDataSource {
+abstract class ApiCallExecutor {
 
     protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
 

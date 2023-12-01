@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
-interface StockService {
+interface StockRemoteService {
     @GET("quote")
     suspend fun getQuote(
         @Query("symbol") symbol: String,
