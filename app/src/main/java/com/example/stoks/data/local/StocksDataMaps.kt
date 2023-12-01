@@ -7,7 +7,7 @@ class StocksDataMaps {
 
     companion object {
 
-        public val stockSymbols = mutableMapOf(
+        val stockSymbols = mutableMapOf(
             "Apple" to "AAPL",
             "Google" to "GOOG",
             "Microsoft" to "MSFT",
@@ -21,7 +21,7 @@ class StocksDataMaps {
         )
 
 
-        public val stockImages = mutableMapOf<String, Int?>(
+        val stockImages = mutableMapOf<String, Int?>(
             "Apple" to R.drawable.apple_image,
             "Google" to R.drawable.google_image,
             "Microsoft" to R.drawable.microsoft_image,
