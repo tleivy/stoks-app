@@ -28,7 +28,7 @@ class StockRepository @Inject constructor(
         return stocksList
     }
 
-    suspend fun getFavoriteStocks(): LiveData<List<StockLocalModel>>  {
+    suspend fun getFavoriteStocks(): LiveData<List<StockLocalModel>> {
         val favoriteStocksList: LiveData<List<StockLocalModel>>
         withContext(defaultDispatcher) {
             favoriteStocksList = localDataSource.getAllStocks()
