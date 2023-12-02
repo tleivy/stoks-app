@@ -10,7 +10,7 @@ class StockLocalDataSource @Inject constructor(
 
     fun getFavoriteStocks() = stockDao.getFavoriteStocks()
 
-    suspend fun getStockByName(name: String) = stockDao.getStockByName(name)
+    suspend fun getStockByName(name: String): StockLocalModel? = stockDao.getStockByName(name)
 
     suspend fun getStockByTicker(ticker: String) = stockDao.getStockByTicker(ticker)
 

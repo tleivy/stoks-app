@@ -26,10 +26,10 @@ interface StockDao {
     fun getAllStocks(): LiveData<List<StockLocalModel>>
 
     @Query("SELECT * from stocks_table WHERE companyName LIKE:name")
-    suspend fun getStockByName(name: String): StockLocalModel
+    suspend fun getStockByName(name: String): StockLocalModel?
 
     @Query("SELECT * from stocks_table WHERE stockTicker LIKE:ticker")
-    suspend fun getStockByTicker(ticker: String): StockLocalModel
+    suspend fun getStockByTicker(ticker: String): StockLocalModel?
 
     @Query("DELETE from stocks_table")
     suspend fun deleteAllStocks()

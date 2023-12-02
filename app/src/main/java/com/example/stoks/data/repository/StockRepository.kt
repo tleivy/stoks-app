@@ -36,16 +36,16 @@ class StockRepository @Inject constructor(
         return favoriteStocksList
     }
 
-    suspend fun getStockByName(name: String): StockLocalModel {
-        val stock: StockLocalModel
+    suspend fun getStockByName(name: String): StockLocalModel? {
+        val stock: StockLocalModel?
         withContext(defaultDispatcher) {
             stock = localDataSource.getStockByName(name)
         }
         return stock
     }
 
-    suspend fun getStockByTicker(ticker: String): StockLocalModel {
-        val stock: StockLocalModel
+    suspend fun getStockByTicker(ticker: String): StockLocalModel? {
+        val stock: StockLocalModel?
         withContext(defaultDispatcher) {
             stock = localDataSource.getStockByTicker(ticker)
         }
@@ -89,8 +89,10 @@ class StockRepository @Inject constructor(
     suspend fun updateStockOwnedAmount(stockName: String, newAmount: Long) {
         withContext(defaultDispatcher) {
             val localStockData = localDataSource.getStockByName(stockName)
-            localStockData.ownedAmount = newAmount
-            localDataSource.updateStockData(localStockData)
+            localStockData?.let {stock ->
+                stock.ownedAmount =  newAmount
+                localDataSource.updateStockData(stock)
+            }
         }
     }
 
@@ -105,9 +107,12 @@ class StockRepository @Inject constructor(
             remoteStockDataResource = remoteDataSource.getStockData(stockTicker)
             if (remoteStockDataResource.status is Success) {
                 val localStockData = getStockByTicker(stockTicker)
-                localStockData.currentPrice = remoteStockDataResource.status.data?.currentPrice
-                    ?: localStockData.currentPrice
-                updateStockData(localStockData)
+                localStockData?.let {stock ->
+                    stock.currentPrice = remoteStockDataResource.status.data?.currentPrice
+                        ?: stock.currentPrice
+                    updateStockData(stock)
+                }
+
             }
         }
         return remoteStockDataResource
