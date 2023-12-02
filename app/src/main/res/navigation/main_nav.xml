@@ -34,9 +34,9 @@
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"
-        android:name="com.example.stoks.ui.additem.AddItemFragment"
+        android:name="com.example.stoks.ui.additem.AddNewStockFragment"
         android:label="add_item_fragment"
-        tools:layout="@layout/add_item_fragment" >
+        tools:layout="@layout/add_new_stock_fragment" >
         <action
             android:id="@+id/action_addItemFragment_to_allItemsFragment"
             app:destination="@id/allItemsFragment"
