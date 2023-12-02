@@ -1,12 +1,10 @@
 package com.example.stoks.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.stoks.data.local.StockLocalDataSource
 import com.example.stoks.data.model.StockLocalModel
 import com.example.stoks.data.model.StockRemoteModel
 import com.example.stoks.data.remote_db.StockRemoteDataSource
-import com.example.stoks.data.utils.Loading
 import com.example.stoks.data.utils.Resource
 import com.example.stoks.data.utils.Success
 import kotlinx.coroutines.CoroutineDispatcher
@@ -86,15 +84,27 @@ class StockRepository @Inject constructor(
         updateStockData(stock)
     }
 
-    suspend fun updateStockOwnedAmount(stockName: String, newAmount: Long) {
+    suspend fun addToOwnedShares(
+        stockName: String,
+        inputAmount: Long,
+        inputPrice: Double
+    ): Boolean {
+        var stockAlreadyOwned = false
         withContext(defaultDispatcher) {
             val localStockData = localDataSource.getStockByName(stockName)
             localStockData?.let { stock ->
-                stock.ownedAmount = newAmount
+                stockAlreadyOwned = true
+                val newOwnedAmount = stock.ownedAmount + inputAmount
+                val newBoughtPriceAvg =
+                    (stock.ownedAmount / newOwnedAmount) * stock.boughtPrice + (inputAmount / newOwnedAmount) * inputPrice
+                stock.ownedAmount = newOwnedAmount
+                stock.boughtPrice = newBoughtPriceAvg
                 localDataSource.updateStockData(stock)
             }
         }
+        return stockAlreadyOwned
     }
+
 
     /**
      * This function fetches the up-to-date stock data from a remote API.
