@@ -2,7 +2,7 @@ package com.example.stoks.di
 
 import android.content.Context
 import com.example.stoks.data.local.StocksDatabase
-import com.example.stoks.data.remote_db.StockService
+import com.example.stoks.data.remote_db.StockRemoteService
 import com.example.stoks.data.utils.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -31,8 +31,8 @@ object APPModule {
     fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
-    fun provideStockService(retrofit: Retrofit): StockService =
-        retrofit.create(StockService::class.java)
+    fun provideStockService(retrofit: Retrofit): StockRemoteService =
+        retrofit.create(StockRemoteService::class.java)
 
     @Provides
     fun provideLocalDatabase(@ApplicationContext appContext: Context): StocksDatabase =
