@@ -89,8 +89,8 @@ class StockRepository @Inject constructor(
     suspend fun updateStockOwnedAmount(stockName: String, newAmount: Long) {
         withContext(defaultDispatcher) {
             val localStockData = localDataSource.getStockByName(stockName)
-            localStockData?.let {stock ->
-                stock.ownedAmount =  newAmount
+            localStockData?.let { stock ->
+                stock.ownedAmount = newAmount
                 localDataSource.updateStockData(stock)
             }
         }
@@ -106,13 +106,11 @@ class StockRepository @Inject constructor(
         withContext(defaultDispatcher) {
             remoteStockDataResource = remoteDataSource.getStockData(stockTicker)
             if (remoteStockDataResource.status is Success) {
-                val localStockData = getStockByTicker(stockTicker)
-                localStockData?.let {stock ->
+                getStockByTicker(stockTicker)?.let { stock ->
                     stock.currentPrice = remoteStockDataResource.status.data?.currentPrice
                         ?: stock.currentPrice
                     updateStockData(stock)
                 }
-
             }
         }
         return remoteStockDataResource
