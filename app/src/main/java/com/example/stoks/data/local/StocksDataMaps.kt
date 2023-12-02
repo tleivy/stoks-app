@@ -6,7 +6,7 @@ import com.example.stoks.R
 class StocksDataMaps {
 
     companion object {
-        val stockSymbols = mutableMapOf(
+        val stockTickers = mutableMapOf(
             "Apple" to "AAPL",
             "Google" to "GOOG",
             "Microsoft" to "MSFT",

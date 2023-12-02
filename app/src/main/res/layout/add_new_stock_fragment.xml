@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ede9e1"
     android:padding="16dp"
-    tools:context=".AddItemFragment">
+    tools:context=".AddNewStockFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,21 +17,21 @@
             android:id="@+id/addStockTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/add_a_new_stock_to_follow"
             android:textColor="@color/my_purple"
             android:textSize="24sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/stockNameBox"
+            android:id="@+id/companyNameBox"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/stock_name"
+                android:id="@+id/company_name"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:hint="@string/enter_company_name"
@@ -137,14 +137,14 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/stockSymbolBox"
+            android:id="@+id/stockTickerBox"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/stock_symbol"
+                android:id="@+id/stock_ticker"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,14 +155,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/stockAmountBox"
+            android:id="@+id/boughtAmountBox"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/stock_amount"
+                android:id="@+id/bought_amount"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,22 +174,22 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/stockPriceBox"
+            android:id="@+id/boughtPriceBox"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/stock_price"
+                android:id="@+id/bought_price"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:hint="@string/bought_price"
                 android:inputType="numberDecimal"
-                app:elevation="3dp"
                 android:maxLength="15"
+                app:elevation="3dp"
                 app:strokeWidth="2dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -224,7 +224,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/image_btn"
+                android:id="@+id/add_image_button"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
 
 
             <Button
-                android:id="@+id/reset_btn"
+                android:id="@+id/reset_button"
                 style="@style/Widget.Material3.Button.TonalButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -250,7 +250,7 @@
 
 
             <Button
-                android:id="@+id/add_btn"
+                android:id="@+id/add_stock_button"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -262,18 +262,6 @@
                 app:strokeColor="@color/white"
                 app:strokeWidth="2dp" />
         </LinearLayout>
-
-        <!--                <com.google.android.material.textview.MaterialTextView-->
-        <!--                    android:id="@+id/price_disclaimer"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:gravity="center"-->
-        <!--                    android:layout_margin="10dp"-->
-        <!--                    android:text="@string/add_stocks_disclaimer"-->
-        <!--                    android:textSize="11sp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent" />-->
 
     </LinearLayout>
 
