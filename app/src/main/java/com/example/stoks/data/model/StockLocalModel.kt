@@ -23,7 +23,7 @@ data class StockLocalModel(
     var currentPrice: Double,
 
     @ColumnInfo(name = "ownedAmount")
-    val ownedAmount: Long,
+    var ownedAmount: Long,
 
     @ColumnInfo(name = "companyImage")
     val companyImage: Uri?,
