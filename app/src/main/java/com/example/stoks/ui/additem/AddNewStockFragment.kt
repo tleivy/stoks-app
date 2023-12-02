@@ -54,7 +54,7 @@ class AddNewStockFragment : Fragment() {
             companyName = selectedChipText
             if (stockTickers.containsKey(companyName)) {
                 binding.stockTicker.setText(stockTickers[companyName])
-                binding.stockName.setText(companyName)
+                binding.companyName.setText(companyName)
                 Glide.with(this).load(stockImages[companyName]!!).into(binding.previewImage)
                 viewModel.nullifyImageUri()
             }
@@ -150,7 +150,7 @@ class AddNewStockFragment : Fragment() {
             if (checkIfAllFieldsAreFilled()) {
                 val uriString: Uri? = createImageUriString()
                 viewModel.onAddStockButtonClicked(
-                    binding.stockName.toString(),
+                    binding.companyName.toString(),
                     binding.stockTicker.toString(),
                     binding.boughtAmount.text.toString().toLong(),
                     binding.boughtPrice.text.toString().toDouble(),
@@ -161,7 +161,7 @@ class AddNewStockFragment : Fragment() {
 
         binding.resetButton.setOnClickListener {
             viewModel.nullifyImageUri()
-            binding.stockName.setText("")
+            binding.companyName.setText("")
             binding.chipGroup.clearCheck()
             binding.stockTicker.setText("")
             binding.boughtPrice.setText("")
@@ -197,7 +197,7 @@ class AddNewStockFragment : Fragment() {
         val tempString: Uri? = if (viewModel.uiState.value?.imageUri != null) {
             viewModel.uiState.value?.imageUri
         } else {
-            val resourceId: Int? = StocksDataMaps.stockImages[binding.stockName.text.toString()]
+            val resourceId: Int? = StocksDataMaps.stockImages[binding.companyName.text.toString()]
             Uri.parse(
                 ContentResolver.SCHEME_ANDROID_RESOURCE +
                         "://" + resourceId?.let { it1 -> resources.getResourcePackageName(it1) } +
