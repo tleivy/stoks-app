@@ -17,7 +17,7 @@ data class StockLocalModel(
     val stockTicker: String,
 
     @ColumnInfo(name = "boughtPrice")
-    val boughtPrice: Double,
+    var boughtPrice: Double,
 
     @ColumnInfo(name = "currPrice")
     var currentPrice: Double,
